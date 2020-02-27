@@ -1,3 +1,14 @@
 <resources>
+    *App Info
     <string name="app_name">SearchLOL</string>
+    <string name="title">Welcome to LOL Summoner\'s Finder</string>
+
+    *Main Components
+    <string name="search_button">Search Summoner</string>
+    <string name="enter_name">Enter Summoner\'s Name</string>
+
+    *Setting Menu
+    <string name="change_region">Change Region</string>
+    <string name="main_setting">Settings</string>
+
 </resources>
