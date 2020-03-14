@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,10 +19,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.example.searchlol.utils.RiotSummonerUtils;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private DrawerLayout mDrawerLayout;
 
@@ -36,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setElevation(0);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
@@ -56,6 +58,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        String name = "LuSu May Cry";
+        String url = RiotSummonerUtils.buildSummonerURL(name);
+
+        Log.d(TAG, "onCreate: " + url);
 
         NavigationView navigationView = findViewById(R.id.drawer_menu);
         navigationView.setNavigationItemSelectedListener(this);
