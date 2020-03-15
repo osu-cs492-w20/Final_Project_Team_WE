@@ -6,6 +6,8 @@
     android:orientation="vertical"
     tools:context=".SummonerDetailActivity">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,11 +30,11 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/tv_summoner_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_summoner_id"
             android:padding="16dp"
-            android:text="28sp"/>
+            android:text="28sp" />
 
     </LinearLayout>
 
@@ -43,5 +45,4 @@
         android:padding="16dp"
         android:textSize="22sp"
         android:text="Test for details"/>
-
 </LinearLayout>

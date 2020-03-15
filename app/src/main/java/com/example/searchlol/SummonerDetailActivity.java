@@ -27,7 +27,7 @@ public class SummonerDetailActivity extends AppCompatActivity {
             summonerNameTV.setText(mSummoner.name);
 
             TextView summonerIdTV = findViewById(R.id.tv_summoner_id);
-            summonerIdTV.setText(mSummoner.id);
+            summonerIdTV.setText(mSummoner.name);
         }
 
     }

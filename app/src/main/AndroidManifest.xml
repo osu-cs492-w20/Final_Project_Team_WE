@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+        <activity
+            android:name=".summoner.RepoDetailActivity"
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop">
@@ -20,6 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
