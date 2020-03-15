@@ -19,16 +19,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.example.searchlol.data.SummonerClass;
+import com.example.searchlol.summoner.SummonerAsyncTask;
 import com.example.searchlol.utils.RiotSummonerUtils;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+                                                                {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private DrawerLayout mDrawerLayout;
 
     private EditText mSearchSummonerET;
+
+    private SummonerClass summonerClass;
 
 //    private ProgressBar mLoadingIndicatorPB;
 
@@ -41,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
+        mSearchSummonerET = findViewById(R.id.et_summoner);
+
+        summonerClass = new SummonerClass();
 
         Button searchButton = findViewById(R.id.search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +57,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 String summonerName = mSearchSummonerET.getText().toString();
                 if (!TextUtils.isEmpty(summonerName)) {
-
+                    String url = RiotSummonerUtils.buildSummonerURL(summonerName);
+                    summonerClass = RiotSummonerUtils.parseSummonerResult(url);
+                    Log.d(TAG, "onClick: " + summonerClass.name);
                 }
 
             }
@@ -58,11 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-        String name = "LuSu May Cry";
-        String url = RiotSummonerUtils.buildSummonerURL(name);
-
-        Log.d(TAG, "onCreate: " + url);
 
         NavigationView navigationView = findViewById(R.id.drawer_menu);
         navigationView.setNavigationItemSelectedListener(this);
@@ -92,5 +98,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             default:
                 return false;
         }
+    }
+
+    public SummonerClass loadSearchResult(String name) {
+        String url = RiotSummonerUtils.buildSummonerURL(name);
+        Log.d(TAG, "loadSearchResult: " + url);
+        return RiotSummonerUtils.parseSummonerResult(url);
     }
 }
