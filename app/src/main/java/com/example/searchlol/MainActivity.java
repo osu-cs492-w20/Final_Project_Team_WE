@@ -35,8 +35,8 @@ import java.util.concurrent.TimeUnit;
 
 import static com.example.searchlol.utils.RiotSummonerUtils.dataParsed;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SummonerSearchAdapter.OnSearchResultClickListener
-                                                                {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+                                                    SummonerSearchAdapter.OnSearchResultClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
