@@ -15,7 +15,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,14 +25,12 @@ import android.widget.ProgressBar;
 import com.example.searchlol.data.Status;
 import com.example.searchlol.data.SummonerClass;
 import com.example.searchlol.summoner.RepoDetailActivity;
-import com.example.searchlol.summoner.SummonerAsyncTask;
-import com.example.searchlol.utils.RiotSummonerUtils;
+import com.example.searchlol.summoner.SummonerSearchAdapter;
+import com.example.searchlol.summoner.SummonerSearchViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import static com.example.searchlol.utils.RiotSummonerUtils.dataParsed;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
                                                     SummonerSearchAdapter.OnSearchResultClickListener {
