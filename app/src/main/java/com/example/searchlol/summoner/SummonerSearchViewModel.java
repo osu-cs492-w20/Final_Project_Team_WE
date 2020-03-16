@@ -1,4 +1,4 @@
-package com.example.searchlol;
+package com.example.searchlol.summoner;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;

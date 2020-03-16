@@ -4,53 +4,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SummonerDetailActivity">
+    tools:context=".summoner.SummonerDetailActivity">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="184dp"
         android:layout_centerVertical="true"
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_summoner_id"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:padding="16dp"
-            android:textSize="10sp" />
+        <ImageView
+            android:id="@+id/iv_summoner_id"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:padding="16dp"/>
 
-        <TextView
-            android:id="@+id/tv_summoner_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_summoner_id"
-            android:layout_marginLeft="10dp"
-            android:padding="16dp"
-            android:textSize="20sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_summoner_Level"
-            android:layout_width="155dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_summoner_id"
-            android:layout_marginLeft="10dp"
-            android:layout_below="@+id/tv_summoner_name"
-            android:layout_marginTop="10dp"
-            android:padding="16dp"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/tv_summoner_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_summoner_Level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textSize="20sp" />
+        </LinearLayout>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <TextView
+        android:id="@+id/tv_summoner_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_summoner_description"
         android:padding="16dp"
-        android:textSize="22sp"
-        android:text="Test for details"/>
+        android:text="Test for details"
+        android:textSize="22sp" />
 </LinearLayout>
