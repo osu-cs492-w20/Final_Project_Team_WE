@@ -64,10 +64,13 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
+    <property name="last_opened_file_path" value="E:/Final_Project_Team_WE/build.gradle" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Final_Project_Team_WE\app\src\main\res\drawable" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.searchlol" />
     </key>
@@ -77,6 +80,8 @@
       <recent name="com.example.searchlol.summoner" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Final_Project_Team_WE\app\src\main\res\drawable" />
+      <recent name="D:\Final_Project_Team_WE\app\src\main\res\menu" />
       <recent name="D:\Final_Project_Team_WE\app\src\main\res\layout" />
     </key>
   </component>
