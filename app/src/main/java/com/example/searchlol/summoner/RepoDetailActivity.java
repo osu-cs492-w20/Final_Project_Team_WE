@@ -34,7 +34,7 @@ public class RepoDetailActivity extends AppCompatActivity {
             repoNameTV.setText("Player: "+mUsername);
             TextView repoLevelTV = findViewById(R.id.tv_summoner_Level);
             repoLevelTV.setText("Level "+mLevel);
-            TextView repoIconTV = findViewById(R.id.tv_summoner_id);
+            TextView repoIconTV = findViewById(R.id.tv_summoner_id);//uicon ...textview iconveiw
             repoIconTV.setText("ICON");
             TextView repoDescriptionTV = findViewById(R.id.tv_summoner_description);
             repoDescriptionTV.setText("About: This player is BronzeV");

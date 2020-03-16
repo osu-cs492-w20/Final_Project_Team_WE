@@ -48,14 +48,14 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
         return !TextUtils.equals(query, mCurrentQuery);
     }
 
-    public void loadSearchResults(String query) {
-        //preference
+    public void loadSearchResults(String query) {//summoner name
+        //preference //multi buildURL
         if (shouldExecuteSearch(query)) {
             mCurrentQuery = query;
             String url = RiotSummonerUtils.buildSummonerURL(query);
             mSearchResults.setValue(null);
             Log.d(TAG, "executing search with url: " + url);
-            mLoadingStatus.setValue(Status.LOADING);
+            mLoadingStatus.setValue(Status.LOADING);///loadingindicator
             new SummonerAsyncTask(this).execute(url);
         } else {
             Log.d(TAG, "using cached search results");

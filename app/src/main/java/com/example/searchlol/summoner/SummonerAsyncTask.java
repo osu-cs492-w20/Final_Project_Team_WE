@@ -47,7 +47,7 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
         if (s != null) {
             result = RiotSummonerUtils.parseSummonerResult(s);//json
             mUsername = result.name;
-            mId = result.id;
+            mId = result.id;    //encryptedsummmonerid
             mLevel = result.summonerLevel;
             Log.d(TAG,"onClick: "+ mId);
         }
