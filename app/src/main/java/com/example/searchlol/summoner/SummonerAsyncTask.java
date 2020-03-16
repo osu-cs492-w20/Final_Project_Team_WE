@@ -15,6 +15,7 @@ import static android.content.ContentValues.TAG;
 import static com.example.searchlol.utils.RiotSummonerUtils.mUsername;
 import static com.example.searchlol.utils.RiotSummonerUtils.mId;
 import static com.example.searchlol.utils.RiotSummonerUtils.mLevel;
+import static com.example.searchlol.utils.RiotSummonerUtils.mIcon;
 
 public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
     private Callback mCallback;
@@ -49,6 +50,7 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
             mUsername = result.name;
             mId = result.id;    //encryptedsummmonerid
             mLevel = result.summonerLevel;
+            mIcon = result.profileIconId;
             Log.d(TAG,"onClick: "+ mId);
         }
         mCallback.onSearchFinished(result);

@@ -14,6 +14,7 @@ import java.util.List;
 import static com.example.searchlol.utils.RiotSummonerUtils.mLevel;
 import static com.example.searchlol.utils.RiotSummonerUtils.mUsername;
 import static com.example.searchlol.utils.RiotSummonerUtils.mId;
+import static com.example.searchlol.utils.RiotSummonerUtils.mIcon;
 
 public class RepoDetailActivity extends AppCompatActivity {
     public static final String EXTRA_GITHUB_REPO = "RepodetailActivity";
@@ -35,7 +36,7 @@ public class RepoDetailActivity extends AppCompatActivity {
             TextView repoLevelTV = findViewById(R.id.tv_summoner_Level);
             repoLevelTV.setText("Level "+mLevel);
             TextView repoIconTV = findViewById(R.id.tv_summoner_id);//uicon ...textview iconveiw
-            repoIconTV.setText("ICON");
+            repoIconTV.setText("ICON "+mIcon);
             TextView repoDescriptionTV = findViewById(R.id.tv_summoner_description);
             repoDescriptionTV.setText("About: This player is BronzeV");
 
