@@ -19,7 +19,7 @@ import static com.example.searchlol.utils.RiotSummonerUtils.mId;
 import static com.example.searchlol.utils.RiotSummonerUtils.mIcon;
 
 public class SummonerDetailActivity extends AppCompatActivity {
-    public static final String EXTRA_GITHUB_REPO = "RepodetailActivity";
+    public static final String EXTRA_GITHUB_REPO = "SummonerDetailActivity";
     private List<SummonerClass> mSearchResultsList;
 
     public void updateSearchResults(List<SummonerClass> searchResultsList, String a) {
