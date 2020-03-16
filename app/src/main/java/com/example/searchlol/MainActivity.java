@@ -29,7 +29,6 @@ import com.example.searchlol.summoner.SummonerSearchAdapter;
 import com.example.searchlol.summoner.SummonerSearchViewModel;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SummonerSearchAdapter mSearchResultAdapter;
     private SummonerClass summonerClass;
     private SummonerSearchViewModel mViewModel;
-    private ProgressBar mLoadingIndicatorPB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,39 +53,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mSearchSummonerET = findViewById(R.id.et_summoner);
-        mSearchResultsRV = findViewById(R.id.rv_search_results);
 
-        mSearchResultsRV.setLayoutManager(new LinearLayoutManager(this));
-        mSearchResultsRV.setHasFixedSize(true);
-
-        mSearchResultAdapter = new SummonerSearchAdapter(this);
-        mSearchResultsRV.setAdapter(mSearchResultAdapter);
-        mLoadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
         mViewModel = new SummonerSearchViewModel();
         summonerClass = new SummonerClass();
-
-        mViewModel.getSearchResults().observe(this, new Observer<List<SummonerClass>>() {
-            @Override
-            public void onChanged(List<SummonerClass> gitHubRepos) {
-                mSearchResultAdapter.updateSearchResults(gitHubRepos);
-            }
-        });
-
-        mViewModel.getLoadingStatus().observe(this, new Observer<Status>() {
-            @Override
-            public void onChanged(Status status) {
-                if (status == Status.SUCCESS) {
-                    mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
-                    mSearchResultsRV.setVisibility(View.VISIBLE);
-                } else if (status == Status.LOADING) {
-                    mLoadingIndicatorPB.setVisibility(View.VISIBLE);
-                }
-                else {
-                    mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
-                    mSearchResultsRV.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
 
         Button searchButton = findViewById(R.id.search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
