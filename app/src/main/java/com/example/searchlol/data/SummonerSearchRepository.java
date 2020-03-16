@@ -19,10 +19,6 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
     private String mCurrentQuery;
     private String mCurrentSort;
     private String mCurrentLanguage;
-    private String mCurrentUser;
-    private boolean mCurrentSearchInName;
-    private boolean mCurrentSearchInDescription;
-    private boolean mCurrentSearchInReadme;
 
     public SummonerSearchRepository() {
         mSearchResults = new MutableLiveData<>();
@@ -42,21 +38,24 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
 
     @Override
     public void onSearchFinished(SummonerClass searchResults) {
-
+        //mSearchResults.setValue(searchResults);
+        if (searchResults != null) {
+            mLoadingStatus.setValue(Status.SUCCESS);
+        }
     }
 
     private boolean shouldExecuteSearch(String query) {
         return !TextUtils.equals(query, mCurrentQuery);
     }
 
-    public void loadSearchResults(String query) {
-        //preference
+    public void loadSearchResults(String query) {//summoner name
+        //preference //multi buildURL
         if (shouldExecuteSearch(query)) {
             mCurrentQuery = query;
             String url = RiotSummonerUtils.buildSummonerURL(query);
             mSearchResults.setValue(null);
             Log.d(TAG, "executing search with url: " + url);
-            mLoadingStatus.setValue(Status.LOADING);
+            mLoadingStatus.setValue(Status.LOADING);///loadingindicator
             new SummonerAsyncTask(this).execute(url);
         } else {
             Log.d(TAG, "using cached search results");
