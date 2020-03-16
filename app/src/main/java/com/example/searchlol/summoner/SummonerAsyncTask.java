@@ -12,14 +12,12 @@ import com.example.searchlol.utils.RiotSummonerUtils;
 import java.io.IOException;
 
 import static android.content.ContentValues.TAG;
-import static com.example.searchlol.utils.RiotSummonerUtils.dataParsed;
-import static com.example.searchlol.utils.RiotSummonerUtils.singleParsed;
+import static com.example.searchlol.utils.RiotSummonerUtils.mUsername;
+import static com.example.searchlol.utils.RiotSummonerUtils.mId;
+import static com.example.searchlol.utils.RiotSummonerUtils.mLevel;
 
 public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
     private Callback mCallback;
-    public RiotSummonerUtils mvalues;
-    public RepoDetailActivity mRepo;
-    public static String myJson="";
     private MutableLiveData<com.example.searchlol.data.Status> mLoadingStatus;
 
     public interface Callback {
@@ -45,14 +43,13 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        //SummonerClass result = null;
         SummonerClass result=null;
         if (s != null) {
             result = RiotSummonerUtils.parseSummonerResult(s);//json
-            dataParsed = result.name;
-            singleParsed = result.id;
-            //Log.d(TAG,"onClick: "+ dataParsed);
-            Log.d(TAG,"onClick: "+ singleParsed);
+            mUsername = result.name;
+            mId = result.id;
+            mLevel = result.summonerLevel;
+            Log.d(TAG,"onClick: "+ mId);
         }
         mCallback.onSearchFinished(result);
     }

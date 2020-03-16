@@ -7,36 +7,44 @@
     tools:context=".SummonerDetailActivity">
 
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:layout_gravity="center_vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_summoner_name"
-            android:textSize="40sp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="184dp"
+        android:layout_centerVertical="true"
         android:orientation="horizontal"
         android:padding="16dp">
 
         <TextView
             android:id="@+id/tv_summoner_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:gravity="center"
             android:padding="16dp"
-            android:textSize="28sp" />
+            android:textSize="10sp" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tv_summoner_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_summoner_id"
+            android:layout_marginLeft="10dp"
+            android:padding="16dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_summoner_Level"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_summoner_id"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/tv_summoner_name"
+            android:layout_marginTop="10dp"
+            android:padding="16dp"
+            android:textSize="20sp" />
+
+
+    </RelativeLayout>
+
 
     <TextView
         android:layout_width="match_parent"
