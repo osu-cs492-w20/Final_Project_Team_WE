@@ -13,7 +13,7 @@ import static android.content.ContentValues.TAG;
 public class RiotSummonerUtils {
     private final static String SUMMONERS_BASE_URL = "api.riotgames.com/lol/summoner/v4/summoners/by-name/";
     private final static String SUMMONERS_CHAMPION_URL = "api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/"; //encryptedid->id
-    private final static String API_KEY = "RGAPI-f4b22863-8d95-4b5e-8836-670b7301052e";
+    private final static String API_KEY = "RGAPI-ee2db9b1-12f0-498c-afdb-6ce35599b614";
 
     private final static String REGION = "na1.";
 

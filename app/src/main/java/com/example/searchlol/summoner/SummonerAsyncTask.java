@@ -51,7 +51,7 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
             mId = result.id;    //encryptedsummmonerid
             mLevel = result.summonerLevel;
             mIcon = result.profileIconId;
-            Log.d(TAG,"onClick: "+ mId);
+            Log.d(TAG,"onClick: "+ mIcon);
         }
         mCallback.onSearchFinished(result);
     }
