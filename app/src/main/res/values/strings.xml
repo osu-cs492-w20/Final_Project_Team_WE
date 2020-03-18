@@ -15,5 +15,5 @@
     <string name="nav_change_region">Change Region</string>
     <string name="navigation_drawer_open">Open drawer</string>
     <string name="navigation_drawer_close">Close drawer</string>
-
+    <string name="search_for_history">View Match History</string>
 </resources>

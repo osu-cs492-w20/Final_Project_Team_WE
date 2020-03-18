@@ -33,7 +33,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_API_29" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_XL_API_29" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -71,7 +71,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
@@ -84,6 +84,8 @@
       <recent name="com.example.searchlol.summoner" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Winter2020\Final_Project_Team_WE\app\src\main\res\layout" />
+      <recent name="F:\Winter2020\Final_Project_Team_WE\app\src\main\res\values" />
       <recent name="E:\Final_Project_Team_WE\app\src\main\res\drawable-v24" />
       <recent name="E:\Final_Project_Team_WE\app\src\main\res\menu" />
       <recent name="D:\Final_Project_Team_WE\app\src\main\res\layout" />
