@@ -6,21 +6,19 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.searchlol.summoner.SummonerAsyncTask;
-import com.example.searchlol.utils.RiotSummonerUtils;
+import com.example.searchlol.summoner.RankAsyncTask;
+import com.example.searchlol.utils.SummonerRankUtils;
 
 import java.util.List;
 
-public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
+public class RankSearchRepository implements RankAsyncTask.Callback {
     private static final String TAG = SummonerSearchRepository.class.getSimpleName();
     private MutableLiveData<List<SummonerClass>> mSearchResults;
     private MutableLiveData<Status> mLoadingStatus;
 
     private String mCurrentQuery;
-    private String mCurrentSort;
-    private String mCurrentLanguage;
 
-    public SummonerSearchRepository() {
+    public RankSearchRepository() {
         mSearchResults = new MutableLiveData<>();
         mSearchResults.setValue(null);
 
@@ -37,7 +35,7 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
     }
 
     @Override
-    public void onSearchFinished(SummonerClass searchResults) {
+    public void onSearchFinished(List<RankClass> searchResults) {
         //mSearchResults.setValue(searchResults);
         if (searchResults != null) {
             mLoadingStatus.setValue(Status.SUCCESS);
@@ -48,15 +46,15 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
         return !TextUtils.equals(query, mCurrentQuery);
     }
 
-    public void loadSummonerSearchResults(String query) {//summoner name
+    public void loadRankSearchResults(String Id) {//summoner name
         //preference //multi buildURL
-        if (shouldExecuteSearch(query)) {
-            mCurrentQuery = query;
-            String url = RiotSummonerUtils.buildSummonerURL(query);
+        if (shouldExecuteSearch(Id)) {
+            mCurrentQuery = Id;
+            String url = SummonerRankUtils.buildRankSearchURL(Id);
             mSearchResults.setValue(null);
             Log.d(TAG, "executing search with url: " + url);
             mLoadingStatus.setValue(Status.LOADING);///loadingindicator
-            new SummonerAsyncTask(this).execute(url);
+            new RankAsyncTask(this).execute(url);
         } else {
             Log.d(TAG, "using cached search results");
         }

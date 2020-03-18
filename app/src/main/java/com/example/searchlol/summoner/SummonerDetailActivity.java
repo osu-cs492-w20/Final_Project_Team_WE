@@ -20,8 +20,10 @@ import java.util.List;
 import static android.content.ContentValues.TAG;
 import static com.example.searchlol.utils.RiotSummonerUtils.mLevel;
 import static com.example.searchlol.utils.RiotSummonerUtils.mUsername;
-import static com.example.searchlol.utils.RiotSummonerUtils.mId;
 import static com.example.searchlol.utils.RiotSummonerUtils.mIcon;
+
+import static com.example.searchlol.utils.SummonerRankUtils.mTier;
+import static com.example.searchlol.utils.SummonerRankUtils.mRank;
 
 public class SummonerDetailActivity extends AppCompatActivity {
     public static final String EXTRA_GITHUB_REPO = "SummonerDetailActivity";
@@ -44,6 +46,7 @@ public class SummonerDetailActivity extends AppCompatActivity {
             repoLevelTV.setText(String.format("Level: %s", mLevel));
 //            TextView repoRankTV = findViewById(R.id.tv_Rank);
 //            repoRankTV.setText("Default: IronV");
+            Log.d(TAG, "onCreate: " + mTier + mRank);
             ImageView repoIconIV = findViewById(R.id.tv_summoner_id);
             String iconUrl = "https://opgg-static.akamaized.net/images/profile_icons/profileIcon" + String.valueOf(mIcon) + ".jpg";
             Log.d(TAG,"onClick: "+ iconUrl);
