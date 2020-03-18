@@ -7,6 +7,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/rl_summoner_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -52,14 +53,96 @@
             android:textSize="20sp" />
 
 
+
     </RelativeLayout>
 
-
-    <TextView
+    <Button
+        android:id="@+id/search_history_button"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_summoner_description"
-        android:padding="16dp"
-        android:textSize="22sp"
-        android:text="Test for details"/>
+        android:text="@string/search_for_history" />
+
+    <RelativeLayout
+        android:id="@+id/rl_summoner_solo_rank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_summoner_info"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_summoner_solo"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_summoner_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/iv_summoner_solo"
+            android:layout_toRightOf="@+id/iv_summoner_solo"
+            android:padding="16dp"
+            android:textSize="22sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_summoner_duo_rank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_summoner_solo_rank"
+        android:layout_marginTop="10dp"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_summoner_duo"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_summoner_description2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/iv_summoner_duo"
+            android:layout_toRightOf="@id/iv_summoner_duo"
+            android:padding="16dp"
+            android:textSize="22sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_summoner_third_rank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_summoner_duo_rank"
+        android:layout_marginTop="10dp"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_summoner_third"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_summoner_description3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/iv_summoner_third"
+            android:layout_toRightOf="@id/iv_summoner_third"
+            android:padding="16dp"
+            android:textSize="22sp" />
+
+    </RelativeLayout>
+
 </LinearLayout>

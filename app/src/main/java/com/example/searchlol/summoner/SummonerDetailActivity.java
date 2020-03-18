@@ -44,12 +44,16 @@ public class SummonerDetailActivity extends AppCompatActivity {
             repoLevelTV.setText(String.format("Level: %s", mLevel));
             TextView repoRankTV = findViewById(R.id.tv_Rank);
             repoRankTV.setText("Default: IronV");
+            TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
+            repoFirstTV.setText("TOP1 Champ");
+            TextView repoSecondTV = findViewById(R.id.tv_summoner_description2);
+            repoSecondTV.setText("TOP2 Champ");
+            TextView repoThirdTV = findViewById(R.id.tv_summoner_description3);
+            repoThirdTV.setText("TOP3 Champ");
             ImageView repoIconIV = findViewById(R.id.tv_summoner_id);
             String iconUrl = "https://opgg-static.akamaized.net/images/profile_icons/profileIcon" + String.valueOf(mIcon) + ".jpg";
             Log.d(TAG,"onClick: "+ iconUrl);
             Glide.with(repoIconIV.getContext()).load(iconUrl).into(repoIconIV);
-            TextView repoDescriptionTV = findViewById(R.id.tv_summoner_description);
-            repoDescriptionTV.setText("About: This player is BronzeV");
 
             //TextView repoStarsTV = findViewById(R.id.tv_repo_stars);
             //repoStarsTV.setText(Integer.toString(mRepo.stargazers_count));
