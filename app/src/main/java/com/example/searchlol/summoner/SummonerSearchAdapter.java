@@ -1,6 +1,5 @@
-package com.example.searchlol;
+package com.example.searchlol.summoner;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.searchlol.R;
 import com.example.searchlol.data.SummonerClass;
 
 import java.util.List;
@@ -16,9 +16,8 @@ import java.util.List;
 public class SummonerSearchAdapter extends RecyclerView.Adapter<SummonerSearchAdapter.SearchResultViewHolder> {
     private List<SummonerClass> mSearchResultsList;
     private OnSearchResultClickListener mResultClickListener;
-    public static final String EXTRA_GITHUB_REPO = "SUmmoner!";
 
-    interface OnSearchResultClickListener {
+    public interface OnSearchResultClickListener {
         void onSearchResultClicked(SummonerClass repo);
     }
 

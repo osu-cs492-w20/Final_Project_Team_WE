@@ -3,43 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".SummonerDetailActivity">
+    android:orientation="vertical">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="184dp"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <TextView
+        <ImageView
             android:id="@+id/tv_summoner_id"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
             android:gravity="center"
-            android:padding="16dp"
             android:textSize="10sp" />
 
         <TextView
             android:id="@+id/tv_summoner_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_summoner_id"
             android:layout_marginLeft="10dp"
-            android:padding="16dp"
+            android:layout_toRightOf="@+id/tv_summoner_id"
+            android:padding="5dp"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_summoner_Level"
-            android:layout_width="155dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_summoner_id"
-            android:layout_marginLeft="10dp"
             android:layout_below="@+id/tv_summoner_name"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:padding="16dp"
+            android:layout_toRightOf="@+id/tv_summoner_id"
+            android:padding="5dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_Rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_summoner_Level"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/tv_summoner_id"
+            android:padding="5dp"
             android:textSize="20sp" />
 
 

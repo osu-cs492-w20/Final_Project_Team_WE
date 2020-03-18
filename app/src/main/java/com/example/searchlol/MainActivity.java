@@ -24,7 +24,9 @@ import android.widget.ProgressBar;
 
 import com.example.searchlol.data.Status;
 import com.example.searchlol.data.SummonerClass;
-import com.example.searchlol.summoner.RepoDetailActivity;
+import com.example.searchlol.summoner.SummonerDetailActivity;
+import com.example.searchlol.summoner.SummonerSearchAdapter;
+import com.example.searchlol.summoner.SummonerSearchViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
@@ -142,14 +144,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onSearchResultClicked(SummonerClass repo) {
-        Intent intent = new Intent(this, RepoDetailActivity.class);
-        intent.putExtra(RepoDetailActivity.EXTRA_GITHUB_REPO, repo);
+        Intent intent = new Intent(this, SummonerDetailActivity.class);
+        intent.putExtra(SummonerDetailActivity.EXTRA_GITHUB_REPO, repo);
         startActivity(intent);
     }
 
     private void startSecondActivity(SummonerClass repo){
-        Intent intent = new Intent(this, RepoDetailActivity.class);
-        intent.putExtra(RepoDetailActivity.EXTRA_GITHUB_REPO, repo);
+        Intent intent = new Intent(this, SummonerDetailActivity.class);
+        intent.putExtra(SummonerDetailActivity.EXTRA_GITHUB_REPO, repo);
         startActivity(intent);
     }
 
