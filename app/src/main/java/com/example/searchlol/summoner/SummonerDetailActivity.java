@@ -42,8 +42,8 @@ public class SummonerDetailActivity extends AppCompatActivity {
             repoNameTV.setText(String.format("Player: %s", mUsername));
             TextView repoLevelTV = findViewById(R.id.tv_summoner_Level);
             repoLevelTV.setText(String.format("Level: %s", mLevel));
-            TextView repoRankTV = findViewById(R.id.tv_Rank);
-            repoRankTV.setText("Default: IronV");
+//            TextView repoRankTV = findViewById(R.id.tv_Rank);
+//            repoRankTV.setText("Default: IronV");
             ImageView repoIconIV = findViewById(R.id.tv_summoner_id);
             String iconUrl = "https://opgg-static.akamaized.net/images/profile_icons/profileIcon" + String.valueOf(mIcon) + ".jpg";
             Log.d(TAG,"onClick: "+ iconUrl);
