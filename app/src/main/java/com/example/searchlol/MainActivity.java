@@ -129,6 +129,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()) {
             case R.id.nav_search:
                 return true;
+            case R.id.action_save_favorite_summoner:
+                //invoke activity
+                return true;
 //            case R.id.nav_saved_repos:
 //                Intent savedReposIntent = new Intent(this, SavedReposActivity.class);
 //                startActivity(savedReposIntent);

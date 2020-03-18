@@ -39,7 +39,7 @@ public class SummonerDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_GITHUB_REPO)) {
             TextView repoNameTV = findViewById(R.id.tv_summoner_name);
-            repoNameTV.setText(String.format("Player: %s", mUsername));
+            repoNameTV.setText(String.format(mUsername));
             TextView repoLevelTV = findViewById(R.id.tv_summoner_Level);
             repoLevelTV.setText(String.format("Level: %s", mLevel));
 //            TextView repoRankTV = findViewById(R.id.tv_Rank);
@@ -66,9 +66,6 @@ public class SummonerDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_view_more:
-                //invoke activity
-                return true;
-            case R.id.action_save_favorite_summoner:
                 //invoke activity
                 return true;
             default:

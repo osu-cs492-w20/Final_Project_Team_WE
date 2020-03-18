@@ -29,7 +29,7 @@
             android:layout_toEndOf="@+id/tv_summoner_id"
             android:layout_toRightOf="@+id/tv_summoner_id"
             android:padding="5dp"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/tv_summoner_Level"
@@ -42,7 +42,7 @@
             android:layout_toEndOf="@+id/tv_summoner_id"
             android:layout_toRightOf="@+id/tv_summoner_id"
             android:padding="5dp"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
     </RelativeLayout>
 
