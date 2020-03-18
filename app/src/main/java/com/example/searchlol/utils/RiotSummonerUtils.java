@@ -20,8 +20,8 @@ public class RiotSummonerUtils {
     public static String mUsername ="";
     public static String mId ="";
     public static String mLevel ="";
-    public static int mIcon = 0;
-    public static int rotate = 0;
+    public static int mIcon=0;
+    public static int rotate=0;
 
     public static String buildSummonerURL(String name) {
         if(rotate==1){

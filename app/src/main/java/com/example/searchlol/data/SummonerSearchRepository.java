@@ -48,7 +48,7 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
         return !TextUtils.equals(query, mCurrentQuery);
     }
 
-    public void loadSummonerSearchResults(String query) {//summoner name
+    public void loadSearchResults(String query) {//summoner name
         //preference //multi buildURL
         if (shouldExecuteSearch(query)) {
             mCurrentQuery = query;

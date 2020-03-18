@@ -15,7 +15,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,14 +22,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.example.searchlol.data.RankClass;
 import com.example.searchlol.data.Status;
 import com.example.searchlol.data.SummonerClass;
 import com.example.searchlol.summoner.SummonerDetailActivity;
 import com.example.searchlol.summoner.SummonerSearchAdapter;
 import com.example.searchlol.summoner.SummonerSearchViewModel;
 import com.google.android.material.navigation.NavigationView;
-import static com.example.searchlol.utils.RiotSummonerUtils.mId;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -45,8 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RecyclerView mSearchResultsRV;
     private SummonerSearchAdapter mSearchResultAdapter;
     private SummonerClass summonerClass;
-    private SummonerSearchViewModel mSummonerViewModel;
-    private RankClass rankClass;
+    private SummonerSearchViewModel mViewModel;
     private ProgressBar mLoadingIndicatorPB;
 
     @Override
@@ -67,25 +63,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mSearchResultAdapter = new SummonerSearchAdapter(this);
         mSearchResultsRV.setAdapter(mSearchResultAdapter);
         mLoadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
-        mSummonerViewModel = new SummonerSearchViewModel();
+        mViewModel = new SummonerSearchViewModel();
         summonerClass = new SummonerClass();
-        rankClass = new RankClass();
 
-        mSummonerViewModel.getSummonerSearchResults().observe(this, new Observer<List<SummonerClass>>() {
+        mViewModel.getSearchResults().observe(this, new Observer<List<SummonerClass>>() {
             @Override
             public void onChanged(List<SummonerClass> gitHubRepos) {
                 mSearchResultAdapter.updateSearchResults(gitHubRepos);
             }
         });
 
-//        mSummonerViewModel.getRankSearchResults().observe(this, new Observer<List<RankClass>>() {
-//            @Override
-//            public void onChanged(List<RankClass> gitHubRepos) {
-//                mSearchResultAdapter.updateSearchResults(gitHubRepos);
-//            }
-//        });
-
-        mSummonerViewModel.getLoadingStatus().observe(this, new Observer<Status>() {
+        mViewModel.getLoadingStatus().observe(this, new Observer<Status>() {
             @Override
             public void onChanged(Status status) {
                 if (status == Status.SUCCESS) {
@@ -107,10 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 String summonerName = mSearchSummonerET.getText().toString();
                 if (!TextUtils.isEmpty(summonerName)) {
-                    mSummonerViewModel.loadSummonerSearchResults(summonerName);
-                    String summonerID = mId;
-                    Log.d(TAG, "onClick: " + summonerID);
-                    mSummonerViewModel.loadRankSearchResults(summonerID);
+                    mViewModel.loadSearchResults(summonerName);
                     try {
                         TimeUnit.SECONDS.sleep(1);
                         startSecondActivity(summonerClass);
@@ -197,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getString(R.string.pref_in_readme_key), true
         );
         */
-        mSummonerViewModel.loadSummonerSearchResults(searchQuery);
+        mViewModel.loadSearchResults(searchQuery);
     }
 
     /*
