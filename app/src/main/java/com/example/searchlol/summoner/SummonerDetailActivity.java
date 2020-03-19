@@ -12,7 +12,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.transition.Fade;
 import androidx.transition.Scene;
+import androidx.transition.Transition;
+import androidx.transition.TransitionInflater;
 import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +35,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private List<SummonerClass> mSearchResultsList;
     private ViewGroup sceneRoot;
     private ViewGroup mViewHierarchy;
+    private ViewGroup sceneRoot2;
     public Boolean setOnce=false;
     Scene aScene;
     Scene anotherScene;
@@ -45,14 +49,6 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summoner_detail);
 
-        // Create the scene root for the scenes in this app
-        mViewHierarchy = (ViewGroup) findViewById(R.id.rl_summoner_info);
-        /*
-        sceneRoot = (ViewGroup) findViewById(R.id.scene_root);
-        aScene = Scene.getSceneForLayout(sceneRoot, R.layout.a_scene, this);
-        anotherScene = Scene.getSceneForLayout(sceneRoot, R.layout.another_scene, this);
-        mScene = new Scene(sceneRoot, mViewHierarchy);
-        */
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_GITHUB_REPO)) {
             TextView repoNameTV = findViewById(R.id.tv_summoner_name);
@@ -73,9 +69,6 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             Glide.with(repoIconIV.getContext()).load(iconUrl).into(repoIconIV);
             repoIconIV.setOnClickListener(this);
 
-
-            //TextView repoStarsTV = findViewById(R.id.tv_repo_stars);
-            //repoStarsTV.setText(Integer.toString(mRepo.stargazers_count));
         }
     }
 
@@ -99,20 +92,13 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_summoner_id:
+                Intent sharedIntent=new Intent(this, ChampionDetailActivity.class);
+                startActivity(sharedIntent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 setOnce = !setOnce;
-                TransitionManager.beginDelayedTransition(mViewHierarchy);
-                // Then, we can just change view properties as usual.
-                View square = mViewHierarchy.findViewById(R.id.tv_summoner_id);
-                ViewGroup.LayoutParams params = square.getLayoutParams();
-                int newSize= getResources().getDimensionPixelSize(R.dimen.square_size_normal);
-                if(setOnce) {
-                    newSize = getResources().getDimensionPixelSize(R.dimen.square_size_expanded);
-                }
-                params.width = newSize;
-                params.height = newSize;
-                square.setLayoutParams(params);
                 break;
         }
     }
+
 
 }

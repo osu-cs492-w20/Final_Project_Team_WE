@@ -1,17 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scene_container"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_rift"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_view2"
-        android:text="Text Line 2" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_view1"
-        android:text="Text Line 1" />
+    android:layout_height="140dp"
+    android:orientation="vertical"
+    android:background="@drawable/drift"
+    android:gravity="bottom"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-</RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_champ_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/tv_champ_id"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:contentDescription="ICON"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_champ_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_champ_id"
+            android:padding="5dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_champ_Level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_champ_id"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_champ_mastery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_champ_Level"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_champ_detailed_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_champ_mastery"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
