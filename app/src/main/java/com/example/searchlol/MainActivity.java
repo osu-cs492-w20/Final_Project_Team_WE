@@ -65,14 +65,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mLoadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
         mViewModel = new SummonerSearchViewModel();
         summonerClass = new SummonerClass();
-
+        /*
         mViewModel.getSearchResults().observe(this, new Observer<List<SummonerClass>>() {
             @Override
             public void onChanged(List<SummonerClass> gitHubRepos) {
                 mSearchResultAdapter.updateSearchResults(gitHubRepos);
             }
         });
-
+        */
         mViewModel.getLoadingStatus().observe(this, new Observer<Status>() {
             @Override
             public void onChanged(Status status) {

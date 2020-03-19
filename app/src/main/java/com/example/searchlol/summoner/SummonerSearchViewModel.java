@@ -1,5 +1,7 @@
 package com.example.searchlol.summoner;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -7,11 +9,9 @@ import com.example.searchlol.data.SummonerClass;
 import com.example.searchlol.data.SummonerSearchRepository;
 import com.example.searchlol.data.Status;
 
-import java.util.List;
-
 public class SummonerSearchViewModel extends ViewModel {
     private SummonerSearchRepository mRepository;
-    private LiveData<List<SummonerClass>> mSearchResults;
+    private LiveData<SummonerClass> mSearchResults;
     private LiveData<Status> mLoadingStatus;
 
     public SummonerSearchViewModel() {
@@ -24,7 +24,7 @@ public class SummonerSearchViewModel extends ViewModel {
         mRepository.loadSearchResults(query);
     }
 
-    public LiveData<List<SummonerClass>> getSearchResults() {
+    public LiveData<SummonerClass> getSearchResults() {
         return mSearchResults;
     }
 

@@ -9,16 +9,11 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.searchlol.summoner.SummonerAsyncTask;
 import com.example.searchlol.utils.RiotSummonerUtils;
 
-import java.util.List;
-
 public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
     private static final String TAG = SummonerSearchRepository.class.getSimpleName();
-    private MutableLiveData<List<SummonerClass>> mSearchResults;
+    private MutableLiveData<SummonerClass> mSearchResults;
     private MutableLiveData<Status> mLoadingStatus;
-
     private String mCurrentQuery;
-    private String mCurrentSort;
-    private String mCurrentLanguage;
 
     public SummonerSearchRepository() {
         mSearchResults = new MutableLiveData<>();
@@ -28,7 +23,7 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
         mLoadingStatus.setValue(Status.SUCCESS);
     }
 
-    public LiveData<List<SummonerClass>> getSearchResults() {
+    public LiveData<SummonerClass> getSearchResults() {
         return mSearchResults;
     }
 
@@ -38,7 +33,7 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
 
     @Override
     public void onSearchFinished(SummonerClass searchResults) {
-        //mSearchResults.setValue(searchResults);
+        mSearchResults.setValue(searchResults);
         if (searchResults != null) {
             mLoadingStatus.setValue(Status.SUCCESS);
         }
@@ -49,7 +44,6 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
     }
 
     public void loadSearchResults(String query) {//summoner name
-        //preference //multi buildURL
         if (shouldExecuteSearch(query)) {
             mCurrentQuery = query;
             String url = RiotSummonerUtils.buildSummonerURL(query);

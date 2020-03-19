@@ -21,7 +21,6 @@ public class ChampionDetailActivity extends AppCompatActivity {
         TextView repoSecondTV = findViewById(R.id.tv_champ_mastery);
         repoSecondTV.setText("Mastery: 78971");
 
-
     }
 
 

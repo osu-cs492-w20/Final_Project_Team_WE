@@ -6,42 +6,32 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.transition.Fade;
-import androidx.transition.Scene;
-import androidx.transition.Transition;
-import androidx.transition.TransitionInflater;
-import androidx.transition.TransitionManager;
-
 import com.bumptech.glide.Glide;
 import com.example.searchlol.R;
 import  com.example.searchlol.data.SummonerClass;
-
-import java.util.List;
-
 import static android.content.ContentValues.TAG;
-import static com.example.searchlol.utils.RiotSummonerUtils.mLevel;
-import static com.example.searchlol.utils.RiotSummonerUtils.mUsername;
-import static com.example.searchlol.utils.RiotSummonerUtils.mId;
-import static com.example.searchlol.utils.RiotSummonerUtils.mIcon;
+
 
 public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String EXTRA_GITHUB_REPO = "SummonerDetailActivity";
-    private List<SummonerClass> mSearchResultsList;
-    private ViewGroup sceneRoot;
-    private ViewGroup mViewHierarchy;
-    private ViewGroup sceneRoot2;
     public Boolean setOnce=false;
-    Scene aScene;
-    Scene anotherScene;
-    Scene mScene;
-    public void updateSearchResults(List<SummonerClass> searchResultsList, String a) {
-        mSearchResultsList = searchResultsList;
+    public SummonerClass mRepo= new SummonerClass();
+    private static String myLevel;
+    private static String myUsername;
+    private static int    myIcon;
+    public  static String    mId;
+
+    public void receiveData(SummonerClass myResult){
+        mRepo=myResult;
+        myLevel=mRepo.summonerLevel;
+        myUsername=mRepo.name;
+        myIcon = mRepo.profileIconId;
+        mId = mRepo.id;
     }
 
     @Override
@@ -52,9 +42,9 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_GITHUB_REPO)) {
             TextView repoNameTV = findViewById(R.id.tv_summoner_name);
-            repoNameTV.setText(String.format("Player: %s", mUsername));
+            repoNameTV.setText(String.format("Player: %s", myUsername));
             TextView repoLevelTV = findViewById(R.id.tv_summoner_Level);
-            repoLevelTV.setText(String.format("Level: %s", mLevel));
+            repoLevelTV.setText(String.format("Level: %s", myLevel));
             TextView repoRankTV = findViewById(R.id.tv_Rank);
             repoRankTV.setText("Default: IronV");
             TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
@@ -64,8 +54,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             TextView repoThirdTV = findViewById(R.id.tv_summoner_description3);
             repoThirdTV.setText("TOP3 Champ");
             ImageView repoIconIV = findViewById(R.id.tv_summoner_id);
-            String iconUrl = "https://opgg-static.akamaized.net/images/profile_icons/profileIcon" + String.valueOf(mIcon) + ".jpg";
-            Log.d(TAG,"onClick: "+ iconUrl);
+            String iconUrl = "https://opgg-static.akamaized.net/images/profile_icons/profileIcon" + String.valueOf(myIcon) + ".jpg";
+            Log.d(TAG,"onClick: "+ mId);
             Glide.with(repoIconIV.getContext()).load(iconUrl).into(repoIconIV);
             repoIconIV.setOnClickListener(this);
 

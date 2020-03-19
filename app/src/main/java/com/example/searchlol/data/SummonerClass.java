@@ -12,7 +12,8 @@ public class SummonerClass implements Serializable {
     //public String puuid;
 
     public int profileIconId;
-    //public int revisionDate;
+    public long revisionDate;
+
 
 
 }

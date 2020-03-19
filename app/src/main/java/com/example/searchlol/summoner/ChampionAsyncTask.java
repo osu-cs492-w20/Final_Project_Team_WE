@@ -2,23 +2,26 @@ package com.example.searchlol.summoner;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import static android.content.ContentValues.TAG;
+
 import androidx.lifecycle.MutableLiveData;
+
 import com.example.searchlol.data.SummonerClass;
 import com.example.searchlol.utils.NetworkUtils;
 import com.example.searchlol.utils.RiotSummonerUtils;
+
 import java.io.IOException;
 
-public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
+import static android.content.ContentValues.TAG;
+
+
+public class ChampionAsyncTask extends AsyncTask<String, Void, String> {
     private Callback mCallback;
     private MutableLiveData<com.example.searchlol.data.Status> mLoadingStatus;
-    public SummonerClass mrepo;
-    public SummonerDetailActivity mAct;
     public interface Callback {
         void onSearchFinished(SummonerClass searchResult);
     }
 
-    public SummonerAsyncTask(Callback callback) {
+    public ChampionAsyncTask(Callback callback) {
         mCallback = callback;
     }
 
@@ -38,13 +41,10 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         SummonerClass result=null;
-        mrepo= new SummonerClass();
-        mAct  = new SummonerDetailActivity();
         if (s != null) {
             result = RiotSummonerUtils.parseSummonerResult(s);//json
         }
         mCallback.onSearchFinished(result);
-        mAct.receiveData(result);
     }
 
 }
