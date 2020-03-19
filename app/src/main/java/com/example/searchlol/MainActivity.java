@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +31,11 @@ import com.example.searchlol.summoner.SummonerSearchViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
+
+import static com.example.searchlol.summoner.ChampionAsyncTask.trigger;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
                                                     SummonerSearchAdapter.OnSearchResultClickListener {
@@ -44,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SummonerClass summonerClass;
     private SummonerSearchViewModel mViewModel;
     private ProgressBar mLoadingIndicatorPB;
+    public static int trigger=0;
+    static Timer myTimer = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,14 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mLoadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
         mViewModel = new SummonerSearchViewModel();
         summonerClass = new SummonerClass();
-        /*
-        mViewModel.getSearchResults().observe(this, new Observer<List<SummonerClass>>() {
-            @Override
-            public void onChanged(List<SummonerClass> gitHubRepos) {
-                mSearchResultAdapter.updateSearchResults(gitHubRepos);
-            }
-        });
-        */
+
         mViewModel.getLoadingStatus().observe(this, new Observer<Status>() {
             @Override
             public void onChanged(Status status) {
@@ -96,16 +96,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 String summonerName = mSearchSummonerET.getText().toString();
                 if (!TextUtils.isEmpty(summonerName)) {
                     mViewModel.loadSearchResults(summonerName);
-                    try {
-                        TimeUnit.SECONDS.sleep(1);
-                        startSecondActivity(summonerClass);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    if (myTimer == null) {
+                        myTimer = new Timer();
+                        myTimer.scheduleAtFixedRate(new TimerTask() {
+
+                            public void run() {
+                                if(trigger==1) {
+                                    startSecondActivity(summonerClass);
+                                    trigger=0;
+                                }
+
+                            }
+                        }, 1000, 1000);
                     }
+
                 }
 
             }
         });
+
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -152,10 +162,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-    private void startSecondActivity(SummonerClass repo){
+    public void startSecondActivity(SummonerClass repo){
         Intent intent = new Intent(this, SummonerDetailActivity.class);
         intent.putExtra(SummonerDetailActivity.EXTRA_GITHUB_REPO, repo);
         startActivity(intent);
+    }
+
+    public void startTimer() {
+        if (myTimer == null) {
+            myTimer = new Timer();
+            myTimer.scheduleAtFixedRate(new TimerTask() {
+
+                public void run() {
+
+                }
+            }, 1000, 1000);
+        }
     }
 
     private void doGitHubSearch(String searchQuery) {
@@ -185,12 +207,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mViewModel.loadSearchResults(searchQuery);
     }
 
-    /*
-    public SummonerClass loadSearchResult(String name) {
-        String url = RiotSummonerUtils.buildSummonerURL(name);
-        Log.d(TAG, "loadSearchResult: " + url);
-        //return RiotSummonerUtils.parseSummonerResult(url);
-    }
-
-     */
 }

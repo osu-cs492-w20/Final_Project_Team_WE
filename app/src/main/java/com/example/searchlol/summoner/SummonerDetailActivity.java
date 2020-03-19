@@ -13,7 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.searchlol.R;
+import com.example.searchlol.data.ChampionMasteryClass;
 import  com.example.searchlol.data.SummonerClass;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import static android.content.ContentValues.TAG;
 
 
@@ -24,7 +31,11 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private static String myLevel;
     private static String myUsername;
     private static int    myIcon;
-    public  static String    mId;
+    public  static String mId;
+    private static long   myDate;
+    private static int c1Name,c1Level,c1Points;
+    private static int c2Name,c2Level,c2Points;
+    private static int c3Name,c3Level,c3Points;
 
     public void receiveData(SummonerClass myResult){
         mRepo=myResult;
@@ -32,6 +43,28 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         myUsername=mRepo.name;
         myIcon = mRepo.profileIconId;
         mId = mRepo.id;
+        myDate = mRepo.revisionDate;
+    }
+
+    public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3){
+        c1Name=result1.championId;
+        c1Level=result1.championLevel;
+        c1Points=result1.championPoints;
+
+        c2Name=result2.championId;
+        c2Level=result2.championLevel;
+        c2Points=result2.championPoints;
+
+        c3Name=result3.championId;
+        c3Level=result3.championLevel;
+        c3Points=result3.championPoints;
+    }
+
+    public String changeDate(long unixSeconds){
+        Date date = new java.util.Date(unixSeconds);
+        SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = sdf.format(date);
+        return formattedDate;
     }
 
     @Override
@@ -48,16 +81,24 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             TextView repoRankTV = findViewById(R.id.tv_Rank);
             repoRankTV.setText("Default: IronV");
             TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
-            repoFirstTV.setText("TOP1 Champ");
+            repoFirstTV.setText("TOP1 Champ: "+ c1Level);
+            TextView repoFirst2TV = findViewById(R.id.tv_summoner_descriptio);
+            repoFirst2TV.setText("Mastery "+ c1Points);
             TextView repoSecondTV = findViewById(R.id.tv_summoner_description2);
-            repoSecondTV.setText("TOP2 Champ");
+            repoSecondTV.setText("TOP2 Champ" + c2Level);
+            TextView repoSecond2TV = findViewById(R.id.tv_summoner_descriptio2);
+            repoSecond2TV.setText("Mastery: "+ c2Points);
             TextView repoThirdTV = findViewById(R.id.tv_summoner_description3);
-            repoThirdTV.setText("TOP3 Champ");
+            repoThirdTV.setText("TOP3 Champ" + c3Level);
+            TextView repoThird2TV = findViewById(R.id.tv_summoner_descriptio3);
+            repoThird2TV.setText("Mastery: " + c3Name);
             ImageView repoIconIV = findViewById(R.id.tv_summoner_id);
             String iconUrl = "https://opgg-static.akamaized.net/images/profile_icons/profileIcon" + String.valueOf(myIcon) + ".jpg";
-            Log.d(TAG,"onClick: "+ mId);
+            TextView repoDateTV = findViewById(R.id.tv_Date_des);
+            repoDateTV.setText("Last Revision Date: "+  changeDate(myDate));
             Glide.with(repoIconIV.getContext()).load(iconUrl).into(repoIconIV);
             repoIconIV.setOnClickListener(this);
+
 
         }
     }
