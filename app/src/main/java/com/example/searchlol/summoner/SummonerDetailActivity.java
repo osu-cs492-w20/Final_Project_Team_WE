@@ -1,6 +1,5 @@
 package com.example.searchlol.summoner;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -83,12 +81,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_save_favorite_summoner:
-                Context context = getApplicationContext();
-                CharSequence text = "Summoner Saved";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+            case R.id.action_view_more:
+                //invoke activity
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
