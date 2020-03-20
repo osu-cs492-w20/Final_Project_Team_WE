@@ -8,7 +8,7 @@ public class SummonerClass implements Serializable {
     public String name;
     public String id;
     public String summonerLevel;
-    //public String accountId;
+    public String accountId;
     //public String puuid;
 
     public int profileIconId;

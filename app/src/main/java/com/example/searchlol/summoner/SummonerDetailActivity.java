@@ -6,15 +6,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
+import com.example.searchlol.MainActivity;
 import com.example.searchlol.R;
 import com.example.searchlol.data.ChampionMasteryClass;
 import  com.example.searchlol.data.SummonerClass;
+import com.example.searchlol.histroy.HistoryActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -36,6 +39,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private static int c1Name,c1Level,c1Points;
     private static int c2Name,c2Level,c2Points;
     private static int c3Name,c3Level,c3Points;
+    private Button historyButton ;
+    private static String accountid;
 
     public void receiveData(SummonerClass myResult){
         mRepo=myResult;
@@ -44,6 +49,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         myIcon = mRepo.profileIconId;
         mId = mRepo.id;
         myDate = mRepo.revisionDate;
+        accountid=mRepo.accountId;
     }
 
     public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3){
@@ -81,7 +87,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             TextView repoRankTV = findViewById(R.id.tv_Rank);
             repoRankTV.setText("Default: IronV");
             TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
-            repoFirstTV.setText("TOP1 Champ: "+ c1Level);
+            repoFirstTV.setText("TOP1 Champ: "+c1Name+ "LV"+c1Level);
             TextView repoFirst2TV = findViewById(R.id.tv_summoner_descriptio);
             repoFirst2TV.setText("Mastery "+ c1Points);
             TextView repoSecondTV = findViewById(R.id.tv_summoner_description2);
@@ -101,6 +107,18 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
 
         }
+        historyButton=findViewById(R.id.search_history_button);
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newintent = new Intent(SummonerDetailActivity.this  , HistoryActivity.class);
+                newintent.putExtra("userID",accountid);
+                startActivity(newintent);
+                }
+
+            });
+
+
     }
 
     @Override
