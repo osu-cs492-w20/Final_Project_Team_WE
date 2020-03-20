@@ -10,27 +10,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.searchlol.R;
 import com.example.searchlol.data.SummonerClass;
+import com.example.searchlol.data.SummonerRepo;
 
 import java.util.List;
 
 public class SavedSummonerAdapter extends RecyclerView.Adapter<SavedSummonerAdapter.SavedItemViewHolder> {
-    private List<SummonerClass> mNameList;
+    private List<SummonerRepo> mNameList;
     private OnNameItemClickListener mOnNameItemClickListener;
 
     public interface OnNameItemClickListener {
-        void onNameItemClick(SummonerClass summonerClass);
+        void onNameItemClick(SummonerRepo summonerClass);
     }
 
     public SavedSummonerAdapter(OnNameItemClickListener clickListener) {
         mOnNameItemClickListener = clickListener;
     }
 
-    public void updateLocationList(List<SummonerClass> nameList) {
+    public void updateLocationList(List<SummonerRepo> nameList) {
         mNameList = nameList;
         notifyDataSetChanged();
     }
 
-    public SummonerClass getNameAt(int position) {
+    public SummonerRepo getNameAt(int position) {
         return mNameList.get(position);
     }
 
@@ -64,13 +65,13 @@ public class SavedSummonerAdapter extends RecyclerView.Adapter<SavedSummonerAdap
             itemView.setOnClickListener(this);
         }
 
-        public void bind(SummonerClass nameClass) {
-            mNameTV.setText(nameClass.name);
+        public void bind(SummonerRepo nameClass) {
+            mNameTV.setText(nameClass.id);
         }
 
         @Override
         public void onClick(View v) {
-            SummonerClass name = mNameList.get(getAdapterPosition());
+            SummonerRepo name = mNameList.get(getAdapterPosition());
             mOnNameItemClickListener.onNameItemClick(name);
         }
     }

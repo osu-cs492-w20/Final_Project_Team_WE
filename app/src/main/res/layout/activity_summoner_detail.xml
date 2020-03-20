@@ -51,13 +51,6 @@
             android:padding="5dp"
             android:textSize="20sp" />
 
-        <ImageView
-            android:id="@+id/iv_repo_bookmark"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_toRightOf="@+id/tv_summoner_name"
-            android:src="@drawable/ic_favorite_border" />
-
     </RelativeLayout>
 
     <Button

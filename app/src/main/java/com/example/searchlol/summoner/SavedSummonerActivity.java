@@ -44,7 +44,7 @@ public class SavedSummonerActivity extends AppCompatActivity implements SavedSum
         mViewModel.getAllSummoners().observe(this, new Observer<List<SummonerRepo>>() {
             @Override
 
-            public void onChanged(List<SummonerClass> gitHubRepos) {
+            public void onChanged(List<SummonerRepo> gitHubRepos) {
                 adapter.updateLocationList(gitHubRepos);
             }
         });
@@ -64,7 +64,7 @@ public class SavedSummonerActivity extends AppCompatActivity implements SavedSum
     }
 
     @Override
-    public void onNameItemClick(SummonerClass summonerClass) {
+    public void onNameItemClick(SummonerRepo summonerClass) {
         //load summoner name
         Intent intent = new Intent(this, SummonerDetailActivity.class);
         intent.putExtra(SummonerDetailActivity.EXTRA_GITHUB_REPO, summonerClass);
