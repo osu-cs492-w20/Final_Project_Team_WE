@@ -68,7 +68,7 @@ public class HistoryActivity  extends AppCompatActivity {
         }
 
         @Override
-        protected ArrayList<MatchInfo>  doInBackground(String... strings) {
+        protected ArrayList<MatchInfo> doInBackground(String... strings) {
             String url = strings[0];
             String searchResults = null;
             try {

@@ -87,6 +87,7 @@ public class HistoryUtils {
                 .build()
                 .toString();
     }
+
     public static ArrayList<MatchReferenceDto> parseHistoryListResults(String json) {
         Gson gson = new Gson();
         MatchRepo results = gson.fromJson(json, MatchRepo.class);
