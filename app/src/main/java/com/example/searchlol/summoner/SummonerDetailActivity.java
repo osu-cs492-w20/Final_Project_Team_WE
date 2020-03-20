@@ -192,6 +192,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
                 public void onClick(View v) {
                     Intent newIntent = new Intent(SummonerDetailActivity.this, HistoryActivity.class);
                     newIntent.putExtra("userID", accountId);
+                    startActivity(newIntent);
                 }
             });
 
