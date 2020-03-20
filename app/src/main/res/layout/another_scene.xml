@@ -3,30 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/drift">
+    android:orientation="vertical">
 
 
     <RelativeLayout
         android:id="@+id/rl_champ_info"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/tv_champ_id"
+            android:id="@+id/iv_scene_header"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:foreground="@drawable/drift"/>
+
+        <ImageView
+            android:id="@+id/iv_champ_icon"
             android:layout_width="135dp"
             android:layout_height="135dp"
+            android:layout_margin="20dp"
             android:contentDescription="ICON"
+            android:layout_below="@+id/iv_scene_header"
             android:gravity="center" />
 
         <TextView
             android:id="@+id/tv_champ_des"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/tv_champ_id"
+            android:layout_margin="20dp"
+            android:layout_below="@+id/iv_champ_icon"
             android:padding="5dp"
             android:textSize="20sp" />
 
@@ -34,9 +40,8 @@
             android:id="@+id/tv_champ_Level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_champ_id"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_below="@+id/iv_champ_icon"
+            android:layout_margin="20dp"
             android:padding="5dp"
             android:textSize="20sp" />
 
@@ -45,8 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_champ_Level"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_margin="20dp"
             android:padding="5dp"
             android:textSize="20sp" />
 
@@ -55,8 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_champ_mastery"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_margin="20dp"
             android:padding="5dp"
             android:textSize="20sp" />
 
