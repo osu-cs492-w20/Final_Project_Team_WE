@@ -3,8 +3,9 @@ package com.example.searchlol.data;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.searchlol.utils.ChampionInfoUtil;
+
 import java.util.List;
-import java.util.jar.Attributes;
 
 public class ChampionRepository implements NameTask.NameCallBack {
     private MutableLiveData<List<ChampionInfo>> mChampion;
@@ -15,7 +16,7 @@ public class ChampionRepository implements NameTask.NameCallBack {
     }
 
     public void getNameById(int id){
-        String url = "https://ddragon.leagueoflegends.com/cdn/10.6.1/data/en_US/champion.json";
+        String url = ChampionInfoUtil.buildChampionInfoURL(String.valueOf(id));
         new NameTask(url, this).execute();
     }
 

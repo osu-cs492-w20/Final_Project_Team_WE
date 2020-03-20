@@ -77,18 +77,18 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         return formattedDate;
     }
 
-    public String getChampionById(int id) {
-        String championName = "Aatrox";
-        championViewModel.loadName(id);
-//        new NameTask(url, this).execute();
-//        for (int i = 0; i < championList.size(); i++) {
-//            if (id == championList.get(i).key) {
-//                championName = championList.get(i).id;
-//            }
-//        }
-        Log.d("TAG", "getChampionById: " + championName);
-        return championName;
-    }
+//    public String getChampionById(int id) {
+//        String championName = "Aatrox";
+//        championViewModel.loadName(id);
+////        new NameTask(url, this).execute();
+////        for (int i = 0; i < championList.size(); i++) {
+////            if (id == championList.get(i).key) {
+////                championName = championList.get(i).id;
+////            }
+////        }
+//        Log.d("TAG", "getChampionById: " + championName);
+//        return championName;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,15 +130,12 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             Glide.with(repoIconIV.getContext()).load(iconUrl).into(repoIconIV);
             repoIconIV.setOnClickListener(this);
 
-            String c1Name_name = getChampionById(c1Name);
             ImageView championIcon1 = findViewById(R.id.iv_summoner_solo);
-            String c2Name_name = getChampionById(c2Name);
             ImageView championIcon2 = findViewById(R.id.iv_summoner_duo);
-            String c3Name_name = getChampionById(c3Name);
             ImageView championIcon3 = findViewById(R.id.iv_summoner_third);
-            String champion1Url = "https://opgg-static.akamaized.net/images/lol/champion/" + c1Name_name + ".png";
-            String champion2Url = "https://opgg-static.akamaized.net/images/lol/champion/" + c2Name_name + ".png";
-            String champion3Url = "https://opgg-static.akamaized.net/images/lol/champion/" + c3Name_name + ".png";
+            String champion1Url = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/" + c1Name + ".png";
+            String champion2Url = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/" + c2Name + ".png";
+            String champion3Url = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/" + c3Name + ".png";
             Log.d("TAG", "onCreate: " + champion1Url);
             Glide.with(championIcon1.getContext()).load(champion1Url).into(championIcon1);
             Glide.with(championIcon2.getContext()).load(champion2Url).into(championIcon2);
