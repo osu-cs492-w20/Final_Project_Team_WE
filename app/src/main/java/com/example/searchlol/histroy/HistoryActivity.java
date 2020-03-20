@@ -5,6 +5,7 @@ import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -38,7 +39,7 @@ public class HistoryActivity  extends AppCompatActivity {
         mID = (String)intent.getSerializableExtra("userID");
         Log.d(TAG,mID);
         history=findViewById(R.id.history);
-        history.setText(mID);
+
 
         mHistoryAdapter = new HistoryAdapter();
         historyRV=findViewById(R.id.history_RV);
@@ -97,7 +98,7 @@ public class HistoryActivity  extends AppCompatActivity {
         @Override
         protected void onPostExecute(ArrayList<MatchInfo>  s) {
             super.onPostExecute(s);
-            history.setText("666");
+            history.setVisibility(View.INVISIBLE);
             mHistoryAdapter.updateMatchinfo(s);
 //            if (s != null) {
 //                mErrorMessageTV.setVisibility(View.INVISIBLE);
