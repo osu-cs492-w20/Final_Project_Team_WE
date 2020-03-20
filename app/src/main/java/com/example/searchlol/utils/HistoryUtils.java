@@ -121,11 +121,11 @@ public class HistoryUtils {
 
         matchInfo.champ=results.participants[partId].championId;
         matchInfo.item1=results.participants[partId].stats.item1;
-        matchInfo.item1=results.participants[partId].stats.item2;
-        matchInfo.item1=results.participants[partId].stats.item3;
-        matchInfo.item1=results.participants[partId].stats.item4;
-        matchInfo.item1=results.participants[partId].stats.item5;
-        matchInfo.item1=results.participants[partId].stats.item6;
+        matchInfo.item2=results.participants[partId].stats.item2;
+        matchInfo.item3=results.participants[partId].stats.item3;
+        matchInfo.item4=results.participants[partId].stats.item4;
+        matchInfo.item5=results.participants[partId].stats.item5;
+        matchInfo.item6=results.participants[partId].stats.item6;
 
 
         if (results != null) {
