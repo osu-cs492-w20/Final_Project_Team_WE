@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Date;
+import java.util.jar.Attributes;
 
 public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String EXTRA_GITHUB_REPO = "SummonerDetailActivity";
@@ -48,7 +49,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         myDate = mRepo.revisionDate;
     }
 
-    public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3, ArrayList<ChampionInfo> result4) {
+    public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3) {
 
         c1Name = result1.championId;
         c1Level = result1.championLevel;
@@ -61,11 +62,9 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         c3Name = result3.championId;
         c3Level = result3.championLevel;
         c3Points = result3.championPoints;
-
-        championList = result4;
     }
 
-    public void receiveName(ArrayList<ChampionInfo> result) {
+    public void getJson(ArrayList<ChampionInfo> result) {
         championList = result;
     }
 
@@ -78,12 +77,12 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
     public String getChampionById(int id) {
         String championName = null;
-
-        ArrayList<ChampionInfo> championInfos = championList;
-
-        for (int i = 0; i < championInfos.size(); i++) {
-            if (id == championInfos.get(i).key) {
-                championName = championInfos.get(i).id;
+        String url = "http://ddragon.leagueoflegends.com/cdn/10.6.1/data/en_US/champion.json";
+        new NameTask().execute(url);
+        Log.d("TAG", "getChampionById: " + championList.get(0).id);
+        for (int i = 0; i < championList.size(); i++) {
+            if (id == championList.get(i).key) {
+                championName = championList.get(i).id;
             }
         }
         Log.d("TAG", "getChampionById: " + championName);

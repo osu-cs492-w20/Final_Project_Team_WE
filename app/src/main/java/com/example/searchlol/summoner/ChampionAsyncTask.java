@@ -49,26 +49,23 @@ public class ChampionAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        ChampionMasteryClass result = null;
         ChampionMasteryClass result1 = null;
         ChampionMasteryClass result2 = null;
-        ArrayList<ChampionInfo> result3 = null;
+        ChampionMasteryClass result3 = null;
         mActivity = new SummonerDetailActivity();
         summonerClass = new SummonerClass();
         mainActivity = new MainActivity();
         if (s != null) {
-                result = RiotSummonerUtils.parseMasteryResult(s,0);//json
-                Log.d(TAG, "this is: " + result.championLevel);
-                result1= RiotSummonerUtils.parseMasteryResult(s,1);//json
+                result1 = RiotSummonerUtils.parseMasteryResult(s,0);//json
                 Log.d(TAG, "this is: " + result1.championLevel);
-                result2= RiotSummonerUtils.parseMasteryResult(s,2);//json
+                result2= RiotSummonerUtils.parseMasteryResult(s,1);//json
                 Log.d(TAG, "this is: " + result2.championLevel);
-                result3 = ChampionInfoUtil.parseChampionInfo(s);
-                Log.d(TAG, "this is: " + result3);
-                mActivity.receiveMaster(result,result1,result2,result3);
+                result3= RiotSummonerUtils.parseMasteryResult(s,2);//json
+                Log.d(TAG, "this is: " + result3.championLevel);
+                mActivity.receiveMaster(result1,result2,result3);
                 mainActivity.trigger=1;
         }
-        mCallback.onSearchFinished(result);
+        mCallback.onSearchFinished(result1);
 
     }
 
