@@ -72,7 +72,8 @@
         <ImageView
             android:id="@+id/iv_summoner_solo"
             android:layout_width="95dp"
-            android:layout_height="95dp" />
+            android:layout_height="95dp"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/tv_summoner_description"
@@ -86,14 +87,14 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/tv_summoner_description4"
+            android:id="@+id/tv_summoner_descriptio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_summoner_description"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@id/iv_summoner_solo"
             android:layout_toRightOf="@+id/iv_summoner_solo"
+            android:layout_below="@+id/tv_summoner_description"
             android:padding="10dp"
             android:textSize="15sp" />
     </RelativeLayout>
@@ -127,17 +128,16 @@
             android:id="@+id/tv_summoner_descriptio2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_summoner_description2"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@id/iv_summoner_duo"
             android:layout_toRightOf="@id/iv_summoner_duo"
+            android:layout_below="@+id/tv_summoner_description2"
             android:padding="10dp"
             android:textSize="15sp" />
 
 
     </RelativeLayout>
-
     <RelativeLayout
         android:id="@+id/rl_summoner_third_rank"
         android:layout_width="match_parent"
@@ -167,11 +167,11 @@
             android:id="@+id/tv_summoner_descriptio3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_summoner_description3"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@id/iv_summoner_third"
             android:layout_toRightOf="@id/iv_summoner_third"
+            android:layout_below="@+id/tv_summoner_description3"
             android:padding="10dp"
             android:textSize="15sp" />
 

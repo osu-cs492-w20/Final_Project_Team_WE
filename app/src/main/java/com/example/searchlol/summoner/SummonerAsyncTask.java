@@ -5,7 +5,6 @@ import android.util.Log;
 import static android.content.ContentValues.TAG;
 import androidx.lifecycle.MutableLiveData;
 import com.example.searchlol.data.ChampionMasteryClass;
-import com.example.searchlol.data.RankClass;
 import com.example.searchlol.data.Status;
 import com.example.searchlol.data.SummonerClass;
 import com.example.searchlol.utils.NetworkUtils;
@@ -13,7 +12,7 @@ import com.example.searchlol.utils.RiotSummonerUtils;
 import java.io.IOException;
 import com.example.searchlol.utils.RiotSummonerUtils;
 
-public class SummonerAsyncTask extends AsyncTask<String, Void, String> implements ChampionAsyncTask.Callback, RankAsyncTask.Callback {
+public class SummonerAsyncTask extends AsyncTask<String, Void, String> implements ChampionAsyncTask.Callback {
     private Callback mCallback;
     private MutableLiveData<com.example.searchlol.data.Status> mLoadingStatus;
     public SummonerClass mrepo;
@@ -35,14 +34,6 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> implement
     }
 
     @Override
-    public void onSearchFinished2(RankClass searchResults) {
-        if (searchResults != null) {
-            Log.d(TAG,"Received!");
-        }
-    }
-
-
-    @Override
     protected String doInBackground(String... strings) {
         String url = strings[0];
         String result = null;
@@ -62,9 +53,6 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> implement
         if (s != null) {
             result = RiotSummonerUtils.parseSummonerResult(s);//json
             mId = result.id;
-            String newurl= RiotSummonerUtils.buildRankURL(mId);
-            Log.d(TAG, "executing search with url: " + newurl);
-            new RankAsyncTask(this).execute(newurl);
             String url = RiotSummonerUtils.buildMasteryURL(mId);
             Log.d(TAG, "executing search with url: " + url);
             new ChampionAsyncTask(this).execute(url);
