@@ -2,8 +2,6 @@ package com.example.searchlol.summoner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.Constraints;
 
 import com.example.searchlol.R;
 import com.example.searchlol.data.ChampionInfo;
@@ -21,15 +18,10 @@ import com.example.searchlol.data.ChampionMasteryClass;
 import com.example.searchlol.data.SummonerClass;
 import com.bumptech.glide.Glide;
 import com.example.searchlol.utils.ChampionInfoUtil;
-import com.google.gson.Gson;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.lang.reflect.Array;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+
 import java.util.Date;
 
 public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener {
@@ -41,10 +33,9 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private static int myIcon;
     public static String mId;
     private static long myDate;
-    public int c1Level, c1Points;
+    private static int c1Name, c1Level, c1Points;
     private static int c2Name, c2Level, c2Points;
     private static int c3Name, c3Level, c3Points;
-    private String c1Name;
 
     public void receiveData(SummonerClass myResult) {
         mRepo = myResult;
@@ -56,7 +47,6 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     }
 
     public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3) {
-//        c1Name=ChampionInfoUtil.getChampionById(result1.championId);
 
         c1Level = result1.championLevel;
         c1Points = result1.championPoints;
@@ -77,11 +67,11 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         return formattedDate;
     }
 
-    public String getChampionById(int id) throws FileNotFoundException {
+    public String getChampionById(int id) {
         String championName = null;
         ArrayList<ChampionInfo> championInfos = ChampionInfoUtil.parseChampionInfo();
 
-        for(int i = 0; i < championInfos.size(); i++){
+        for (int i = 0; i < championInfos.size(); i++) {
             if (id == championInfos.get(i).key) {
                 championName = championInfos.get(i).id;
             }
@@ -123,11 +113,11 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             Glide.with(repoIconIV.getContext()).load(iconUrl).into(repoIconIV);
             repoIconIV.setOnClickListener(this);
 
-
-//            String champion1Url = "http://ddragon.leagueoflegends.com/cdn/10.6.1/img/champion/" + c1Name_name + ".png";
-//            Log.d(TAG, "onCreate: " + c1Name_name);
+            String c1Name_name = "Aatrox";
             ImageView championIcon1 = findViewById(R.id.iv_summoner_solo);
-//            Glide.with(championIcon1.getContext()).load(champion1Url).into(championIcon1);
+            String champion1Url = "http://ddragon.leagueoflegends.com/cdn/10.6.1/img/champion/" + c1Name_name + ".png";
+            Log.d("TAG", "onCreate: " + champion1Url);
+            Glide.with(championIcon1.getContext()).load(champion1Url).into(championIcon1);
         }
     }
 

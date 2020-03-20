@@ -18,32 +18,8 @@ import okhttp3.Response;
 
 
 public class ChampionInfoUtil {
-    public static String mInfo = null;
     public static final String url = "http://ddragon.leagueoflegends.com/cdn/10.6.1/data/en_US/champion.json";
-
-
-
-    private static final OkHttpClient mHTTPClient = new OkHttpClient();
-    public static String doHttpGet(String url) throws IOException {
-        Request request = new Request.Builder().url(url).build();
-        Response response = mHTTPClient.newCall(request).execute();
-        try {
-            return response.body().string();
-        } finally {
-            response.close();
-        }
-    }
-    public static String json;
-
-    static {
-        try {
-            json = doHttpGet(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
+    private static String json = null;
     static class ChampionList {
         Champion[] items;
     }

@@ -6,12 +6,15 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.searchlol.MainActivity;
+import com.example.searchlol.data.ChampionInfo;
 import com.example.searchlol.data.ChampionMasteryClass;
 import com.example.searchlol.data.SummonerClass;
+import com.example.searchlol.utils.ChampionInfoUtil;
 import com.example.searchlol.utils.NetworkUtils;
 import com.example.searchlol.utils.RiotSummonerUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
@@ -46,9 +49,9 @@ public class ChampionAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        ChampionMasteryClass result=null;
-        ChampionMasteryClass result1=null;
-        ChampionMasteryClass result2=null;
+        ChampionMasteryClass result = null;
+        ChampionMasteryClass result1 = null;
+        ChampionMasteryClass result2 = null;
         mActivity = new SummonerDetailActivity();
         summonerClass = new SummonerClass();
         mainActivity = new MainActivity();
