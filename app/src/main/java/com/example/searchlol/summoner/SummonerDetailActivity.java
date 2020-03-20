@@ -11,10 +11,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.bumptech.glide.Glide;
 import com.example.searchlol.R;
+import com.example.searchlol.data.ChampionInfoList;
 import com.example.searchlol.data.ChampionMasteryClass;
-import  com.example.searchlol.data.SummonerClass;
+import com.example.searchlol.data.SummonerClass;
+import com.bumptech.glide.Glide;
+import com.example.searchlol.utils.ChampionInfoUtil;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -99,7 +101,12 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             Glide.with(repoIconIV.getContext()).load(iconUrl).into(repoIconIV);
             repoIconIV.setOnClickListener(this);
 
+            String c1Name_name = ChampionInfoUtil.getChampionById(c1Name);
 
+            String champion1Url = "http://ddragon.leagueoflegends.com/cdn/10.6.1/img/champion/" + c1Name_name + ".png";
+            Log.d(TAG, "onCreate: " + c1Name_name);
+            ImageView championIcon1 = findViewById(R.id.iv_summoner_solo);
+            Glide.with(championIcon1.getContext()).load(champion1Url).into(championIcon1);
         }
     }
 
