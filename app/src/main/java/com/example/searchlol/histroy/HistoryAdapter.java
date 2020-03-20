@@ -13,17 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.searchlol.R;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
 
-    private List<MatchInfo> mMatchinfo;
+    private List<MatchInfo> mMatchInfo;
 
     public HistoryAdapter() {
     }
 
     public void updateMatchinfo(List<MatchInfo> info) {
-        mMatchinfo = info;
+        mMatchInfo = info;
         notifyDataSetChanged();
 
     }
@@ -38,14 +40,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
-        holder.bind(mMatchinfo.get(position));
+        holder.bind(mMatchInfo.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        if (mMatchinfo != null) {
-            return mMatchinfo.size();
+        if (mMatchInfo != null) {
+            return mMatchInfo.size();
         } else {
             return 0;
         }
@@ -53,7 +55,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
     class HistoryViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView champ;
+        private TextView result;
         private TextView kda;
         private ImageView champIcon;
         private ImageView item1;
@@ -66,9 +68,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
         public HistoryViewHolder(View itemView) {
             super(itemView);
-            champ = itemView.findViewById(R.id.match_champ);
+            result = itemView.findViewById(R.id.match_champ);
             kda = itemView.findViewById(R.id.match_kda);
-            champIcon = itemView.findViewById(R.id.iv_champ_icon);
+            champIcon = itemView.findViewById(R.id.iv_match_champ);
             item1 = itemView.findViewById(R.id.iv_item_1);
             item2 = itemView.findViewById(R.id.iv_item_2);
             item3 = itemView.findViewById(R.id.iv_item_3);
@@ -80,7 +82,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         public void bind(MatchInfo info) {
             String s, t;
             s = info.win;
-            champ.setText(s);
+            result.setText(s);
             t = info.kda;
             kda.setText(t);
 
@@ -95,7 +97,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             Log.d("TAG", "bind champ url: " + champId);
 
             String champIconUrl = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/" + champId + ".png";
-//            Glide.with(champIcon.getContext()).load(champIconUrl).into(champIcon);
+            Glide.with(champIcon.getContext()).load(champIconUrl).into(champIcon);
             Log.d("TAG", "icon URL: " + champIconUrl);
 
             String itemURL1 = "https://ddragon.leagueoflegends.com/cdn/10.6.1/img/item/" + itemId1 + ".png";
