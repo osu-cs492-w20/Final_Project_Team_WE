@@ -35,7 +35,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private static int    myIcon;
     public  static String mId;
     private static long   myDate;
-    private static int c1Name,c1Level,c1Points;
+    public int c1Name,c1Level,c1Points;
     private static int c2Name,c2Level,c2Points;
     private static int c3Name,c3Level,c3Points;
 
