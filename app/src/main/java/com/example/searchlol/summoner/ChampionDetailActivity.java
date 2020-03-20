@@ -12,19 +12,24 @@ import com.bumptech.glide.Glide;
 import com.example.searchlol.R;
 import com.example.searchlol.data.ChampionMasteryClass;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.example.searchlol.summoner.SummonerDetailActivity.EXTRA_GITHUB_REPO;
 
 public class ChampionDetailActivity extends AppCompatActivity {
     public static final String TAG = "ChampionDetailActivity";
     private boolean shouldAllowBack = false;
     private static int mName, mLevel, mPoints;
+    private static long mTime;
+    private boolean mChest;
 
 
     public void receiveMaster(ChampionMasteryClass result) {
         mName = result.championId;
         mLevel = result.championLevel;
         mPoints = result.championPoints;
-
+        mTime = result.lastPlayTime;
     }
 
     @Override
@@ -44,10 +49,30 @@ public class ChampionDetailActivity extends AppCompatActivity {
             Log.d(TAG, "mName is " + mName);
 
             TextView repoSecondTV = findViewById(R.id.tv_champ_mastery);
-            repoSecondTV.setText("Mastery: " + mPoints);
+            repoSecondTV.setText("Mastery Points: " + mPoints);
+
+            TextView repoTimeTV = findViewById(R.id.tv_champ_time);
+            repoTimeTV.setText("Last Played: " + changeDate(mTime));
+
+            TextView repoChestTV = findViewById(R.id.tv_champ_chest);
+            String mStatus="";
+            if(!mChest){
+                mStatus="Acquired";
+            }
+            else{
+                mStatus="Not Acquired";
+            }
+            repoChestTV.setText("Season Chest Status: " + mStatus);
+
         }
     }
 
+    public String changeDate(long unixSeconds) {
+        Date date = new java.util.Date(unixSeconds);
+        SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = sdf.format(date);
+        return formattedDate;
+    }
 
     @Override
     public void finish() {
