@@ -1,17 +1,21 @@
 package com.example.searchlol.data;
+
 import android.app.Application;
 import android.os.AsyncTask;
 
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+
 public class SavedSummonerRepository {
     private SummonerClassDao mDAO;
     private boolean in;
+
     public SavedSummonerRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         mDAO = db.summonerClassDao();
     }
+
     public void insertSavedSummoner(SummonerRepo summoner) {
         new InsertAsyncTask(mDAO).execute(summoner);
     }
@@ -19,6 +23,7 @@ public class SavedSummonerRepository {
     public void deleteSavedSummoner(SummonerRepo summoner) {
         new DeleteAsyncTask(mDAO).execute(summoner);
     }
+
     public LiveData<List<SummonerRepo>> getAllSummoners() {
         return mDAO.getAllSummoners();
     }
@@ -27,8 +32,10 @@ public class SavedSummonerRepository {
         new GetSummonerByName(mDAO).execute(fullName);
         return in;
     }
+
     private static class InsertAsyncTask extends AsyncTask<SummonerRepo, Void, Void> {
         private SummonerClassDao mAsyncTaskDAO;
+
         InsertAsyncTask(SummonerClassDao dao) {
             mAsyncTaskDAO = dao;
         }
@@ -42,6 +49,7 @@ public class SavedSummonerRepository {
 
     private static class DeleteAsyncTask extends AsyncTask<SummonerRepo, Void, Void> {
         private SummonerClassDao mAsyncTaskDAO;
+
         DeleteAsyncTask(SummonerClassDao dao) {
             mAsyncTaskDAO = dao;
         }
@@ -55,13 +63,14 @@ public class SavedSummonerRepository {
 
     private class GetSummonerByName extends AsyncTask<String, Void, Boolean> {
         private SummonerClassDao mAsyncTaskDAO;
+
         GetSummonerByName(SummonerClassDao dao) {
             mAsyncTaskDAO = dao;
         }
 
         @Override
         protected Boolean doInBackground(String... summonerClasses) {
-            if(mAsyncTaskDAO.getSummonerByName(summonerClasses[0])==null){
+            if (mAsyncTaskDAO.getSummonerById(summonerClasses[0]) == null) {
                 return false;
             }
             return true;
@@ -70,7 +79,7 @@ public class SavedSummonerRepository {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
-            in=aBoolean;
+            in = aBoolean;
         }
     }
 }

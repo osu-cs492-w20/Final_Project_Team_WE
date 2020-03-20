@@ -1,5 +1,6 @@
 package com.example.searchlol.summoner;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +68,7 @@ public class SavedSummonerAdapter extends RecyclerView.Adapter<SavedSummonerAdap
 
         public void bind(SummonerRepo nameClass) {
             mNameTV.setText(nameClass.id);
+            Log.d("TAG", "bind name is: " + nameClass.name);
         }
 
         @Override

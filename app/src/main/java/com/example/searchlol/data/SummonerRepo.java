@@ -13,4 +13,5 @@ public class SummonerRepo implements Serializable {
     @PrimaryKey
     @NonNull
     public String id;
+    public String name;
 }

@@ -20,6 +20,6 @@ public interface SummonerClassDao {
     @Query("SELECT * FROM repos")
     LiveData<List<SummonerRepo>> getAllSummoners();
 
-    @Query("SELECT * FROM repos WHERE id = :sumid LIMIT 1")
-    SummonerRepo getSummonerByName(String sumid);
+    @Query("SELECT * FROM repos WHERE id = :sumId LIMIT 1")
+    SummonerRepo getSummonerById(String sumId);
 }
