@@ -50,6 +50,10 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private static String accountId;
     private Button historyButton;
 
+    private SavedSummonerViewModel mViewModel;
+
+    private boolean mIsSaved = false;
+
     public void receiveData(SummonerClass myResult){
         mRepo=myResult;
         myLevel=mRepo.summonerLevel;
@@ -212,6 +216,12 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_save_favorite_summoner:
+                if (!mIsSaved) {
+                    mViewModel.insertSavedSummoner(mRepo);
+                } else {
+                    mViewModel.deleteSavedSummoner(mRepo);
+                }
             case R.id.action_view_more:
                 //invoke activity
                 return true;
