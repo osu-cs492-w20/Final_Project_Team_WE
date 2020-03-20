@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.searchlol.summoner.SummonerAsyncTask;
 import com.example.searchlol.utils.RiotSummonerUtils;
-import static com.example.searchlol.MainActivity.trigger;
 
 public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
     private static final String TAG = SummonerSearchRepository.class.getSimpleName();
@@ -54,7 +53,6 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
             new SummonerAsyncTask(this).execute(url);
         } else {
             Log.d(TAG, "using cached search results");
-            trigger=1;
         }
     }
 }
