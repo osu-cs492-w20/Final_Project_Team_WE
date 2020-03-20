@@ -83,8 +83,20 @@
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@id/iv_summoner_solo"
             android:layout_toRightOf="@+id/iv_summoner_solo"
-            android:padding="16dp"
-            android:textSize="22sp" />
+            android:padding="10dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_summoner_descriptio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/iv_summoner_solo"
+            android:layout_toRightOf="@+id/iv_summoner_solo"
+            android:layout_below="@+id/tv_summoner_description"
+            android:padding="10dp"
+            android:textSize="15sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -109,8 +121,20 @@
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@id/iv_summoner_duo"
             android:layout_toRightOf="@id/iv_summoner_duo"
-            android:padding="16dp"
-            android:textSize="22sp" />
+            android:padding="10dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_summoner_descriptio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/iv_summoner_duo"
+            android:layout_toRightOf="@id/iv_summoner_duo"
+            android:layout_below="@+id/tv_summoner_description2"
+            android:padding="10dp"
+            android:textSize="15sp" />
 
 
     </RelativeLayout>
@@ -136,12 +160,30 @@
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@id/iv_summoner_third"
             android:layout_toRightOf="@id/iv_summoner_third"
-            android:padding="16dp"
-            android:textSize="22sp" />
+            android:padding="10dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_summoner_descriptio3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/iv_summoner_third"
+            android:layout_toRightOf="@id/iv_summoner_third"
+            android:layout_below="@+id/tv_summoner_description3"
+            android:padding="10dp"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
 
-
+    <TextView
+        android:id="@+id/tv_Date_des"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:textSize="22sp" />
 
 </LinearLayout>

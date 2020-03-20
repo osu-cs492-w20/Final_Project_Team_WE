@@ -2,25 +2,22 @@ package com.example.searchlol.summoner;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
+import static android.content.ContentValues.TAG;
 import androidx.lifecycle.MutableLiveData;
-
+import com.example.searchlol.data.ChampionMasteryClass;
+import com.example.searchlol.data.Status;
 import com.example.searchlol.data.SummonerClass;
 import com.example.searchlol.utils.NetworkUtils;
 import com.example.searchlol.utils.RiotSummonerUtils;
-
 import java.io.IOException;
+import com.example.searchlol.utils.RiotSummonerUtils;
 
-import static android.content.ContentValues.TAG;
-import static com.example.searchlol.utils.RiotSummonerUtils.mUsername;
-import static com.example.searchlol.utils.RiotSummonerUtils.mId;
-import static com.example.searchlol.utils.RiotSummonerUtils.mLevel;
-import static com.example.searchlol.utils.RiotSummonerUtils.mIcon;
-
-public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
+public class SummonerAsyncTask extends AsyncTask<String, Void, String> implements ChampionAsyncTask.Callback {
     private Callback mCallback;
     private MutableLiveData<com.example.searchlol.data.Status> mLoadingStatus;
-
+    public SummonerClass mrepo;
+    public SummonerDetailActivity mAct;
+    public static String mId="";
     public interface Callback {
         void onSearchFinished(SummonerClass searchResult);
     }
@@ -29,6 +26,12 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
         mCallback = callback;
     }
 
+    @Override
+    public void onSearchFinished(ChampionMasteryClass searchResults) {
+        if (searchResults != null) {
+            Log.d(TAG,"Received!");
+        }
+    }
 
     @Override
     protected String doInBackground(String... strings) {
@@ -45,15 +48,17 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         SummonerClass result=null;
+        mrepo= new SummonerClass();
+        mAct  = new SummonerDetailActivity();
         if (s != null) {
             result = RiotSummonerUtils.parseSummonerResult(s);//json
-            mUsername = result.name;
-            mId = result.id;    //encryptedsummmonerid
-            mLevel = result.summonerLevel;
-            mIcon = result.profileIconId;
-            Log.d(TAG,"onClick: "+ mIcon);
+            mId = result.id;
+            String url = RiotSummonerUtils.buildMasteryURL(mId);
+            Log.d(TAG, "executing search with url: " + url);
+            new ChampionAsyncTask(this).execute(url);
         }
         mCallback.onSearchFinished(result);
+        mAct.receiveData(result);
     }
 
 }
