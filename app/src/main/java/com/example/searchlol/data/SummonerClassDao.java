@@ -11,15 +11,15 @@ import androidx.lifecycle.LiveData;
 @Dao
 public interface SummonerClassDao {
     @Insert
-    void insert(SummonerClass summoner);
+    void insert(SummonerRepo summoner);
 
     @Delete
-    void delete(SummonerClass summoner);
+    void delete(SummonerRepo summoner);
 
-    @Query("SELECT * FROM summoner")
-    LiveData<List<SummonerClass>> getAllSummoners();
+    @Query("SELECT * FROM repos")
+    LiveData<List<SummonerRepo>> getAllSummoners();
 
-    @Query("SELECT * FROM summoner WHERE name = :fullName LIMIT 1")
-    LiveData<SummonerClass> getSummonerByName(String fullName);
+    @Query("SELECT * FROM repos WHERE id = :sumid LIMIT 1")
+    SummonerRepo getSummonerByName(String sumid);
 
 }

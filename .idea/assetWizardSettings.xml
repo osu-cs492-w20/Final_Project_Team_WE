@@ -30,6 +30,17 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="clipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/D:/A_NEW_BARRY/Android%20studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_favorite_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="image">
                                         <value>
                                           <PersistentState>
@@ -46,11 +57,10 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="imageAsset" value="F:\Users\11756\Desktop\Rift.jpg" />
-                                      <entry key="outputName" value="MyRift" />
-                                      <entry key="theme" value="HOLO_DARK" />
-                                      <entry key="themeColor" value="ffffff" />
+                                      <entry key="outputName" value="ic_action_checkedfavorite" />
+                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="ff0014" />
                                     </map>
                                   </option>
                                 </PersistentState>
