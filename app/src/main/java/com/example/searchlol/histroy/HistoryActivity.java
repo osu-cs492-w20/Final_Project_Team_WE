@@ -91,6 +91,7 @@ public class HistoryActivity  extends AppCompatActivity {
                     }
                     assert matchInfos != null;
                     matchInfos.add(HistoryUtils.parseOneMatchResults(matchResults));
+                    Log.d(TAG, String.valueOf(matchInfos.get(0).champ));
                 }
             return matchInfos;
         }

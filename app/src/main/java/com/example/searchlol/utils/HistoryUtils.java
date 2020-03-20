@@ -40,6 +40,7 @@ public class HistoryUtils {
     static class ParticipantDto
     {
         ParticipantStatsDto  stats;
+        int championId;
     }
 
     static class ParticipantStatsDto
@@ -110,6 +111,8 @@ public class HistoryUtils {
         }
         matchInfo.kda= String.valueOf(results.participants[partId].stats.kills)+"/"+String.valueOf(results.participants[partId].stats.deaths)+"/"+String.valueOf(results.participants[partId].stats.assists);
         Log.d("Utils-kda", matchInfo.kda);
+
+        matchInfo.champ=results.participants[partId].championId;
 
         if (results != null) {
             return matchInfo;
