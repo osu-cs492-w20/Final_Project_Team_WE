@@ -73,7 +73,7 @@ public class HistoryUtils {
         accId=id;
         return Uri.parse(HISTORY_BASE_URL).buildUpon()
                 .appendPath(id)
-                .appendQueryParameter(HISTORY_END_INDEX, "50")
+                .appendQueryParameter(HISTORY_END_INDEX, "20")
                 .appendQueryParameter(HISTORY_BEGIN_INDEX, "0")
                 .appendQueryParameter(HISTORY_KEY, KEY)
                 .build()
