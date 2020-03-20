@@ -9,4 +9,5 @@ public class ChampionMasteryClass implements Serializable {
     public int championPointsSinceLastLevel;
     public int championPointsUntilNextLevel;
     public int championId;
+    public long lastPlayTime;
 }
