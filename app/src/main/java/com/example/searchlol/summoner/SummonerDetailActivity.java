@@ -186,14 +186,15 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             repoChamp2IV.setOnClickListener(this);
             repoChamp3IV.setOnClickListener(this);
 
-            historyButton = findViewById(R.id.search_history_button);
+            historyButton=findViewById(R.id.search_history_button);
             historyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent newIntent = new Intent(SummonerDetailActivity.this, HistoryActivity.class);
-                    newIntent.putExtra("userID", accountId);
+                    Intent newIntent = new Intent(SummonerDetailActivity.this  , HistoryActivity.class);
+                    newIntent.putExtra("userID",accountId);
                     startActivity(newIntent);
                 }
+
             });
 
         }
