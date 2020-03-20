@@ -227,13 +227,12 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.repo_detail, menu);
         final MenuItem item = menu.findItem(R.id.action_save_favorite_summoner);
-         like=mViewModel.getSummonerByName(mId);
-
+        like = mViewModel.getSummonerByName(mId);
 
 
         Log.d("TAG", String.valueOf(like));
 
-        if(like){
+        if (like) {
             item.setIcon(R.drawable.ic_action_checkedfavorite);
         }
 
@@ -241,25 +240,25 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull  MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save_favorite_summoner:
                 SummonerRepo repo = new SummonerRepo();
-                repo.id=mId;
+                repo.id = mId;
                 if (like) {
                     mViewModel.deleteSavedSummoner(repo);
                     item.setIcon(R.drawable.ic_action_favorite);
-                    like=false;
+                    like = false;
                 } else {
                     mViewModel.insertSavedSummoner(repo);
                     if (mViewModel.getSummonerByName(repo.id))
-                    Log.d("fffffffff", "ggggggg ");
+                        Log.d("fffffffff", "ggggggg ");
 
                     item.setIcon(R.drawable.ic_action_checkedfavorite);
-                    like =true;
+                    like = true;
 
                 }
-                case R.id.action_view_more:
+            case R.id.action_view_more:
 
 
             default:
