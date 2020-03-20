@@ -1,0 +1,107 @@
+{
+  "matches": [
+    {
+      "platformId": "NA1",
+      "gameId": 3332778885,
+      "champion": 76,
+      "queue": 400,
+      "season": 13,
+      "timestamp": 1584694813121,
+      "role": "DUO_SUPPORT",
+      "lane": "NONE"
+    },
+    {
+      "platformId": "NA1",
+      "gameId": 3332735288,
+      "champion": 21,
+      "queue": 400,
+      "season": 13,
+      "timestamp": 1584692417151,
+      "role": "DUO_CARRY",
+      "lane": "BOTTOM"
+    },
+    {
+      "platformId": "NA1",
+      "gameId": 3332750322,
+      "champion": 432,
+      "queue": 400,
+      "season": 13,
+      "timestamp": 1584690117047,
+      "role": "DUO_SUPPORT",
+      "lane": "BOTTOM"
+    },
+    {
+      "platformId": "NA1",
+      "gameId": 3331653980,
+      "champion": 32,
+      "queue": 430,
+      "season": 13,
+      "timestamp": 1584654010778,
+      "role": "NONE",
+      "lane": "JUNGLE"
+    },
+    {
+      "platformId": "NA1",
+      "gameId": 3331424016,
+      "champion": 412,
+      "queue": 440,
+      "season": 13,
+      "timestamp": 1584651150374,
+      "role": "DUO_SUPPORT",
+      "lane": "BOTTOM"
+    },
+    {
+      "platformId": "NA1",
+      "gameId": 3330786557,
+      "champion": 432,
+      "queue": 400,
+      "season": 13,
+      "timestamp": 1584607671067,
+      "role": "DUO_SUPPORT",
+      "lane": "BOTTOM"
+    },
+    {
+      "platformId": "NA1",
+      "gameId": 3330782476,
+      "champion": 412,
+      "queue": 400,
+      "season": 13,
+      "timestamp": 1584605292300,
+      "role": "SOLO",
+      "lane": "BOTTOM"
+    },
+    {
+      "platformId": "NA1",
+      "gameId": 3330747569,
+      "champion": 235,
+      "queue": 400,
+      "season": 13,
+      "timestamp": 1584603131754,
+      "role": "SOLO",
+      "lane": "BOTTOM"
+    },
+    {
+      "platformId": "NA1",
+      "gameId": 3330685511,
+      "champion": 6,
+      "queue": 430,
+      "season": 13,
+      "timestamp": 1584598468453,
+      "role": "DUO_CARRY",
+      "lane": "BOTTOM"
+    },
+    {
+      "platformId": "NA1",
+      "gameId": 3330618847,
+      "champion": 21,
+      "queue": 430,
+      "season": 13,
+      "timestamp": 1584596362180,
+      "role": "DUO_CARRY",
+      "lane": "BOTTOM"
+    }
+  ],
+  "startIndex": 0,
+  "endIndex": 10,
+  "totalGames": 123
+}

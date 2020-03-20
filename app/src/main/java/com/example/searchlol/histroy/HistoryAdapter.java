@@ -94,8 +94,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             champId = info.champ;
             Log.d("TAG", "bind champ url: " + champId);
 
-//            String champIconUrl = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/" + champId + ".png";
+            String champIconUrl = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/" + champId + ".png";
 //            Glide.with(champIcon.getContext()).load(champIconUrl).into(champIcon);
+            Log.d("TAG", "icon URL: " + champIconUrl);
 
             String itemURL1 = "https://ddragon.leagueoflegends.com/cdn/10.6.1/img/item/" + itemId1 + ".png";
             Glide.with(item1.getContext()).load(itemURL1).into(item1);
