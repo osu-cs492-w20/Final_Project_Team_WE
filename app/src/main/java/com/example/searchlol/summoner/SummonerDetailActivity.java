@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Date;
+import com.example.searchlol.data.RankClass;
 
 public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener,
                                                                         NameTask.NameCallBack {
@@ -59,6 +60,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
     public void getJson(List<ChampionInfo> result) {
         championList = result;
+    }
 
     public void receiveRank(RankClass myResult){
         if(myResult==null){
@@ -135,14 +137,9 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             TextView repoRankTV = findViewById(R.id.tv_Rank);
             repoRankTV.setText("Rank: "+ mRankMess);
             TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
-
-            repoFirstTV.setText("TOP1 Champ: " + c1Level);
+            repoFirstTV.setText("TOP1 Champion");
             TextView repoFirst2TV = findViewById(R.id.tv_summoner_description4);
             repoFirst2TV.setText("Mastery " + c1Points);
-
-            repoFirstTV.setText("TOP1 Champion");
-            TextView repoFirst2TV = findViewById(R.id.tv_summoner_descriptio);
-            repoFirst2TV.setText("Mastery "+ c1Points);
 
             TextView repoSecondTV = findViewById(R.id.tv_summoner_description2);
             repoSecondTV.setText("TOP2 Champion");
@@ -190,16 +187,6 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
     }
 
-    public String ComputeJson() throws IOException {
-        String path="com\\example\\searchlol\\data\\champion.json";
-        FileInputStream is = new FileInputStream(path);
-        int size = is.available();
-        byte[] buffer = new byte[size];
-        is.read(buffer);
-        is.close();
-        String myJson = new String(buffer, "UTF-8");
-        return myJson;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
