@@ -67,8 +67,9 @@ public class SavedSummonerAdapter extends RecyclerView.Adapter<SavedSummonerAdap
         }
 
         public void bind(SummonerRepo nameClass) {
-            mNameTV.setText(nameClass.id);
-            Log.d("TAG", "bind name is: " + nameClass.name);
+            String championName = null;
+
+            mNameTV.setText("Summoner ID: " + nameClass.id);
         }
 
         @Override
