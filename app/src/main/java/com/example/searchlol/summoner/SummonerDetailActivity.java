@@ -33,7 +33,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private static List<ChampionInfo> championList;
     private ChampionViewModel championViewModel;
     public Boolean setOnce=false;
-    public SummonerClass mRepo= new SummonerClass();
+    private SummonerClass mRepo = new SummonerClass();
     public ChampionDetailActivity mAct;
     private static String myLevel;
     private static String myUsername;
@@ -54,16 +54,18 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
     private boolean mIsSaved = false;
 
+    private SummonerClass summonerClass;
+
     public void receiveData(SummonerClass myResult){
-        mRepo=myResult;
-        myLevel=mRepo.summonerLevel;
-        myUsername=mRepo.name;
+        mRepo = myResult;
+        myLevel = mRepo.summonerLevel;
+        myUsername = mRepo.name;
         myIcon = mRepo.profileIconId;
         mId = mRepo.id;
         myDate = mRepo.revisionDate;
-        accountId=mRepo.accountId;
+        accountId = mRepo.accountId;
+        summonerClass = myResult;
     }
-
 
 
     public void getJson(List<ChampionInfo> result) {
@@ -201,15 +203,15 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             public void onClick(View v) {
                 if (mRepo != null) {
                     if (!mIsSaved) {
-                        mViewModel.insertSavedSummoner(mRepo);
+                        mViewModel.insertSavedSummoner(summonerClass);
                     } else {
-                        mViewModel.deleteSavedSummoner(mRepo);
+                        mViewModel.deleteSavedSummoner(summonerClass);
                     }
                 }
             }
         });
 
-        mViewModel.getSummonerByName(mRepo.name).observe(this, new Observer<SummonerClass>() {
+        mViewModel.getSummonerByName(summonerClass.name).observe(this, new Observer<SummonerClass>() {
             @Override
             public void onChanged(SummonerClass repo) {
                 if (repo != null) {
