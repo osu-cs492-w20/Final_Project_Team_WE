@@ -21,7 +21,7 @@
             android:gravity="center" />
 
         <TextView
-            android:id="@+id/tv_summoner_name"
+            android:id="@+id/tv_summoner_Level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -30,11 +30,11 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tv_summoner_Level"
+            android:id="@+id/tv_summoner_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_summoner_name"
             android:layout_marginLeft="10dp"
+            android:layout_below="@+id/tv_summoner_Level"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/tv_summoner_id"
             android:padding="5dp"
@@ -44,12 +44,19 @@
             android:id="@+id/tv_Rank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_summoner_Level"
+            android:layout_below="@+id/tv_summoner_name"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/tv_summoner_id"
             android:padding="5dp"
             android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/iv_repo_bookmark"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_toRightOf="@+id/tv_summoner_name"
+            android:src="@drawable/ic_favorite_border" />
 
     </RelativeLayout>
 

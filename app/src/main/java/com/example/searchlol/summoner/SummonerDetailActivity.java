@@ -110,19 +110,6 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         return formattedDate;
     }
 
-//    public String getChampionById(int id) {
-//        String championName = "Aatrox";
-//        championViewModel.loadName(id);
-////        new NameTask(url, this).execute();
-////        for (int i = 0; i < championList.size(); i++) {
-////            if (id == championList.get(i).key) {
-////                championName = championList.get(i).id;
-////            }
-////        }
-//        Log.d("TAG", "getChampionById: " + championName);
-//        return championName;
-//    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,12 +123,17 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             }
         });
 
+        mViewModel = new ViewModelProvider(
+                this,
+                new ViewModelProvider.AndroidViewModelFactory(getApplication()))
+                .get(SavedSummonerViewModel.class);
+
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_GITHUB_REPO)) {
-            TextView repoNameTV = findViewById(R.id.tv_summoner_name);
-            repoNameTV.setText(String.format("Player: %s", myUsername));
             TextView repoLevelTV = findViewById(R.id.tv_summoner_Level);
             repoLevelTV.setText(String.format("Level: %s", myLevel));
+            TextView repoNameTV = findViewById(R.id.tv_summoner_name);
+            repoNameTV.setText(String.format("Player: %s", myUsername));
             TextView repoRankTV = findViewById(R.id.tv_Rank);
             repoRankTV.setText("Rank: "+ mRankMess);
             TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
@@ -190,7 +182,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             repoChamp2IV.setOnClickListener(this);
             repoChamp3IV.setOnClickListener(this);
 
-            historyButton=findViewById(R.id.search_history_button);
+            historyButton = findViewById(R.id.search_history_button);
             historyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -203,6 +195,32 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
         }
 
+        final ImageView repoBookmarkIV = findViewById(R.id.iv_repo_bookmark);
+        repoBookmarkIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mRepo != null) {
+                    if (!mIsSaved) {
+                        mViewModel.insertSavedSummoner(mRepo);
+                    } else {
+                        mViewModel.deleteSavedSummoner(mRepo);
+                    }
+                }
+            }
+        });
+
+        mViewModel.getSummonerByName(mRepo.name).observe(this, new Observer<SummonerClass>() {
+            @Override
+            public void onChanged(SummonerClass repo) {
+                if (repo != null) {
+                    mIsSaved = true;
+                    repoBookmarkIV.setImageResource(R.drawable.ic_favorite);
+                } else {
+                    mIsSaved = false;
+                    repoBookmarkIV.setImageResource(R.drawable.ic_favorite_border);
+                }
+            }
+        });
 
     }
 
@@ -216,12 +234,12 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_save_favorite_summoner:
-                if (!mIsSaved) {
-                    mViewModel.insertSavedSummoner(mRepo);
-                } else {
-                    mViewModel.deleteSavedSummoner(mRepo);
-                }
+//            case R.id.action_save_favorite_summoner:
+//                if (!mIsSaved) {
+//                    mViewModel.insertSavedSummoner(mRepo);
+//                } else {
+//                    mViewModel.deleteSavedSummoner(mRepo);
+//                }
             case R.id.action_view_more:
                 //invoke activity
                 return true;
