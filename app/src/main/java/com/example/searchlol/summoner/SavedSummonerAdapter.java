@@ -65,7 +65,7 @@ public class SavedSummonerAdapter extends RecyclerView.Adapter<SavedSummonerAdap
         }
 
         public void bind(SummonerClass nameClass) {
-            mNameTV.setText(SummonerClass.name);
+            mNameTV.setText(nameClass.name);
         }
 
         @Override

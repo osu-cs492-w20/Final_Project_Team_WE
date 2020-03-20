@@ -96,13 +96,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        mSavedSummonerViewModel.getAllSummoners().observe(this, new Observer<List<SummonerClass>>() {
-            @Override
-            public void onChanged(@Nullable List<SummonerClass> savedItemLists) {
-                mSavedSummonerAdapter.updateLocationList(savedItemLists);
-            }
-        });
-
         Button searchButton = findViewById(R.id.search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
