@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.searchlol.MainActivity;
 import com.example.searchlol.data.ChampionInfo;
 import com.example.searchlol.data.ChampionMasteryClass;
+import com.example.searchlol.data.RankClass;
 import com.example.searchlol.data.SummonerClass;
 import com.example.searchlol.utils.ChampionInfoUtil;
 import com.example.searchlol.utils.NetworkUtils;
@@ -49,20 +50,19 @@ public class ChampionAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        ChampionMasteryClass result1 = null;
-        ChampionMasteryClass result2 = null;
-        ChampionMasteryClass result3 = null;
+        ChampionMasteryClass result=null;
+        ChampionMasteryClass result1=null;
+        ChampionMasteryClass result2=null;
+        RankClass result3=null;
+
         mActivity = new SummonerDetailActivity();
         summonerClass = new SummonerClass();
         mainActivity = new MainActivity();
         if (s != null) {
-                result1 = RiotSummonerUtils.parseMasteryResult(s,0);//json
-                Log.d(TAG, "this is: " + result1.championLevel);
-                result2= RiotSummonerUtils.parseMasteryResult(s,1);//json
-                Log.d(TAG, "this is: " + result2.championLevel);
-                result3= RiotSummonerUtils.parseMasteryResult(s,2);//json
-                Log.d(TAG, "this is: " + result3.championLevel);
-                mActivity.receiveMaster(result1,result2,result3);
+                result = RiotSummonerUtils.parseMasteryResult(s,0);//json
+                result1= RiotSummonerUtils.parseMasteryResult(s,1);//json
+                result2= RiotSummonerUtils.parseMasteryResult(s,2);//json
+                mActivity.receiveMaster(result,result1,result2);
                 mainActivity.trigger=1;
         }
         mCallback.onSearchFinished(result1);

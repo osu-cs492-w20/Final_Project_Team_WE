@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 String summonerName = mSearchSummonerET.getText().toString();
                 if (!TextUtils.isEmpty(summonerName)) {
                     mViewModel.loadSearchResults(summonerName);
-                    if (myTimer == null) {
                         myTimer = new Timer();
                         myTimer.scheduleAtFixedRate(new TimerTask() {
 
@@ -107,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                             }
                         }, 1000, 1000);
-                    }
 
                 }
 
