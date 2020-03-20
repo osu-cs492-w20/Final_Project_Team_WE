@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#9A1054BA"
-        android:fadingEdge="none"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_match_champ"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
 
         <TextView
             android:id="@+id/match_champ"
@@ -29,4 +33,57 @@
             android:textSize="15sp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="#55111111">
+
+        <ImageView
+            android:id="@+id/iv_item_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#FFFFFF"
+            android:layout_marginRight="5dp"/>
+
+        <ImageView
+            android:id="@+id/iv_item_2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#FFFFFF"
+            android:layout_marginRight="5dp"/>
+
+        <ImageView
+            android:id="@+id/iv_item_3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#FFFFFF"
+            android:layout_marginRight="5dp"/>
+
+        <ImageView
+            android:id="@+id/iv_item_4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#FFFFFF"
+            android:layout_marginRight="5dp"/>
+
+        <ImageView
+            android:id="@+id/iv_item_5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#FFFFFF"
+            android:layout_marginRight="5dp"/>
+
+        <ImageView
+            android:id="@+id/iv_item_6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#FFFFFF"
+            android:layout_marginRight="5dp"/>
+
+    </LinearLayout>
+
 </LinearLayout>
