@@ -2,6 +2,7 @@ package com.example.searchlol.summoner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +19,6 @@ import com.example.searchlol.data.ChampionMasteryClass;
 import com.example.searchlol.data.SummonerClass;
 import com.bumptech.glide.Glide;
 import com.example.searchlol.utils.ChampionInfoUtil;
-import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +37,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private static int c1Name, c1Level, c1Points;
     private static int c2Name, c2Level, c2Points;
     private static int c3Name, c3Level, c3Points;
+    private static ArrayList<ChampionInfo> championList;
 
     public void receiveData(SummonerClass myResult) {
         mRepo = myResult;
@@ -47,8 +48,9 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         myDate = mRepo.revisionDate;
     }
 
-    public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3) {
+    public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3, ArrayList<ChampionInfo> result4) {
 
+        c1Name = result1.championId;
         c1Level = result1.championLevel;
         c1Points = result1.championPoints;
 
@@ -59,6 +61,12 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         c3Name = result3.championId;
         c3Level = result3.championLevel;
         c3Points = result3.championPoints;
+
+        championList = result4;
+    }
+
+    public void receiveName(ArrayList<ChampionInfo> result) {
+        championList = result;
     }
 
     public String changeDate(long unixSeconds) {
@@ -70,7 +78,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
     public String getChampionById(int id) {
         String championName = null;
-        ArrayList<ChampionInfo> championInfos = ChampionInfoUtil.parseChampionInfo();
+
+        ArrayList<ChampionInfo> championInfos = championList;
 
         for (int i = 0; i < championInfos.size(); i++) {
             if (id == championInfos.get(i).key) {
@@ -110,15 +119,22 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             String iconUrl = "https://opgg-static.akamaized.net/images/profile_icons/profileIcon" + String.valueOf(myIcon) + ".jpg";
             TextView repoDateTV = findViewById(R.id.tv_Date_des);
             repoDateTV.setText("Last Revision Date: " + changeDate(myDate));
-            String c1Name_name = "Aatrox";
-            ImageView championIcon1 = findViewById(R.id.iv_summoner_solo);
-            String champion1Url = "http://opgg-static.akamaized.net/images/lol/champion/Aatrox.png";
             Glide.with(repoIconIV.getContext()).load(iconUrl).into(repoIconIV);
             repoIconIV.setOnClickListener(this);
 
-
+            String c1Name_name = getChampionById(c1Name);
+            ImageView championIcon1 = findViewById(R.id.iv_summoner_solo);
+            String c2Name_name = "Akali";
+            ImageView championIcon2 = findViewById(R.id.iv_summoner_duo);
+            String c3Name_name = "Yasuo";
+            ImageView championIcon3 = findViewById(R.id.iv_summoner_third);
+            String champion1Url = "https://opgg-static.akamaized.net/images/lol/champion/" + c1Name_name + ".png";
+            String champion2Url = "https://opgg-static.akamaized.net/images/lol/champion/" + c2Name_name + ".png";
+            String champion3Url = "https://opgg-static.akamaized.net/images/lol/champion/" + c3Name_name + ".png";
             Log.d("TAG", "onCreate: " + champion1Url);
             Glide.with(championIcon1.getContext()).load(champion1Url).into(championIcon1);
+            Glide.with(championIcon2.getContext()).load(champion2Url).into(championIcon2);
+            Glide.with(championIcon3.getContext()).load(champion3Url).into(championIcon3);
         }
 
 

@@ -1,25 +1,17 @@
 package com.example.searchlol.utils;
 
-import android.util.JsonReader;
-import android.util.Log;
-
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
-import com.example.searchlol.utils.NetworkUtils;
 
 import com.example.searchlol.data.ChampionInfo;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-
 public class ChampionInfoUtil {
     public static final String url = "http://ddragon.leagueoflegends.com/cdn/10.6.1/data/en_US/champion.json";
-    private static String json = null;
+
     static class ChampionList {
         Champion[] items;
     }
@@ -29,7 +21,7 @@ public class ChampionInfoUtil {
         public int key;
     }
 
-    public static ArrayList<ChampionInfo> parseChampionInfo() {
+    public static ArrayList<ChampionInfo> parseChampionInfo(String json) {
         Gson gson = new Gson();
         ChampionList results = gson.fromJson(json, ChampionList.class);
         if (results != null) {

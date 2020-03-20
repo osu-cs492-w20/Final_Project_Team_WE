@@ -71,8 +71,8 @@
 
         <ImageView
             android:id="@+id/iv_summoner_solo"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_width="95dp"
+            android:layout_height="95dp" />
 
         <TextView
             android:id="@+id/tv_summoner_description"
