@@ -59,7 +59,6 @@ public class RiotSummonerUtils {
 
     public static RankClass parseRankResult(String json) {
         Gson gson = new Gson();
-        RankClass mClass=null;
         RankClass results[] = gson.fromJson(json, RankClass[].class);
 
         try{
