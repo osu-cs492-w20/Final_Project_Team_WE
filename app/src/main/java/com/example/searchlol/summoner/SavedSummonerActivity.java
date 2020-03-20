@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.searchlol.MainActivity;
 import com.example.searchlol.R;
 import com.example.searchlol.data.SummonerClass;
+import com.example.searchlol.data.SummonerRepo;
 import com.example.searchlol.utils.RiotSummonerUtils;
 
 public class SavedSummonerActivity extends AppCompatActivity implements SavedSummonerAdapter.OnNameItemClickListener{
@@ -40,8 +41,9 @@ public class SavedSummonerActivity extends AppCompatActivity implements SavedSum
                 new ViewModelProvider.AndroidViewModelFactory(getApplication())
         ).get(SavedSummonerViewModel.class);
 
-        mViewModel.getAllSummoners().observe(this, new Observer<List<SummonerClass>>() {
+        mViewModel.getAllSummoners().observe(this, new Observer<List<SummonerRepo>>() {
             @Override
+
             public void onChanged(List<SummonerClass> gitHubRepos) {
                 adapter.updateLocationList(gitHubRepos);
             }

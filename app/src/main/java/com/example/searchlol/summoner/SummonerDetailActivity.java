@@ -1,6 +1,7 @@
 package com.example.searchlol.summoner;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -9,54 +10,58 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.example.searchlol.R;
 import com.example.searchlol.data.ChampionInfo;
 import com.example.searchlol.data.ChampionMasteryClass;
 import com.example.searchlol.data.NameTask;
 import com.example.searchlol.data.SummonerClass;
 import com.bumptech.glide.Glide;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Date;
+
 import com.example.searchlol.data.RankClass;
+import com.example.searchlol.data.SummonerRepo;
 import com.example.searchlol.histroy.HistoryActivity;
 
 public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener,
-                                                                        NameTask.NameCallBack {
+        NameTask.NameCallBack {
     public static final String EXTRA_GITHUB_REPO = "SummonerDetailActivity";
     private static List<ChampionInfo> championList;
     private ChampionViewModel championViewModel;
-    public Boolean setOnce=false;
-    private SummonerClass mRepo = new SummonerClass();
+          
+    public Boolean setOnce = false;
+    public SummonerClass mRepo = new SummonerClass();
+
     public ChampionDetailActivity mAct;
     private static String myLevel;
     private static String myUsername;
-    private static int    myIcon;
-    public  static String mId;
-    private static long   myDate;
-    private static int c1Name,c1Level,c1Points,mLeaguePoints;
-    private static int c2Name,c2Level,c2Points;
-    private static int c3Name,c3Level,c3Points;
-    private static ChampionMasteryClass mC1,mC2,mC3;
-    private static String mRank="";
-    private static String mTier="";
-    private static String mRankMess="";
+    private static int myIcon;
+    public static String mId;
+    private static long myDate;
+    private static int c1Name, c1Level, c1Points, mLeaguePoints;
+    private static int c2Name, c2Level, c2Points;
+    private static int c3Name, c3Level, c3Points;
+    private static ChampionMasteryClass mC1, mC2, mC3;
+    private static String mRank = "";
+    private static String mTier = "";
+    private static String mRankMess = "";
     private static String accountId;
     private Button historyButton;
-
     private SavedSummonerViewModel mViewModel;
+    private boolean like;
 
-    private boolean mIsSaved = false;
-
-    private SummonerClass summonerClass;
-
-    public void receiveData(SummonerClass myResult){
+    public void receiveData(SummonerClass myResult) {
         mRepo = myResult;
         myLevel = mRepo.summonerLevel;
         myUsername = mRepo.name;
@@ -64,7 +69,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         mId = mRepo.id;
         myDate = mRepo.revisionDate;
         accountId = mRepo.accountId;
-        summonerClass = myResult;
+
     }
 
 
@@ -72,36 +77,35 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         championList = result;
     }
 
-    public void receiveRank(RankClass myResult){
-        if(myResult==null){
-            mRankMess="Unranked";
-        }
-        else {
+    public void receiveRank(RankClass myResult) {
+        if (myResult == null) {
+            mRankMess = "Unranked";
+        } else {
             mRank = myResult.rank;
             mTier = myResult.tier;
             mLeaguePoints = myResult.leaguePoints;
-            mRankMess= mTier + mRank + " " + mLeaguePoints + "lp";
+            mRankMess = mTier + mRank + " " + mLeaguePoints + "lp";
         }
     }
 
-    public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3){
-        mC1= new ChampionMasteryClass();
-        mC1= result1;
-        c1Name=result1.championId;
-        c1Level=result1.championLevel;
-        c1Points=result1.championPoints;
+    public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3) {
+        mC1 = new ChampionMasteryClass();
+        mC1 = result1;
+        c1Name = result1.championId;
+        c1Level = result1.championLevel;
+        c1Points = result1.championPoints;
 
-        mC2= new ChampionMasteryClass();
-        mC2= result2;
-        c2Name=result2.championId;
-        c2Level=result2.championLevel;
-        c2Points=result2.championPoints;
+        mC2 = new ChampionMasteryClass();
+        mC2 = result2;
+        c2Name = result2.championId;
+        c2Level = result2.championLevel;
+        c2Points = result2.championPoints;
 
-        mC3= new ChampionMasteryClass();
-        mC3= result3;
-        c3Name=result3.championId;
-        c3Level=result3.championLevel;
-        c3Points=result3.championPoints;
+        mC3 = new ChampionMasteryClass();
+        mC3 = result3;
+        c3Name = result3.championId;
+        c3Level = result3.championLevel;
+        c3Points = result3.championPoints;
 
     }
 
@@ -137,7 +141,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             TextView repoNameTV = findViewById(R.id.tv_summoner_name);
             repoNameTV.setText(String.format("Player: %s", myUsername));
             TextView repoRankTV = findViewById(R.id.tv_Rank);
-            repoRankTV.setText("Rank: "+ mRankMess);
+            repoRankTV.setText("Rank: " + mRankMess);
             TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
             repoFirstTV.setText("TOP1 Champion");
             TextView repoFirst2TV = findViewById(R.id.tv_summoner_description4);
@@ -159,7 +163,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             ImageView repoChampIV = findViewById(R.id.iv_summoner_solo);
             ImageView repoChamp2IV = findViewById(R.id.iv_summoner_duo);
             ImageView repoChamp3IV = findViewById(R.id.iv_summoner_third);
-            Button myButton= findViewById(R.id.search_history_button);
+            Button myButton = findViewById(R.id.search_history_button);
             myButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -188,8 +192,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             historyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent newIntent = new Intent(SummonerDetailActivity.this  , HistoryActivity.class);
-                    newIntent.putExtra("userID",accountId);
+                    Intent newIntent = new Intent(SummonerDetailActivity.this, HistoryActivity.class);
+                    newIntent.putExtra("userID", accountId);
                     startActivity(newIntent);
                 }
 
@@ -197,54 +201,61 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
         }
 
-        final ImageView repoBookmarkIV = findViewById(R.id.iv_repo_bookmark);
-        repoBookmarkIV.setOnClickListener(new View.OnClickListener() {
+        mViewModel = new ViewModelProvider(
+                this,
+                new ViewModelProvider.AndroidViewModelFactory(getApplication())
+        ).get(SavedSummonerViewModel.class);
+
+        mViewModel.getAllSummoners().observe(this, new Observer<List<SummonerRepo>>() {
             @Override
-            public void onClick(View v) {
-                if (mRepo != null) {
-                    if (!mIsSaved) {
-                        mViewModel.insertSavedSummoner(summonerClass);
-                    } else {
-                        mViewModel.deleteSavedSummoner(summonerClass);
-                    }
-                }
+            public void onChanged(List<SummonerRepo> gitHubRepos) {
+                Log.d("SQL size", String.valueOf(gitHubRepos.size()));
             }
         });
 
-        mViewModel.getSummonerByName(summonerClass.name).observe(this, new Observer<SummonerClass>() {
-            @Override
-            public void onChanged(SummonerClass repo) {
-                if (repo != null) {
-                    mIsSaved = true;
-                    repoBookmarkIV.setImageResource(R.drawable.ic_favorite);
-                } else {
-                    mIsSaved = false;
-                    repoBookmarkIV.setImageResource(R.drawable.ic_favorite_border);
-                }
-            }
-        });
-
+        if (mViewModel.getSummonerByName(mId)) Log.d("66666666666", "gogogogogog ");
+        Log.d("yyyyyyyyyyyyyyyyy", String.valueOf(like));
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.repo_detail, menu);
+        final MenuItem item = menu.findItem(R.id.action_save_favorite_summoner);
+        like = mViewModel.getSummonerByName(mId);
+
+
+        Log.d("TAG", String.valueOf(like));
+
+        if (like) {
+            item.setIcon(R.drawable.ic_action_checkedfavorite);
+        }
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-//            case R.id.action_save_favorite_summoner:
-//                if (!mIsSaved) {
-//                    mViewModel.insertSavedSummoner(mRepo);
-//                } else {
-//                    mViewModel.deleteSavedSummoner(mRepo);
-//                }
+            case R.id.action_save_favorite_summoner:
+                SummonerRepo repo = new SummonerRepo();
+                repo.id = mId;
+                if (like) {
+                    mViewModel.deleteSavedSummoner(repo);
+                    item.setIcon(R.drawable.ic_action_favorite);
+                    like = false;
+                } else {
+                    mViewModel.insertSavedSummoner(repo);
+                    if (mViewModel.getSummonerByName(repo.id))
+                        Log.d("fffffffff", "ggggggg ");
+
+                    item.setIcon(R.drawable.ic_action_checkedfavorite);
+                    like = true;
+
+                }
             case R.id.action_view_more:
-                //invoke activity
-                return true;
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -257,24 +268,24 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
                 setOnce = !setOnce;
                 break;
             case R.id.iv_summoner_solo:
-                mAct=new ChampionDetailActivity();
+                mAct = new ChampionDetailActivity();
                 mAct.receiveMaster(mC1);
-                Intent sharedIntent=new Intent(this, ChampionDetailActivity.class);
+                Intent sharedIntent = new Intent(this, ChampionDetailActivity.class);
 
                 startActivity(sharedIntent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.iv_summoner_duo:
-                mAct=new ChampionDetailActivity();
+                mAct = new ChampionDetailActivity();
                 mAct.receiveMaster(mC2);
-                Intent sharedIntent2=new Intent(this, ChampionDetailActivity.class);
+                Intent sharedIntent2 = new Intent(this, ChampionDetailActivity.class);
                 startActivity(sharedIntent2);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.iv_summoner_third:
-                mAct=new ChampionDetailActivity();
+                mAct = new ChampionDetailActivity();
                 mAct.receiveMaster(mC3);
-                Intent sharedIntent3=new Intent(this, ChampionDetailActivity.class);
+                Intent sharedIntent3 = new Intent(this, ChampionDetailActivity.class);
                 startActivity(sharedIntent3);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
