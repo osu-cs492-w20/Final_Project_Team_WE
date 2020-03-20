@@ -15,11 +15,12 @@ public class HistoryUtils {
     private final static String HISTORY_END_INDEX = "endIndex";
     private final static String HISTORY_BEGIN_INDEX = "beginIndex";
     private final static String HISTORY_KEY = "api_key";
+
     public static String mREGION="NA1.";
     private final static String KEY = "RGAPI-cbab7df3-8f08-41ab-8b12-e6a246a09224";
     private final static String HISTORY_BASE_URL =  HISTORY_1_URL + mREGION + HISTORY_2_URL;
     private final static String MATCH_BASE_URL =    HISTORY_1_URL + mREGION + "api.riotgames.com/lol/match/v4/matches/";
-    //        "https://na1.api.riotgames.com/lol/match/v4/matches/";
+
 
     private static String accId;
     private static int partId;
@@ -77,7 +78,7 @@ public class HistoryUtils {
         accId=id;
         return Uri.parse(HISTORY_1_URL+mREGION+HISTORY_2_URL).buildUpon()
                 .appendPath(id)
-                .appendQueryParameter(HISTORY_END_INDEX, "20")
+                .appendQueryParameter(HISTORY_END_INDEX, "10")
                 .appendQueryParameter(HISTORY_BEGIN_INDEX, "0")
                 .appendQueryParameter(HISTORY_KEY, KEY)
                 .build()
