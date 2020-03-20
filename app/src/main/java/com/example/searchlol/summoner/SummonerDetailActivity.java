@@ -18,6 +18,7 @@ import com.example.searchlol.data.ChampionMasteryClass;
 import com.example.searchlol.data.SummonerClass;
 import com.bumptech.glide.Glide;
 import com.example.searchlol.utils.ChampionInfoUtil;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -85,7 +86,6 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summoner_detail);
 
-
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_GITHUB_REPO)) {
             TextView repoNameTV = findViewById(R.id.tv_summoner_name);
@@ -96,7 +96,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             repoRankTV.setText("Default: IronV");
             TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
             repoFirstTV.setText("TOP1 Champ: " + c1Level);
-            TextView repoFirst2TV = findViewById(R.id.tv_summoner_descriptio);
+            TextView repoFirst2TV = findViewById(R.id.tv_summoner_description4);
             repoFirst2TV.setText("Mastery " + c1Points);
             TextView repoSecondTV = findViewById(R.id.tv_summoner_description2);
             repoSecondTV.setText("TOP2 Champ" + c2Level);
@@ -110,15 +110,18 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             String iconUrl = "https://opgg-static.akamaized.net/images/profile_icons/profileIcon" + String.valueOf(myIcon) + ".jpg";
             TextView repoDateTV = findViewById(R.id.tv_Date_des);
             repoDateTV.setText("Last Revision Date: " + changeDate(myDate));
+            String c1Name_name = "Aatrox";
+            ImageView championIcon1 = findViewById(R.id.iv_summoner_solo);
+            String champion1Url = "http://opgg-static.akamaized.net/images/lol/champion/Aatrox.png";
             Glide.with(repoIconIV.getContext()).load(iconUrl).into(repoIconIV);
             repoIconIV.setOnClickListener(this);
 
-            String c1Name_name = "Aatrox";
-            ImageView championIcon1 = findViewById(R.id.iv_summoner_solo);
-            String champion1Url = "http://ddragon.leagueoflegends.com/cdn/10.6.1/img/champion/" + c1Name_name + ".png";
+
             Log.d("TAG", "onCreate: " + champion1Url);
             Glide.with(championIcon1.getContext()).load(champion1Url).into(championIcon1);
         }
+
+
     }
 
     @Override
