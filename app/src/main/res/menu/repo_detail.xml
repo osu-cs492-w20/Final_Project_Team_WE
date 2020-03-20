@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_save_favorite_summoner"
+        android:icon="@drawable/ic_action_favorite"
+        android:title="Save your favorite Summoner"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/action_view_more"
         android:title="Find more about Riot Games"
         app:showAsAction="never"/>
