@@ -1,4 +1,4 @@
-package com.example.searchlol.summoner;
+package com.example.searchlol.histroy;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.searchlol.R;
-import com.example.searchlol.histroy.MatchInfo;
-import com.example.searchlol.histroy.MatchReferenceDto;
 
 import java.util.List;
 

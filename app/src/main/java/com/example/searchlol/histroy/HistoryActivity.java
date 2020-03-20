@@ -1,7 +1,6 @@
 package com.example.searchlol.histroy;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.searchlol.R;
-import com.example.searchlol.summoner.HistoryAdapter;
 import com.example.searchlol.utils.HistoryUtils;
 import com.example.searchlol.utils.NetworkUtils;
 
