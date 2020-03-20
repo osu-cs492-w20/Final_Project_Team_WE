@@ -16,7 +16,7 @@
             android:resource="@anim/slide_out_left" />
         <activity
             android:name=".summoner.SavedSummonerActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".summoner.SummonerDetailActivity"
             android:parentActivityName=".MainActivity" />
