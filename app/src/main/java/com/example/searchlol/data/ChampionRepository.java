@@ -15,7 +15,7 @@ public class ChampionRepository implements NameTask.NameCallBack {
     }
 
     public void getNameById(int id){
-        String url = "http://ddragon.leagueoflegends.com/cdn/10.6.1/data/en_US/champion.json";
+        String url = "https://ddragon.leagueoflegends.com/cdn/10.6.1/data/en_US/champion.json";
         new NameTask(url, this).execute();
     }
 

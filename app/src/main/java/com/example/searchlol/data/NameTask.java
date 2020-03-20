@@ -42,7 +42,6 @@ public class NameTask extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         ArrayList<ChampionInfo> result = ChampionInfoUtil.parseChampionInfo(s);
-        Log.d(TAG, "this is the result: " + result.get(1).id);
         mNameCallBack.onNameFinished(result);
     }
 

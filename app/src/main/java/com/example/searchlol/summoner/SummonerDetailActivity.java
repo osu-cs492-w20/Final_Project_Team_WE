@@ -78,7 +78,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     }
 
     public String getChampionById(int id) {
-        String championName = null;
+        String championName = "Aatrox";
         championViewModel.loadName(id);
 //        new NameTask(url, this).execute();
 //        for (int i = 0; i < championList.size(); i++) {
