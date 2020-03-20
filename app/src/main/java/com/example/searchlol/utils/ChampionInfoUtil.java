@@ -1,10 +1,9 @@
 package com.example.searchlol.utils;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 import com.example.searchlol.data.ChampionInfo;
@@ -23,8 +22,9 @@ public class ChampionInfoUtil {
 
     public static ArrayList<ChampionInfo> parseChampionInfo(String json) {
         Gson gson = new Gson();
+        Log.d("TAG", "parseChampionInfo: " + json);
         ChampionList results = gson.fromJson(json, ChampionList.class);
-        if (results != null) {
+        if (results.items != null) {
             ArrayList<ChampionInfo> championLists = new ArrayList<>();
             for (Champion champion : results.items) {
                 ChampionInfo championInfo = new ChampionInfo();
@@ -36,7 +36,7 @@ public class ChampionInfoUtil {
             }
             return championLists;
         } else {
-            return  null;
+            return null;
         }
     }
 }

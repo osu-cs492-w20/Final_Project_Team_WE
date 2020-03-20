@@ -1,4 +1,4 @@
-package com.example.searchlol.summoner;
+package com.example.searchlol.data;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -10,22 +10,29 @@ import com.example.searchlol.utils.NetworkUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
+public class NameTask extends AsyncTask<Void, Void, String> {
 
-public class NameTask extends AsyncTask<String, Void, String> {
-    private SummonerDetailActivity mActivity;
-    public static int trigger = 0;
-    public MainActivity mainActivity;
+    public interface NameCallBack {
+        void onNameFinished(List<ChampionInfo> championInfo);
+    }
 
+    private String mUrl;
+    private NameCallBack mNameCallBack;
+
+    NameTask(String url, NameCallBack nameCallBack) {
+        mUrl = url;
+        mNameCallBack = nameCallBack;
+    }
 
     @Override
-    protected String doInBackground(String... strings) {
-        String url = strings[0];
+    protected String doInBackground(Void... voids) {
         String result = null;
         try {
-            result = NetworkUtils.doHttpGet(url);
+            result = NetworkUtils.doHttpGet(mUrl);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,12 +41,9 @@ public class NameTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        mActivity = new SummonerDetailActivity();
-        mainActivity = new MainActivity();
-
         ArrayList<ChampionInfo> result = ChampionInfoUtil.parseChampionInfo(s);
-        Log.d(TAG, "this is: " + result.get(0).id);
-        mActivity.getJson(result);
+        Log.d(TAG, "this is the result: " + result.get(1).id);
+        mNameCallBack.onNameFinished(result);
     }
 
 }

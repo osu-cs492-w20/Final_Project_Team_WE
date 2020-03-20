@@ -2,7 +2,6 @@ package com.example.searchlol.summoner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,21 +11,23 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.searchlol.R;
 import com.example.searchlol.data.ChampionInfo;
 import com.example.searchlol.data.ChampionMasteryClass;
+import com.example.searchlol.data.NameTask;
 import com.example.searchlol.data.SummonerClass;
 import com.bumptech.glide.Glide;
-import com.example.searchlol.utils.ChampionInfoUtil;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Date;
-import java.util.jar.Attributes;
 
-public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener,
+                                                                        NameTask.NameCallBack {
     public static final String EXTRA_GITHUB_REPO = "SummonerDetailActivity";
     public Boolean setOnce = false;
     public SummonerClass mRepo = new SummonerClass();
@@ -38,7 +39,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private static int c1Name, c1Level, c1Points;
     private static int c2Name, c2Level, c2Points;
     private static int c3Name, c3Level, c3Points;
-    private static ArrayList<ChampionInfo> championList;
+    private static List<ChampionInfo> championList;
+    private ChampionViewModel championViewModel;
 
     public void receiveData(SummonerClass myResult) {
         mRepo = myResult;
@@ -64,7 +66,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         c3Points = result3.championPoints;
     }
 
-    public void getJson(ArrayList<ChampionInfo> result) {
+    public void getJson(List<ChampionInfo> result) {
         championList = result;
     }
 
@@ -77,14 +79,13 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
     public String getChampionById(int id) {
         String championName = null;
-        String url = "http://ddragon.leagueoflegends.com/cdn/10.6.1/data/en_US/champion.json";
-        new NameTask().execute(url);
-        Log.d("TAG", "getChampionById: " + championList.get(0).id);
-        for (int i = 0; i < championList.size(); i++) {
-            if (id == championList.get(i).key) {
-                championName = championList.get(i).id;
-            }
-        }
+        championViewModel.loadName(id);
+//        new NameTask(url, this).execute();
+//        for (int i = 0; i < championList.size(); i++) {
+//            if (id == championList.get(i).key) {
+//                championName = championList.get(i).id;
+//            }
+//        }
         Log.d("TAG", "getChampionById: " + championName);
         return championName;
     }
@@ -93,6 +94,14 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summoner_detail);
+
+        championViewModel = new ViewModelProvider(this).get(ChampionViewModel.class);
+        championViewModel.getName().observe(this, new Observer<List<ChampionInfo>>() {
+            @Override
+            public void onChanged(List<ChampionInfo> championInfos) {
+                getJson(championInfos);
+            }
+        });
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_GITHUB_REPO)) {
@@ -123,9 +132,9 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
             String c1Name_name = getChampionById(c1Name);
             ImageView championIcon1 = findViewById(R.id.iv_summoner_solo);
-            String c2Name_name = "Akali";
+            String c2Name_name = getChampionById(c2Name);
             ImageView championIcon2 = findViewById(R.id.iv_summoner_duo);
-            String c3Name_name = "Yasuo";
+            String c3Name_name = getChampionById(c3Name);
             ImageView championIcon3 = findViewById(R.id.iv_summoner_third);
             String champion1Url = "https://opgg-static.akamaized.net/images/lol/champion/" + c1Name_name + ".png";
             String champion2Url = "https://opgg-static.akamaized.net/images/lol/champion/" + c2Name_name + ".png";
@@ -169,4 +178,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     }
 
 
+    @Override
+    public void onNameFinished(List<ChampionInfo> championInfo) {
+        championList = championInfo;
+    }
 }
