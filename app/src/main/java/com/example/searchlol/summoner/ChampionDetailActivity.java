@@ -54,6 +54,9 @@ public class ChampionDetailActivity extends AppCompatActivity {
             TextView repoTimeTV = findViewById(R.id.tv_champ_time);
             repoTimeTV.setText("Last Played: " + changeDate(mTime));
 
+            ImageView reporBorderTV = findViewById(R.id.iv_small_icon);
+            reporBorderTV.setImageResource(R.drawable.rank);
+
             TextView repoChestTV = findViewById(R.id.tv_champ_chest);
             String mStatus="";
             if(!mChest){

@@ -19,13 +19,15 @@ import com.example.searchlol.utils.NetworkUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.example.searchlol.utils.HistoryUtils.mREGION;
+
 public class HistoryActivity  extends AppCompatActivity {
     private static final String TAG = HistoryActivity.class.getSimpleName();
     private TextView history;
     private String mID;
     private RecyclerView historyRV;
     private HistoryAdapter mHistoryAdapter;
-
+    private String aRegion="";
 //    private ProgressBar mLoadingIndicatorPB;
 
     @Override
@@ -54,6 +56,7 @@ public class HistoryActivity  extends AppCompatActivity {
 
 
     private void doGitHubSearch() {
+        aRegion=mREGION;
         String url = HistoryUtils.buildHistoryListSearchURL(mID);
         Log.d(TAG, "querying url: " + url);
         new HistorySearchTask().execute(url);

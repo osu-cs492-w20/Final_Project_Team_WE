@@ -28,8 +28,10 @@ import com.example.searchlol.data.SummonerClass;
 import com.example.searchlol.summoner.SummonerDetailActivity;
 import com.example.searchlol.summoner.SummonerSearchAdapter;
 import com.example.searchlol.summoner.SummonerSearchViewModel;
+import com.example.searchlol.utils.HistoryUtils;
+import com.example.searchlol.utils.RiotSummonerUtils;
 import com.google.android.material.navigation.NavigationView;
-
+import static com.example.searchlol.utils.HistoryUtils.mREGION;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SummonerClass summonerClass;
     private SummonerSearchViewModel mViewModel;
     private ProgressBar mLoadingIndicatorPB;
+    private RiotSummonerUtils mSum;
+    private HistoryUtils mHis;
     public static int trigger=0;
     static Timer myTimer = null;
 
@@ -94,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 String summonerName = mSearchSummonerET.getText().toString();
                 if (!TextUtils.isEmpty(summonerName)) {
-                    mViewModel.loadSearchResults(summonerName);
+                    doGitHubSearch(summonerName);
                         myTimer = new Timer();
                         myTimer.scheduleAtFixedRate(new TimerTask() {
 
@@ -143,10 +147,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                Intent savedReposIntent = new Intent(this, SavedReposActivity.class);
 //                startActivity(savedReposIntent);
 //                return true;
-//            case R.id.nav_settings:
-//                Intent settingsIntent = new Intent(this, SettingsActivity.class);
-//                startActivity(settingsIntent);
-//                return true;
+            case R.id.nav_settings:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                return true;
             default:
                 return false;
         }
@@ -165,42 +169,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-    public void startTimer() {
-        if (myTimer == null) {
-            myTimer = new Timer();
-            myTimer.scheduleAtFixedRate(new TimerTask() {
-
-                public void run() {
-
-                }
-            }, 1000, 1000);
-        }
-    }
 
     private void doGitHubSearch(String searchQuery) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        /*
+
+        mSum = new RiotSummonerUtils();
+        mHis = new HistoryUtils();
+
         String sort = preferences.getString(
                 getString(R.string.pref_sort_key),
                 getString(R.string.pref_sort_default)
         );
-        String language = preferences.getString(
-                getString(R.string.pref_language_key),
-                getString(R.string.pref_language_default)
-        );
-        String user = preferences.getString(
-                getString(R.string.pref_user_key), ""
-        );
-        boolean searchInName = preferences.getBoolean(
-                getString(R.string.pref_in_name_key), true
-        );
-        boolean searchInDescription = preferences.getBoolean(
-                getString(R.string.pref_in_description_key), true
-        );
-        boolean searchInReadme = preferences.getBoolean(
-                getString(R.string.pref_in_readme_key), true
-        );
-        */
+        Log.d(TAG,"THE SORT: "+sort);
+        mSum.getRegion(sort);
+        mREGION=sort;
+
         mViewModel.loadSearchResults(searchQuery);
     }
 
