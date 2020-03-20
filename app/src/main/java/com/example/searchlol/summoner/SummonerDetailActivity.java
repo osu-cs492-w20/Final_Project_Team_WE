@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.searchlol.R;
 import com.example.searchlol.data.ChampionMasteryClass;
+import com.example.searchlol.data.RankClass;
 import  com.example.searchlol.data.SummonerClass;
 
 import org.json.JSONException;
@@ -43,10 +44,13 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private static int    myIcon;
     public  static String mId;
     private static long   myDate;
-    private static int c1Name,c1Level,c1Points;
+    private static int c1Name,c1Level,c1Points,mLeaguePoints;
     private static int c2Name,c2Level,c2Points;
     private static int c3Name,c3Level,c3Points;
     private static ChampionMasteryClass mC1,mC2,mC3;
+    private static String mRank="";
+    private static String mTier="";
+    private static String mRankMess="";
 
     public void receiveData(SummonerClass myResult){
         mRepo=myResult;
@@ -55,6 +59,18 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         myIcon = mRepo.profileIconId;
         mId = mRepo.id;
         myDate = mRepo.revisionDate;
+    }
+
+    public void receiveRank(RankClass myResult){
+        if(myResult==null){
+            mRankMess="Unranked";
+        }
+        else {
+            mRank = myResult.rank;
+            mTier = myResult.tier;
+            mLeaguePoints = myResult.leaguePoints;
+            mRankMess= mTier + mRank + " " + mLeaguePoints + "lp";
+        }
     }
 
     public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3){
@@ -96,7 +112,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             TextView repoLevelTV = findViewById(R.id.tv_summoner_Level);
             repoLevelTV.setText(String.format("Level: %s", myLevel));
             TextView repoRankTV = findViewById(R.id.tv_Rank);
-            repoRankTV.setText("Default: IronV");
+            repoRankTV.setText("Rank: "+ mRankMess);
             TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
             repoFirstTV.setText("TOP1 Champion");
             TextView repoFirst2TV = findViewById(R.id.tv_summoner_descriptio);
@@ -108,7 +124,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             TextView repoThirdTV = findViewById(R.id.tv_summoner_description3);
             repoThirdTV.setText("TOP3 Champion");
             TextView repoThird2TV = findViewById(R.id.tv_summoner_descriptio3);
-            repoThird2TV.setText("Mastery: " + c3Name);
+            repoThird2TV.setText("Mastery: " + c3Points);
             ImageView repoIconIV = findViewById(R.id.tv_summoner_id);
             String iconUrl = "https://opgg-static.akamaized.net/images/profile_icons/profileIcon" + String.valueOf(myIcon) + ".jpg";
             TextView repoDateTV = findViewById(R.id.tv_Date_des);
