@@ -1,12 +1,14 @@
 package com.example.searchlol;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,9 +24,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.searchlol.data.Status;
 import com.example.searchlol.data.SummonerClass;
+import com.example.searchlol.summoner.SavedSummonerActivity;
+import com.example.searchlol.summoner.SavedSummonerAdapter;
+import com.example.searchlol.summoner.SavedSummonerViewModel;
 import com.example.searchlol.summoner.SummonerDetailActivity;
 import com.example.searchlol.summoner.SummonerSearchAdapter;
 import com.example.searchlol.summoner.SummonerSearchViewModel;
@@ -50,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ProgressBar mLoadingIndicatorPB;
     public static int trigger=0;
     static Timer myTimer = null;
+
+    private SavedSummonerViewModel mSavedSummonerViewModel;
+    private SavedSummonerAdapter mSavedSummonerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,17 +145,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()) {
             case R.id.nav_search:
                 return true;
-            case R.id.action_save_favorite_summoner:
-                //invoke activity
+            case R.id.nav_saved_repos:
+                Intent savedReposIntent = new Intent(this, SavedSummonerActivity.class);
+                startActivity(savedReposIntent);
                 return true;
-//            case R.id.nav_saved_repos:
-//                Intent savedReposIntent = new Intent(this, SavedReposActivity.class);
-//                startActivity(savedReposIntent);
-//                return true;
-//            case R.id.nav_settings:
-//                Intent settingsIntent = new Intent(this, SettingsActivity.class);
-//                startActivity(settingsIntent);
-//                return true;
             default:
                 return false;
         }

@@ -3,6 +3,7 @@ package com.example.searchlol.data;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 import java.util.List;
@@ -21,5 +22,4 @@ public interface SummonerClassDao {
 
     @Query("SELECT * FROM repos WHERE id = :sumid LIMIT 1")
     SummonerRepo getSummonerByName(String sumid);
-
 }

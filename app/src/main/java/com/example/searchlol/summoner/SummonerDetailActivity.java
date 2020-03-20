@@ -39,8 +39,10 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     public static final String EXTRA_GITHUB_REPO = "SummonerDetailActivity";
     private static List<ChampionInfo> championList;
     private ChampionViewModel championViewModel;
+          
     public Boolean setOnce = false;
     public SummonerClass mRepo = new SummonerClass();
+
     public ChampionDetailActivity mAct;
     private static String myLevel;
     private static String myUsername;
@@ -67,6 +69,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         mId = mRepo.id;
         myDate = mRepo.revisionDate;
         accountId = mRepo.accountId;
+
     }
 
 
@@ -113,19 +116,6 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         return formattedDate;
     }
 
-//    public String getChampionById(int id) {
-//        String championName = "Aatrox";
-//        championViewModel.loadName(id);
-////        new NameTask(url, this).execute();
-////        for (int i = 0; i < championList.size(); i++) {
-////            if (id == championList.get(i).key) {
-////                championName = championList.get(i).id;
-////            }
-////        }
-//        Log.d("TAG", "getChampionById: " + championName);
-//        return championName;
-//    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,12 +129,17 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             }
         });
 
+        mViewModel = new ViewModelProvider(
+                this,
+                new ViewModelProvider.AndroidViewModelFactory(getApplication()))
+                .get(SavedSummonerViewModel.class);
+
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_GITHUB_REPO)) {
-            TextView repoNameTV = findViewById(R.id.tv_summoner_name);
-            repoNameTV.setText(String.format("Player: %s", myUsername));
             TextView repoLevelTV = findViewById(R.id.tv_summoner_Level);
             repoLevelTV.setText(String.format("Level: %s", myLevel));
+            TextView repoNameTV = findViewById(R.id.tv_summoner_name);
+            repoNameTV.setText(String.format("Player: %s", myUsername));
             TextView repoRankTV = findViewById(R.id.tv_Rank);
             repoRankTV.setText("Rank: " + mRankMess);
             TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
