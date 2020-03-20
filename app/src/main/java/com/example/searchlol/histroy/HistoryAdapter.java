@@ -1,10 +1,12 @@
 package com.example.searchlol.histroy;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -64,6 +66,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         private ImageView item4;
         private ImageView item5;
         private ImageView item6;
+        private LinearLayout linearLayout;
 
 
         public HistoryViewHolder(View itemView) {
@@ -77,14 +80,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             item4 = itemView.findViewById(R.id.iv_item_4);
             item5 = itemView.findViewById(R.id.iv_item_5);
             item6 = itemView.findViewById(R.id.iv_item_6);
+            linearLayout = itemView.findViewById(R.id.match_layout);
         }
 
         public void bind(MatchInfo info) {
             String s, t;
             s = info.win;
-            result.setText(s);
+            result.setText(String.format("Status: %s", s));
             t = info.kda;
-            kda.setText(t);
+            kda.setText(String.format("K/D/A: %s", t));
 
             int champId, itemId1, itemId2, itemId3, itemId4, itemId5, itemId6;
             itemId1 = info.item1;
@@ -117,6 +121,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
             String itemURL6 = "https://ddragon.leagueoflegends.com/cdn/10.6.1/img/item/" + itemId6 + ".png";
             Glide.with(item6.getContext()).load(itemURL6).into(item6);
+
+            if (s.equals("Win")) {
+                linearLayout.setBackgroundColor(Color.argb(255, 53, 113, 242));
+            } else {
+                linearLayout.setBackgroundColor(Color.argb(255, 240, 98, 98));
+
+            }
 
         }
     }
