@@ -1,31 +1,30 @@
 package com.example.searchlol.summoner;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.searchlol.R;
 import com.example.searchlol.data.ChampionMasteryClass;
 
+import static com.example.searchlol.summoner.SummonerDetailActivity.EXTRA_GITHUB_REPO;
+
 public class ChampionDetailActivity extends AppCompatActivity {
-    private boolean shouldAllowBack=false;
-    private static int c1Name,c1Level,c1Points;
-    private static int c2Name,c2Level,c2Points;
-    private static int c3Name,c3Level,c3Points;
+    public static final String TAG = "ChampionDetailActivity";
+    private boolean shouldAllowBack = false;
+    private static int mName, mLevel, mPoints;
 
-    public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3){
-        c1Name=result1.championId;
-        c1Level=result1.championLevel;
-        c1Points=result1.championPoints;
 
-        c2Name=result2.championId;
-        c2Level=result2.championLevel;
-        c2Points=result2.championPoints;
+    public void receiveMaster(ChampionMasteryClass result) {
+        mName = result.championId;
+        mLevel = result.championLevel;
+        mPoints = result.championPoints;
 
-        c3Name=result3.championId;
-        c3Level=result3.championLevel;
-        c3Points=result3.championPoints;
     }
 
     @Override
@@ -33,14 +32,21 @@ public class ChampionDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.another_scene);
 
-        TextView repomLevelTV = findViewById(R.id.tv_champ_Level);
-        repomLevelTV.setText("Level: " + c1Level);
+        Intent intent = getIntent();
+        if (intent != null) {
+            TextView repoLevelTV = findViewById(R.id.tv_champ_Level);
+            repoLevelTV.setText("Level: " + mLevel);
 
-        TextView repoSecondTV = findViewById(R.id.tv_champ_mastery);
-        repoSecondTV.setText("Mastery: "+ c1Points);
+            String url = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/" + mName + ".png";
 
+            ImageView championIcon = findViewById(R.id.iv_champ_icon);
+            Glide.with(championIcon.getContext()).load(url).into(championIcon);
+            Log.d(TAG, "mName is " + mName);
+
+            TextView repoSecondTV = findViewById(R.id.tv_champ_mastery);
+            repoSecondTV.setText("Mastery: " + mPoints);
+        }
     }
-
 
 
     @Override

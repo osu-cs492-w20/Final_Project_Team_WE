@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     private EditText mSearchSummonerET;
     private RecyclerView mSearchResultsRV;
-    private SummonerSearchAdapter mSearchResultAdapter;
     private SummonerClass summonerClass;
     private SummonerSearchViewModel mViewModel;
     private ProgressBar mLoadingIndicatorPB;
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mSearchResultsRV.setLayoutManager(new LinearLayoutManager(this));
         mSearchResultsRV.setHasFixedSize(true);
 
-        mSearchResultAdapter = new SummonerSearchAdapter(this);
+        SummonerSearchAdapter mSearchResultAdapter = new SummonerSearchAdapter(this);
         mSearchResultsRV.setAdapter(mSearchResultAdapter);
         mLoadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
         mViewModel = new SummonerSearchViewModel();

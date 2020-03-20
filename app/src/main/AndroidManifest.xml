@@ -20,7 +20,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".summoner.ChampionDetailActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".summoner.SummonerDetailActivity" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -31,9 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".histroy.HistoryActivity"
-            android:parentActivityName=".summoner.SummonerDetailActivity" />
     </application>
 
 </manifest>
