@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Date;
 import com.example.searchlol.data.RankClass;
+import com.example.searchlol.histroy.HistoryActivity;
 
 public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener,
                                                                         NameTask.NameCallBack {
@@ -46,6 +47,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private static String mRank="";
     private static String mTier="";
     private static String mRankMess="";
+    private static String accountId;
+    private Button historyButton;
 
     public void receiveData(SummonerClass myResult){
         mRepo=myResult;
@@ -54,6 +57,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         myIcon = mRepo.profileIconId;
         mId = mRepo.id;
         myDate = mRepo.revisionDate;
+        accountId=mRepo.accountId;
     }
 
 
@@ -181,6 +185,15 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             repoChampIV.setOnClickListener(this);
             repoChamp2IV.setOnClickListener(this);
             repoChamp3IV.setOnClickListener(this);
+
+            historyButton = findViewById(R.id.search_history_button);
+            historyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent newIntent = new Intent(SummonerDetailActivity.this, HistoryActivity.class);
+                    newIntent.putExtra("userID", accountId);
+                }
+            });
 
         }
 
