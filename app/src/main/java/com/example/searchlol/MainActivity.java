@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.example.searchlol.data.Status;
 import com.example.searchlol.data.SummonerClass;
+import com.example.searchlol.summoner.SavedSummonerActivity;
 import com.example.searchlol.summoner.SavedSummonerAdapter;
 import com.example.searchlol.summoner.SavedSummonerViewModel;
 import com.example.searchlol.summoner.SummonerDetailActivity;
@@ -144,17 +145,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()) {
             case R.id.nav_search:
                 return true;
-            case R.id.action_save_favorite_summoner:
-                //invoke activity
+            case R.id.nav_saved_repos:
+                Intent savedReposIntent = new Intent(this, SavedSummonerActivity.class);
+                startActivity(savedReposIntent);
                 return true;
-//            case R.id.nav_saved_repos:
-//                Intent savedReposIntent = new Intent(this, SavedReposActivity.class);
-//                startActivity(savedReposIntent);
-//                return true;
-//            case R.id.nav_settings:
-//                Intent settingsIntent = new Intent(this, SettingsActivity.class);
-//                startActivity(settingsIntent);
-//                return true;
             default:
                 return false;
         }
