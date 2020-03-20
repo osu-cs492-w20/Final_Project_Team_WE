@@ -1,67 +1,74 @@
 package com.example.searchlol.utils;
 
-import android.os.AsyncTask;
+import android.util.JsonReader;
 import android.util.Log;
 
-import com.example.searchlol.data.ChampionInfoList;
 import com.google.gson.Gson;
-import com.example.searchlol.utils.NetworkUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import com.example.searchlol.utils.NetworkUtils;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
+import com.example.searchlol.data.ChampionInfo;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 public class ChampionInfoUtil {
-    private String mInfo = null;
-    private final static String url = "http://ddragon.leagueoflegends.com/cdn/10.6.1/data/en_US/champion.json";
-
-    public String getChampionById(int id) {
-        String championName = null;
-
-//        for(int i = 0; i < mInfo.size(); i++){
-//            if (id == mInfo.get(i).key) {
-//                championName = mInfo.get(i).id;
-//            }
-//        }
-
-        ArrayList<ChampionInfoList.ChampionInfo> championInfos = parseChampionInfo();
-        Log.d(TAG, "getChampionById: " + mInfo);
-        return championName;
-    }
+    public static String mInfo = null;
+    public static final String url = "http://ddragon.leagueoflegends.com/cdn/10.6.1/data/en_US/champion.json";
 
 
-    public ArrayList<ChampionInfoList.ChampionInfo> parseChampionInfo() {
-        new ChampionTask().execute(url);
-        Log.d(TAG, "parseChampionInfo: " + mInfo);
-//        for (int i = 0; i < results.data.size(); i++) {
-//            championInfos.add(results.data.get(i));
-//        }
-//        if (results != null) {
-//            return championInfos;
-//        } else {
-            return null;
-//        }
-    }
 
-    public class ChampionTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            String url = strings[0];
-            String json = null;
-            try {
-                json = NetworkUtils.doHttpGet(url);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return json;
+    private static final OkHttpClient mHTTPClient = new OkHttpClient();
+    public static String doHttpGet(String url) throws IOException {
+        Request request = new Request.Builder().url(url).build();
+        Response response = mHTTPClient.newCall(request).execute();
+        try {
+            return response.body().string();
+        } finally {
+            response.close();
         }
+    }
+    public static String json;
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            mInfo = s;
+    static {
+        try {
+            json = doHttpGet(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    static class ChampionList {
+        Champion[] items;
+    }
+
+    static class Champion {
+        public String id;
+        public int key;
+    }
+
+    public static ArrayList<ChampionInfo> parseChampionInfo() {
+        Gson gson = new Gson();
+        ChampionList results = gson.fromJson(json, ChampionList.class);
+        if (results != null) {
+            ArrayList<ChampionInfo> championLists = new ArrayList<>();
+            for (Champion champion : results.items) {
+                ChampionInfo championInfo = new ChampionInfo();
+
+                championInfo.id = champion.id;
+                championInfo.key = champion.key;
+
+                championLists.add(championInfo);
+            }
+            return championLists;
+        } else {
+            return  null;
         }
     }
 }
