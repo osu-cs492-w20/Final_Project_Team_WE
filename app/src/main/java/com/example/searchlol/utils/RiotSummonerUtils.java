@@ -10,7 +10,7 @@ import static com.example.searchlol.summoner.SummonerAsyncTask.mId;
 public class RiotSummonerUtils {
     private final static String SUMMONERS_BASE_URL = "api.riotgames.com/lol/summoner/v4/summoners/by-name/";
     private final static String SUMMONERS_CHAMPION_URL = "api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/"; //encryptedid->id
-    private final static String API_KEY = "RGAPI-0d300a58-5265-4a57-b23f-d721412dec92";
+    private final static String API_KEY = "RGAPI-ec035b6f-d377-40f0-a280-e877d3586452";
     private final static String REGION = "na1.";
 
     public static String buildSummonerURL(String name) {
