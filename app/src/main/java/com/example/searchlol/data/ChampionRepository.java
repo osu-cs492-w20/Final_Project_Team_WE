@@ -3,13 +3,13 @@ package com.example.searchlol.data;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.searchlol.asynctask.NameTask;
+import com.example.searchlol.asynctask.ChampionInfoTask;
 import com.example.searchlol.dataclass.ChampionInfo;
 import com.example.searchlol.utils.ChampionInfoUtil;
 
 import java.util.List;
 
-public class ChampionRepository implements NameTask.NameCallBack {
+public class ChampionRepository implements ChampionInfoTask.NameCallBack {
     private MutableLiveData<List<ChampionInfo>> mChampion;
 
     public ChampionRepository() {
@@ -17,9 +17,9 @@ public class ChampionRepository implements NameTask.NameCallBack {
         mChampion.setValue(null);
     }
 
-    public void getNameById(int id){
+    public void getNameById(int id) {
         String url = ChampionInfoUtil.buildChampionInfoURL(String.valueOf(id));
-        new NameTask(url, this).execute();
+        new ChampionInfoTask(url, this).execute();
     }
 
     public LiveData<List<ChampionInfo>> getChampion() {

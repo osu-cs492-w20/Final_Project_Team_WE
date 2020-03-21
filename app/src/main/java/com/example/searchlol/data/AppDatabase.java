@@ -6,6 +6,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.searchlol.dataclass.SummonerRepo;
+
 @Database(entities = {SummonerRepo.class}, version = 1,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase{
     public abstract SummonerClassDao summonerClassDao();

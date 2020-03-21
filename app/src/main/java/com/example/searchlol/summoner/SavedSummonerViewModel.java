@@ -2,7 +2,7 @@ package com.example.searchlol.summoner;
 import android.app.Application;
 
 import com.example.searchlol.data.SavedSummonerRepository;
-import com.example.searchlol.data.SummonerRepo;
+import com.example.searchlol.dataclass.SummonerRepo;
 
 import java.util.List;
 

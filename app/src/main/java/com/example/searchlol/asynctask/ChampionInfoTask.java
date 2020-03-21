@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NameTask extends AsyncTask<Void, Void, String> {
+public class ChampionInfoTask extends AsyncTask<Void, Void, String> {
 
     public interface NameCallBack {
         void onNameFinished(List<ChampionInfo> championInfo);
@@ -19,7 +19,7 @@ public class NameTask extends AsyncTask<Void, Void, String> {
     private String mUrl;
     private NameCallBack mNameCallBack;
 
-    NameTask(String url, NameCallBack nameCallBack) {
+    public ChampionInfoTask(String url, NameCallBack nameCallBack) {
         mUrl = url;
         mNameCallBack = nameCallBack;
     }

@@ -11,7 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.searchlol.data.SummonerRepo;
+import com.example.searchlol.dataclass.SummonerRepo;
 import com.example.searchlol.adapter.SavedSummonerAdapter;
 import com.example.searchlol.summoner.SavedSummonerViewModel;
 

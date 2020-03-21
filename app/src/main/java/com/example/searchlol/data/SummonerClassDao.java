@@ -9,6 +9,8 @@ import androidx.room.Update;
 import java.util.List;
 import androidx.lifecycle.LiveData;
 
+import com.example.searchlol.dataclass.SummonerRepo;
+
 @Dao
 public interface SummonerClassDao {
     @Insert

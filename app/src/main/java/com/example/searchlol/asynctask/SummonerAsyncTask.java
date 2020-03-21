@@ -13,7 +13,7 @@ import com.example.searchlol.utils.NetworkUtils;
 import com.example.searchlol.utils.RiotSummonerUtils;
 import java.io.IOException;
 
-public class SummonerAsyncTask extends AsyncTask<String, Void, String> implements ChampionAsyncTask.Callback, RankAsyncTask.Callback {
+public class SummonerAsyncTask extends AsyncTask<String, Void, String> implements MasteryAsyncTask.Callback, RankAsyncTask.Callback {
     private Callback mCallback;
     private MutableLiveData<com.example.searchlol.data.Status> mLoadingStatus;
     public SummonerClass mrepo;
@@ -67,7 +67,7 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> implement
             new RankAsyncTask(this).execute(newurl);
             String url = RiotSummonerUtils.buildMasteryURL(mId);
             Log.d(TAG, "executing search with url: " + url);
-            new ChampionAsyncTask(this).execute(url);
+            new MasteryAsyncTask(this).execute(url);
         }
         mCallback.onSearchFinished(result);
         mAct.receiveData(result);

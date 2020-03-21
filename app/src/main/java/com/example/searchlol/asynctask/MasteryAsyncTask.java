@@ -15,7 +15,7 @@ import com.example.searchlol.utils.RiotSummonerUtils;
 import java.io.IOException;
 
 
-public class ChampionAsyncTask extends AsyncTask<String, Void, String> {
+public class MasteryAsyncTask extends AsyncTask<String, Void, String> {
     private Callback mCallback;
     private SummonerDetailActivity mActivity;
     public static int trigger=0;
@@ -26,7 +26,7 @@ public class ChampionAsyncTask extends AsyncTask<String, Void, String> {
         void onSearchFinished(ChampionMasteryClass searchResult);
     }
 
-    public ChampionAsyncTask(Callback callback) {
+    public MasteryAsyncTask(Callback callback) {
         mCallback = callback;
     }
 

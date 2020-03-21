@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.searchlol.R;
-import com.example.searchlol.data.SummonerRepo;
+import com.example.searchlol.dataclass.SummonerRepo;
 
 import java.util.List;
 

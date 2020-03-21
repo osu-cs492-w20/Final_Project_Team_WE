@@ -7,6 +7,8 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.searchlol.dataclass.SummonerRepo;
+
 public class SavedSummonerRepository {
     private SummonerClassDao mDAO;
     private boolean in;

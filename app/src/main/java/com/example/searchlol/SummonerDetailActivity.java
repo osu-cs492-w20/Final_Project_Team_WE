@@ -15,9 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.searchlol.asynctask.ChampionInfoTask;
 import com.example.searchlol.dataclass.ChampionInfo;
 import com.example.searchlol.dataclass.ChampionMasteryClass;
-import com.example.searchlol.asynctask.NameTask;
 import com.example.searchlol.dataclass.SummonerClass;
 import com.bumptech.glide.Glide;
 
@@ -26,16 +26,16 @@ import java.util.List;
 import java.util.Date;
 
 import com.example.searchlol.dataclass.RankClass;
-import com.example.searchlol.data.SummonerRepo;
+import com.example.searchlol.dataclass.SummonerRepo;
 import com.example.searchlol.summoner.ChampionViewModel;
 import com.example.searchlol.summoner.SavedSummonerViewModel;
 
 public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener,
-        NameTask.NameCallBack {
+        ChampionInfoTask.NameCallBack {
     public static final String EXTRA_GITHUB_REPO = "SummonerDetailActivity";
     private static List<ChampionInfo> championList;
     private ChampionViewModel championViewModel;
-          
+
     public Boolean setOnce = false;
     public SummonerClass mRepo = new SummonerClass();
 
