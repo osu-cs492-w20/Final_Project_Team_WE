@@ -32,7 +32,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-                                                    SummonerSearchAdapter.OnSearchResultClickListener {
+        SummonerSearchAdapter.OnSearchResultClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -41,8 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RecyclerView mSearchResultsRV;
     private SummonerClass summonerClass;
     private SummonerSearchViewModel mViewModel;
-    private ProgressBar mLoadingIndicatorPB;
-    public static int trigger=0;
+    public static int trigger = 0;
     static Timer myTimer = null;
 
     private SavedSummonerViewModel mSavedSummonerViewModel;
@@ -65,25 +64,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         SummonerSearchAdapter mSearchResultAdapter = new SummonerSearchAdapter(this);
         mSearchResultsRV.setAdapter(mSearchResultAdapter);
-        mLoadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
         mViewModel = new SummonerSearchViewModel();
         summonerClass = new SummonerClass();
-
-        mViewModel.getLoadingStatus().observe(this, new Observer<Status>() {
-            @Override
-            public void onChanged(Status status) {
-                if (status == Status.SUCCESS) {
-                    mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
-                    mSearchResultsRV.setVisibility(View.VISIBLE);
-                } else if (status == Status.LOADING) {
-                    mLoadingIndicatorPB.setVisibility(View.VISIBLE);
-                }
-                else {
-                    mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
-                    mSearchResultsRV.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
 
         Button searchButton = findViewById(R.id.search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -92,24 +74,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 String summonerName = mSearchSummonerET.getText().toString();
                 if (!TextUtils.isEmpty(summonerName)) {
                     mViewModel.loadSearchResults(summonerName);
-                        myTimer = new Timer();
-                        myTimer.scheduleAtFixedRate(new TimerTask() {
+                    myTimer = new Timer();
+                    myTimer.scheduleAtFixedRate(new TimerTask() {
 
-                            public void run() {
-                                if(trigger==1) {
-                                    startSecondActivity(summonerClass);
-                                    trigger=0;
-                                }
-
+                        public void run() {
+                            if (trigger == 1) {
+                                startSecondActivity(summonerClass);
+                                trigger = 0;
                             }
-                        }, 1000, 1000);
+
+                        }
+                    }, 1000, 1000);
 
                 }
 
             }
         });
-
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -153,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-    public void startSecondActivity(SummonerClass repo){
+    public void startSecondActivity(SummonerClass repo) {
         Intent intent = new Intent(this, SummonerDetailActivity.class);
         intent.putExtra(SummonerDetailActivity.EXTRA_GITHUB_REPO, repo);
         startActivity(intent);
