@@ -82,35 +82,38 @@ public class HistoryActivity extends AppCompatActivity {
             ArrayList<MatchReferenceDto> searchResultsList = HistoryUtils.parseHistoryListResults(searchResults);
             ArrayList<MatchInfo> matchInfos = new ArrayList();
 
-            for (MatchReferenceDto info : searchResultsList) {
-                String matchDetail = HistoryUtils.buildOneMatchURL(info.gameId);
-                String matchResults = null;
+            if (searchResults != null) {
+                for (MatchReferenceDto info : searchResultsList) {
+                    String matchDetail = HistoryUtils.buildOneMatchURL(info.gameId);
+                    String matchResults = null;
 
-                try {
-                    matchResults = NetworkUtils.doHttpGet(matchDetail);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    try {
+                        matchResults = NetworkUtils.doHttpGet(matchDetail);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    assert matchInfos != null;
+
+                    matchInfos.add(HistoryUtils.parseOneMatchResults(matchResults));
+                    Log.d(TAG, String.valueOf(matchInfos.get(0).champ));
                 }
-                assert matchInfos != null;
-
-                matchInfos.add(HistoryUtils.parseOneMatchResults(matchResults));
-                Log.d(TAG, String.valueOf(matchInfos.get(0).champ));
+                return matchInfos;
+            } else {
+                return null;
             }
-            return matchInfos;
         }
 
         @Override
         protected void onPostExecute(ArrayList<MatchInfo> s) {
             super.onPostExecute(s);
             if (s != null) {
-            mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
-            mHistoryAdapter.updateMatchinfo(s);
-//                mErrorMessageTV.setVisibility(View.INVISIBLE);
-//                mForecastListRV.setVisibility(View.VISIBLE);
+                mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
+                mHistoryAdapter.updateMatchinfo(s);
+                mErrorMessageTV.setVisibility(View.INVISIBLE);
+                historyRV.setVisibility(View.VISIBLE);
             } else {
-
-//                mErrorMessageTV.setVisibility(View.VISIBLE);
-//                mForecastListRV.setVisibility(View.INVISIBLE);
+                mErrorMessageTV.setVisibility(View.VISIBLE);
+                historyRV.setVisibility(View.INVISIBLE);
             }
         }
     }
