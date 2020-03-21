@@ -1,4 +1,5 @@
 package com.example.searchlol;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -6,14 +7,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.searchlol.dataclass.SummonerRepo;
 import com.example.searchlol.adapter.SavedSummonerAdapter;
-import com.example.searchlol.summoner.SavedSummonerViewModel;
+import com.example.searchlol.viewmodel.SavedSummonerViewModel;
 
 public class SavedSummonerActivity extends AppCompatActivity implements SavedSummonerAdapter.OnNameItemClickListener {
 

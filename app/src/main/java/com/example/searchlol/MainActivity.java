@@ -23,9 +23,9 @@ import android.widget.ProgressBar;
 import com.example.searchlol.data.Status;
 import com.example.searchlol.dataclass.SummonerClass;
 import com.example.searchlol.adapter.SavedSummonerAdapter;
-import com.example.searchlol.summoner.SavedSummonerViewModel;
+import com.example.searchlol.viewmodel.SavedSummonerViewModel;
 import com.example.searchlol.adapter.SummonerSearchAdapter;
-import com.example.searchlol.summoner.SummonerSearchViewModel;
+import com.example.searchlol.viewmodel.SummonerSearchViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Timer;

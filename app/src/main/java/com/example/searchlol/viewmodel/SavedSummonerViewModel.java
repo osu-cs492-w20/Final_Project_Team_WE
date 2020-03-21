@@ -1,4 +1,5 @@
-package com.example.searchlol.summoner;
+package com.example.searchlol.viewmodel;
+
 import android.app.Application;
 
 import com.example.searchlol.data.SavedSummonerRepository;
@@ -9,13 +10,14 @@ import java.util.List;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-public class SavedSummonerViewModel extends AndroidViewModel{
+public class SavedSummonerViewModel extends AndroidViewModel {
     private SavedSummonerRepository mRepository;
 
     public SavedSummonerViewModel(Application application) {
         super(application);
         mRepository = new SavedSummonerRepository(application);
     }
+
     public void insertSavedSummoner(SummonerRepo summoner) {
         mRepository.insertSavedSummoner(summoner);
     }

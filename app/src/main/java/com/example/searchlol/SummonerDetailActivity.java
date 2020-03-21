@@ -27,8 +27,8 @@ import java.util.Date;
 
 import com.example.searchlol.dataclass.RankClass;
 import com.example.searchlol.dataclass.SummonerRepo;
-import com.example.searchlol.summoner.ChampionViewModel;
-import com.example.searchlol.summoner.SavedSummonerViewModel;
+import com.example.searchlol.viewmodel.ChampionViewModel;
+import com.example.searchlol.viewmodel.SavedSummonerViewModel;
 
 public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener,
         ChampionInfoTask.NameCallBack {
