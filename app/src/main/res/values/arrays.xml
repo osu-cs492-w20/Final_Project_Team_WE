@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_sort_entries">
+        <item>@string/pref_sort_entry_JP</item>
+        <item>@string/pref_sort_entry_KR</item>
+        <item>@string/pref_sort_entry_BR</item>
+        <item>@string/pref_sort_entry_US</item>
+        <item>@string/pref_sort_entry_RU</item>
+    </string-array>
+
+    <string-array name="pref_sort_values">
+        <item>@string/pref_sort_value_JP</item>
+        <item>@string/pref_sort_value_KR</item>
+        <item>@string/pref_sort_value_BR</item>
+        <item>@string/pref_sort_value_US</item>
+        <item>@string/pref_sort_value_RU</item>
+    </string-array>
+
+</resources>
