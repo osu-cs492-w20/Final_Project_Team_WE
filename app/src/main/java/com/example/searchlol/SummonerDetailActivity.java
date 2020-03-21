@@ -54,7 +54,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     private static String mRankMess = "";
     private static String accountId;
     private Button historyButton;
-    private SavedSummonerViewModel mViewModel;
+    private SavedSummonerViewModel savedSummonerViewModel;
     private boolean like;
 
     public void receiveData(SummonerClass myResult) {
@@ -125,7 +125,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             }
         });
 
-        mViewModel = new ViewModelProvider(
+        savedSummonerViewModel = new ViewModelProvider(
                 this,
                 new ViewModelProvider.AndroidViewModelFactory(getApplication()))
                 .get(SavedSummonerViewModel.class);
@@ -197,19 +197,19 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
         }
 
-        mViewModel = new ViewModelProvider(
+        savedSummonerViewModel = new ViewModelProvider(
                 this,
                 new ViewModelProvider.AndroidViewModelFactory(getApplication())
         ).get(SavedSummonerViewModel.class);
 
-        mViewModel.getAllSummoners().observe(this, new Observer<List<SummonerRepo>>() {
+        savedSummonerViewModel.getAllSummoners().observe(this, new Observer<List<SummonerRepo>>() {
             @Override
             public void onChanged(List<SummonerRepo> gitHubRepos) {
                 Log.d("SQL size", String.valueOf(gitHubRepos.size()));
             }
         });
 
-        if (mViewModel.getSummonerByName(mId)) Log.d("66666666666", "gogogogogog ");
+        if (savedSummonerViewModel.getSummonerByName(mId)) Log.d("66666666666", "gogogogogog ");
         Log.d("yyyyyyyyyyyyyyyyy", String.valueOf(like));
     }
 
@@ -218,7 +218,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.repo_detail, menu);
         final MenuItem item = menu.findItem(R.id.action_save_favorite_summoner);
-        like = mViewModel.getSummonerByName(mId);
+        like = savedSummonerViewModel.getSummonerByName(mId);
 
 
         Log.d("TAG", String.valueOf(like));
@@ -237,12 +237,12 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
                 SummonerRepo repo = new SummonerRepo();
                 repo.id = mId;
                 if (like) {
-                    mViewModel.deleteSavedSummoner(repo);
+                    savedSummonerViewModel.deleteSavedSummoner(repo);
                     item.setIcon(R.drawable.ic_action_favorite);
                     like = false;
                 } else {
-                    mViewModel.insertSavedSummoner(repo);
-                    if (mViewModel.getSummonerByName(repo.id))
+                    savedSummonerViewModel.insertSavedSummoner(repo);
+                    if (savedSummonerViewModel.getSummonerByName(repo.id))
                         Log.d("fffffffff", "ggggggg ");
 
                     item.setIcon(R.drawable.ic_action_checkedfavorite);
