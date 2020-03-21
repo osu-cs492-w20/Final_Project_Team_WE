@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -21,14 +22,14 @@ import com.example.searchlol.utils.NetworkUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class HistoryActivity  extends AppCompatActivity {
+public class HistoryActivity extends AppCompatActivity {
     private static final String TAG = HistoryActivity.class.getSimpleName();
-    private TextView history;
+    private TextView mErrorMessageTV;
     private String mID;
     private RecyclerView historyRV;
     private HistoryAdapter mHistoryAdapter;
 
-//    private ProgressBar mLoadingIndicatorPB;
+    private ProgressBar mLoadingIndicatorPB;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,80 +37,81 @@ public class HistoryActivity  extends AppCompatActivity {
         setContentView(R.layout.match_histroy);
 
         Intent intent = getIntent();
-        mID = (String)intent.getSerializableExtra("userID");
-        Log.d(TAG,mID);
-        history=findViewById(R.id.history);
+        mID = (String) intent.getSerializableExtra("userID");
+        Log.d(TAG, mID);
+        mErrorMessageTV = findViewById(R.id.tv_error_message);
 
 
         mHistoryAdapter = new HistoryAdapter();
-        historyRV=findViewById(R.id.history_RV);
+        historyRV = findViewById(R.id.history_RV);
         historyRV.setAdapter(mHistoryAdapter);
         historyRV.setLayoutManager(new LinearLayoutManager(this));
         historyRV.setHasFixedSize(true);
 
-//        mLoadingIndicatorPB=findViewById(R.id.pb_loading_indicator);
-        doGitHubSearch();
-        Log.d(TAG, "inHistroy" );
+        mLoadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
+        matchHistorySearch();
+        Log.d(TAG, "in History");
 
     }
 
 
-
-    private void doGitHubSearch() {
+    private void matchHistorySearch() {
         String url = HistoryUtils.buildHistoryListSearchURL(mID);
         Log.d(TAG, "querying url: " + url);
         new HistorySearchTask().execute(url);
     }
 
-    public class HistorySearchTask extends AsyncTask<String, Void, ArrayList<MatchInfo> > {
+    public class HistorySearchTask extends AsyncTask<String, Void, ArrayList<MatchInfo>> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-//            mLoadingIndicatorPB.setVisibility(View.VISIBLE);
+            mLoadingIndicatorPB.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected ArrayList<MatchInfo> doInBackground(String... strings) {
-            String url = strings[0];
+            String matchList = strings[0];
             String searchResults = null;
             try {
-                searchResults = NetworkUtils.doHttpGet(url);
+                searchResults = NetworkUtils.doHttpGet(matchList);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
             ArrayList<MatchReferenceDto> searchResultsList = HistoryUtils.parseHistoryListResults(searchResults);
             ArrayList<MatchInfo> matchInfos = new ArrayList();
-                for(MatchReferenceDto info:searchResultsList){
-                    String url2 = HistoryUtils.buildOneMatchURL(info.gameId);
-                    String matchResults = null;
 
-                    try {
-                        matchResults = NetworkUtils.doHttpGet(url2);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    assert matchInfos != null;
-                    matchInfos.add(HistoryUtils.parseOneMatchResults(matchResults));
-                    Log.d(TAG, String.valueOf(matchInfos.get(0).champ));
+            for (MatchReferenceDto info : searchResultsList) {
+                String matchDetail = HistoryUtils.buildOneMatchURL(info.gameId);
+                String matchResults = null;
+
+                try {
+                    matchResults = NetworkUtils.doHttpGet(matchDetail);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+                assert matchInfos != null;
+
+                matchInfos.add(HistoryUtils.parseOneMatchResults(matchResults));
+                Log.d(TAG, String.valueOf(matchInfos.get(0).champ));
+            }
             return matchInfos;
         }
 
         @Override
-        protected void onPostExecute(ArrayList<MatchInfo>  s) {
+        protected void onPostExecute(ArrayList<MatchInfo> s) {
             super.onPostExecute(s);
-            history.setVisibility(View.INVISIBLE);
+            if (s != null) {
+            mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
             mHistoryAdapter.updateMatchinfo(s);
-//            if (s != null) {
 //                mErrorMessageTV.setVisibility(View.INVISIBLE);
 //                mForecastListRV.setVisibility(View.VISIBLE);
-//                ArrayList<WeatherRepo> searchResultsList = WeatherUtils.parseGitHubSearchResults(s);
-//                mForecastAdapter.updateSearchResults(searchResultsList);
-//            } else {
+            } else {
+
 //                mErrorMessageTV.setVisibility(View.VISIBLE);
 //                mForecastListRV.setVisibility(View.INVISIBLE);
-//            }
+            }
         }
     }
 }
