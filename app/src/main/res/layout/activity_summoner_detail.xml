@@ -67,7 +67,7 @@
         android:layout_below="@id/rl_summoner_info"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="13dp">
 
         <ImageView
             android:id="@+id/iv_summoner_solo"
@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_summoner_solo_rank"
         android:layout_marginTop="10dp"
-        android:padding="16dp">
+        android:padding="13dp">
 
         <ImageView
             android:id="@+id/iv_summoner_duo"
@@ -144,7 +144,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_summoner_duo_rank"
         android:layout_marginTop="10dp"
-        android:padding="16dp">
+        android:padding="13dp">
 
         <ImageView
             android:id="@+id/iv_summoner_third"

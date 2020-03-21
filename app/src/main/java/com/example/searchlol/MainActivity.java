@@ -34,6 +34,8 @@ import com.example.searchlol.summoner.SavedSummonerViewModel;
 import com.example.searchlol.summoner.SummonerDetailActivity;
 import com.example.searchlol.summoner.SummonerSearchAdapter;
 import com.example.searchlol.summoner.SummonerSearchViewModel;
+import com.example.searchlol.utils.HistoryUtils;
+import com.example.searchlol.utils.RiotSummonerUtils;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
@@ -42,6 +44,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import static com.example.searchlol.summoner.ChampionAsyncTask.trigger;
+import static com.example.searchlol.utils.HistoryUtils.mREGION;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
                                                     SummonerSearchAdapter.OnSearchResultClickListener {
@@ -56,7 +59,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ProgressBar mLoadingIndicatorPB;
     public static int trigger=0;
     static Timer myTimer = null;
-
+    private RiotSummonerUtils mSum;
+    private HistoryUtils mHis;
+    public static String minput="";
     private SavedSummonerViewModel mSavedSummonerViewModel;
     private SavedSummonerAdapter mSavedSummonerAdapter;
 
@@ -102,8 +107,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 String summonerName = mSearchSummonerET.getText().toString();
+                minput=summonerName;
                 if (!TextUtils.isEmpty(summonerName)) {
-                    mViewModel.loadSearchResults(summonerName);
+                   doGitHubSearch(summonerName);
                         myTimer = new Timer();
                         myTimer.scheduleAtFixedRate(new TimerTask() {
 
@@ -181,6 +187,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }, 1000, 1000);
         }
+    }
+
+    private void doGitHubSearch(String searchQuery) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        mSum = new RiotSummonerUtils();
+        mHis = new HistoryUtils();
+
+        String sort = preferences.getString(
+                getString(R.string.pref_sort_key),
+                getString(R.string.pref_sort_default)
+        );
+        Log.d(TAG,"THE SORT: "+sort);
+        mSum.getRegion(sort);
+        mREGION=sort;
+
+        mViewModel.loadSearchResults(searchQuery);
     }
 
 

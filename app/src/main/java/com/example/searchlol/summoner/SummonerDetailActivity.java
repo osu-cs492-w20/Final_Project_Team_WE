@@ -72,6 +72,9 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
     }
 
+    public String parseData(){
+        return myUsername;
+    }
 
     public void getJson(List<ChampionInfo> result) {
         championList = result;

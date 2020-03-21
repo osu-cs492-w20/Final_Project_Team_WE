@@ -15,9 +15,14 @@ import com.example.searchlol.data.SummonerRepo;
 
 import java.util.List;
 
+import static com.example.searchlol.MainActivity.minput;
+import static com.example.searchlol.summoner.ChampionDetailActivity.TAG;
+
 public class SavedSummonerAdapter extends RecyclerView.Adapter<SavedSummonerAdapter.SavedItemViewHolder> {
     private List<SummonerRepo> mNameList;
     private OnNameItemClickListener mOnNameItemClickListener;
+    private static String mDisplay="";
+    private SummonerDetailActivity mAct;
 
     public interface OnNameItemClickListener {
         void onNameItemClick(SummonerRepo summonerClass);
@@ -68,8 +73,10 @@ public class SavedSummonerAdapter extends RecyclerView.Adapter<SavedSummonerAdap
 
         public void bind(SummonerRepo nameClass) {
             String championName = null;
-
-            mNameTV.setText("Summoner ID: " + nameClass.id);
+            mAct = new SummonerDetailActivity();
+            mDisplay =mAct.parseData();
+            Log.d(TAG,"Display: "+ mDisplay);
+            mNameTV.setText("Summoner ID: "+ mDisplay);
         }
 
         @Override
