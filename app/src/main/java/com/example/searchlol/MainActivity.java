@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +26,8 @@ import android.widget.ProgressBar;
 import com.example.searchlol.data.Status;
 import com.example.searchlol.dataclass.SummonerClass;
 import com.example.searchlol.adapter.SavedSummonerAdapter;
+import com.example.searchlol.utils.HistoryUtils;
+import com.example.searchlol.utils.RiotSummonerUtils;
 import com.example.searchlol.viewmodel.SavedSummonerViewModel;
 import com.example.searchlol.adapter.SummonerSearchAdapter;
 import com.example.searchlol.viewmodel.SummonerSearchViewModel;
@@ -30,6 +35,8 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.example.searchlol.utils.HistoryUtils.mREGION;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
                                                     SummonerSearchAdapter.OnSearchResultClickListener {
@@ -44,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ProgressBar mLoadingIndicatorPB;
     public static int trigger=0;
     static Timer myTimer = null;
+    private RiotSummonerUtils mSum;
 
     private SavedSummonerViewModel mSavedSummonerViewModel;
     private SavedSummonerAdapter mSavedSummonerAdapter;
@@ -91,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 String summonerName = mSearchSummonerET.getText().toString();
                 if (!TextUtils.isEmpty(summonerName)) {
-                    mViewModel.loadSearchResults(summonerName);
+                    doGitHubSearch(summonerName);
                         myTimer = new Timer();
                         myTimer.scheduleAtFixedRate(new TimerTask() {
 
@@ -137,10 +145,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent savedReposIntent = new Intent(this, SavedSummonerActivity.class);
                 startActivity(savedReposIntent);
                 return true;
-//            case R.id.nav_settings:
-//                Intent settingsIntent = new Intent(this, SettingsActivity.class);
-//                startActivity(settingsIntent);
-//                return true;
+            case R.id.nav_settings:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                return true;
             default:
                 return false;
         }
@@ -159,17 +167,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-    public void startTimer() {
-        if (myTimer == null) {
-            myTimer = new Timer();
-            myTimer.scheduleAtFixedRate(new TimerTask() {
+    private void doGitHubSearch(String searchQuery) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-                public void run() {
+        mSum = new RiotSummonerUtils();
 
-                }
-            }, 1000, 1000);
-        }
+        String sort = preferences.getString(
+                getString(R.string.pref_sort_key),
+                getString(R.string.pref_sort_default)
+        );
+        Log.d(TAG,"THE SORT: "+sort);
+        mSum.getRegion(sort);
+        mREGION=sort;
+
+        mViewModel.loadSearchResults(searchQuery);
     }
+
 
 
 }
