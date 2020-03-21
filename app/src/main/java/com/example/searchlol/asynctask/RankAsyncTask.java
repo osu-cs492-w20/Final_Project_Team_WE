@@ -1,14 +1,13 @@
-package com.example.searchlol.summoner;
+package com.example.searchlol.asynctask;
 
 import android.os.AsyncTask;
-import android.util.Log;
-import com.example.searchlol.data.RankClass;
+
+import com.example.searchlol.SummonerDetailActivity;
+import com.example.searchlol.dataclass.RankClass;
 import com.example.searchlol.utils.NetworkUtils;
 import com.example.searchlol.utils.RiotSummonerUtils;
 
 import java.io.IOException;
-
-import static android.content.ContentValues.TAG;
 
 public class RankAsyncTask extends AsyncTask<String, Void, String> {
     private Callback mCallback;

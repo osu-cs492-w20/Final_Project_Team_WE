@@ -3,6 +3,8 @@ package com.example.searchlol.data;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.searchlol.asynctask.NameTask;
+import com.example.searchlol.dataclass.ChampionInfo;
 import com.example.searchlol.utils.ChampionInfoUtil;
 
 import java.util.List;

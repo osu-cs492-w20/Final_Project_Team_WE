@@ -1,7 +1,6 @@
 package com.example.searchlol.summoner;
 import android.app.Application;
 
-import com.example.searchlol.data.SummonerClass;
 import com.example.searchlol.data.SavedSummonerRepository;
 import com.example.searchlol.data.SummonerRepo;
 

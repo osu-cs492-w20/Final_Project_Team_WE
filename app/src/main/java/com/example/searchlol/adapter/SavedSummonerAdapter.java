@@ -1,6 +1,5 @@
-package com.example.searchlol.summoner;
+package com.example.searchlol.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.searchlol.R;
-import com.example.searchlol.data.SummonerClass;
 import com.example.searchlol.data.SummonerRepo;
 
 import java.util.List;

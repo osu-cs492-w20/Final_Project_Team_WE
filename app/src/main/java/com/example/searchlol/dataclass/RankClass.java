@@ -1,4 +1,4 @@
-package com.example.searchlol.data;
+package com.example.searchlol.dataclass;
 
 import java.io.Serializable;
 

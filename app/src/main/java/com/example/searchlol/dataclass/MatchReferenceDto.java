@@ -1,4 +1,4 @@
-package com.example.searchlol.histroy;
+package com.example.searchlol.dataclass;
 
 import java.io.Serializable;
 

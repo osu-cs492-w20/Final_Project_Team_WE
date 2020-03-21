@@ -6,7 +6,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.searchlol.summoner.SummonerAsyncTask;
+import com.example.searchlol.asynctask.SummonerAsyncTask;
+import com.example.searchlol.dataclass.SummonerClass;
 import com.example.searchlol.utils.RiotSummonerUtils;
 import static com.example.searchlol.MainActivity.trigger;
 

@@ -1,4 +1,4 @@
-package com.example.searchlol.summoner;
+package com.example.searchlol;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -11,13 +11,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.searchlol.MainActivity;
-import com.example.searchlol.R;
-import com.example.searchlol.data.SummonerClass;
 import com.example.searchlol.data.SummonerRepo;
-import com.example.searchlol.utils.RiotSummonerUtils;
+import com.example.searchlol.adapter.SavedSummonerAdapter;
+import com.example.searchlol.summoner.SavedSummonerViewModel;
 
-public class SavedSummonerActivity extends AppCompatActivity implements SavedSummonerAdapter.OnNameItemClickListener{
+public class SavedSummonerActivity extends AppCompatActivity implements SavedSummonerAdapter.OnNameItemClickListener {
 
     private SavedSummonerViewModel mViewModel;
     private SavedSummonerAdapter adapter;

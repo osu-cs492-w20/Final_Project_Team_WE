@@ -1,7 +1,6 @@
-package com.example.searchlol.summoner;
+package com.example.searchlol;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,23 +15,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.searchlol.R;
-import com.example.searchlol.data.ChampionInfo;
-import com.example.searchlol.data.ChampionMasteryClass;
-import com.example.searchlol.data.NameTask;
-import com.example.searchlol.data.SummonerClass;
+import com.example.searchlol.dataclass.ChampionInfo;
+import com.example.searchlol.dataclass.ChampionMasteryClass;
+import com.example.searchlol.asynctask.NameTask;
+import com.example.searchlol.dataclass.SummonerClass;
 import com.bumptech.glide.Glide;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Date;
 
-import com.example.searchlol.data.RankClass;
+import com.example.searchlol.dataclass.RankClass;
 import com.example.searchlol.data.SummonerRepo;
-import com.example.searchlol.histroy.HistoryActivity;
+import com.example.searchlol.summoner.ChampionViewModel;
+import com.example.searchlol.summoner.SavedSummonerViewModel;
 
 public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener,
         NameTask.NameCallBack {

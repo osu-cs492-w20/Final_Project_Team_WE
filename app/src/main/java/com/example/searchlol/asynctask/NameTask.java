@@ -1,18 +1,14 @@
-package com.example.searchlol.data;
+package com.example.searchlol.asynctask;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
-import com.example.searchlol.MainActivity;
-import com.example.searchlol.data.ChampionInfo;
+import com.example.searchlol.dataclass.ChampionInfo;
 import com.example.searchlol.utils.ChampionInfoUtil;
 import com.example.searchlol.utils.NetworkUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class NameTask extends AsyncTask<Void, Void, String> {
 

@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-import com.example.searchlol.data.ChampionInfo;
+import com.example.searchlol.dataclass.ChampionInfo;
 
 public class ChampionInfoUtil {
     public static final String url = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champions/";

@@ -3,8 +3,8 @@ package com.example.searchlol.utils;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.searchlol.histroy.MatchInfo;
-import com.example.searchlol.histroy.MatchReferenceDto;
+import com.example.searchlol.dataclass.MatchInfo;
+import com.example.searchlol.dataclass.MatchReferenceDto;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

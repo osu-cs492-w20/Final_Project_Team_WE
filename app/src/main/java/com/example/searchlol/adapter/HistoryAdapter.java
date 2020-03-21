@@ -1,4 +1,4 @@
-package com.example.searchlol.histroy;
+package com.example.searchlol.adapter;
 
 import android.graphics.Color;
 import android.util.Log;
@@ -14,9 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.searchlol.R;
+import com.example.searchlol.dataclass.MatchInfo;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {

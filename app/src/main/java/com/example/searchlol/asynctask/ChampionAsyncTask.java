@@ -1,23 +1,18 @@
-package com.example.searchlol.summoner;
+package com.example.searchlol.asynctask;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.searchlol.MainActivity;
-import com.example.searchlol.data.ChampionInfo;
-import com.example.searchlol.data.ChampionMasteryClass;
-import com.example.searchlol.data.RankClass;
-import com.example.searchlol.data.SummonerClass;
-import com.example.searchlol.utils.ChampionInfoUtil;
+import com.example.searchlol.SummonerDetailActivity;
+import com.example.searchlol.dataclass.ChampionMasteryClass;
+import com.example.searchlol.dataclass.RankClass;
+import com.example.searchlol.dataclass.SummonerClass;
 import com.example.searchlol.utils.NetworkUtils;
 import com.example.searchlol.utils.RiotSummonerUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
 
 
 public class ChampionAsyncTask extends AsyncTask<String, Void, String> {

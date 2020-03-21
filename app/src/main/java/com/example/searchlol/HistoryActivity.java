@@ -1,4 +1,4 @@
-package com.example.searchlol.histroy;
+package com.example.searchlol;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.searchlol.R;
+import com.example.searchlol.adapter.HistoryAdapter;
+import com.example.searchlol.dataclass.MatchInfo;
+import com.example.searchlol.dataclass.MatchReferenceDto;
 import com.example.searchlol.utils.HistoryUtils;
 import com.example.searchlol.utils.NetworkUtils;
 

@@ -1,4 +1,4 @@
-package com.example.searchlol.summoner;
+package com.example.searchlol;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +9,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.searchlol.R;
-import com.example.searchlol.data.ChampionMasteryClass;
+import com.example.searchlol.dataclass.ChampionMasteryClass;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static com.example.searchlol.summoner.SummonerDetailActivity.EXTRA_GITHUB_REPO;
 
 public class ChampionDetailActivity extends AppCompatActivity {
     public static final String TAG = "ChampionDetailActivity";

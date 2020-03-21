@@ -1,47 +1,35 @@
 package com.example.searchlol;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.searchlol.data.Status;
-import com.example.searchlol.data.SummonerClass;
-import com.example.searchlol.summoner.SavedSummonerActivity;
-import com.example.searchlol.summoner.SavedSummonerAdapter;
+import com.example.searchlol.dataclass.SummonerClass;
+import com.example.searchlol.adapter.SavedSummonerAdapter;
 import com.example.searchlol.summoner.SavedSummonerViewModel;
-import com.example.searchlol.summoner.SummonerDetailActivity;
-import com.example.searchlol.summoner.SummonerSearchAdapter;
+import com.example.searchlol.adapter.SummonerSearchAdapter;
 import com.example.searchlol.summoner.SummonerSearchViewModel;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
-
-import static com.example.searchlol.summoner.ChampionAsyncTask.trigger;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
                                                     SummonerSearchAdapter.OnSearchResultClickListener {
@@ -149,10 +137,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent savedReposIntent = new Intent(this, SavedSummonerActivity.class);
                 startActivity(savedReposIntent);
                 return true;
-            case R.id.nav_settings:
-                Intent settingsIntent = new Intent(this, SettingsActivity.class);
-                startActivity(settingsIntent);
-                return true;
+//            case R.id.nav_settings:
+//                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+//                startActivity(settingsIntent);
+//                return true;
             default:
                 return false;
         }

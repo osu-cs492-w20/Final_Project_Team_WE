@@ -2,11 +2,11 @@ package com.example.searchlol.utils;
 
 import android.net.Uri;
 
-import com.example.searchlol.data.ChampionMasteryClass;
-import com.example.searchlol.data.RankClass;
-import com.example.searchlol.data.SummonerClass;
+import com.example.searchlol.dataclass.ChampionMasteryClass;
+import com.example.searchlol.dataclass.RankClass;
+import com.example.searchlol.dataclass.SummonerClass;
 import com.google.gson.Gson;
-import static com.example.searchlol.summoner.SummonerAsyncTask.mId;
+import static com.example.searchlol.asynctask.SummonerAsyncTask.mId;
 
 public class RiotSummonerUtils {
     private final static String SUMMONERS_BASE_URL = "api.riotgames.com/lol/summoner/v4/summoners/by-name/";

@@ -15,13 +15,13 @@
             android:name="com.google.android.actions"
             android:resource="@anim/slide_out_left" />
         <activity
-            android:name=".summoner.SavedSummonerActivity"
+            android:name=".SavedSummonerActivity"
             android:parentActivityName=".MainActivity"/>
         <activity
-            android:name=".summoner.SummonerDetailActivity"
+            android:name=".SummonerDetailActivity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".summoner.ChampionDetailActivity"
+            android:name=".ChampionDetailActivity"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
@@ -34,8 +34,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".histroy.HistoryActivity"
-            android:parentActivityName=".summoner.SummonerDetailActivity" />
+            android:name=".HistoryActivity"
+            android:parentActivityName=".SummonerDetailActivity" />
     </application>
 
 

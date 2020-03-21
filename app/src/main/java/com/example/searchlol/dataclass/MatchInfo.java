@@ -1,4 +1,4 @@
-package com.example.searchlol.histroy;
+package com.example.searchlol.dataclass;
 
 public class MatchInfo {
     public String win;

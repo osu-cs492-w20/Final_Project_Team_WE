@@ -3,7 +3,7 @@ package com.example.searchlol.summoner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.searchlol.data.ChampionInfo;
+import com.example.searchlol.dataclass.ChampionInfo;
 import com.example.searchlol.data.ChampionRepository;
 
 import java.util.List;
