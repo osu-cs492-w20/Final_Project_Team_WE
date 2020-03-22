@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LOL盒子</string>
+    <string name="title">欢迎使用LOL数据盒子</string>
+    <string name="search_button">查找战绩</string>
+    <string name="enter_name">输入召唤师名称</string>
+    <string name="change_region">更换服务器</string>
+    <string name="main_setting">设置</string>
+    <string name="nav_search">查询战绩</string>
+    <string name="nav_saved_summoner">收藏玩家</string>
+    <string name="nav_change_region">更换服务器</string>
+    <string name="navigation_drawer_open">打开抽屉</string>
+    <string name="navigation_drawer_close">关闭抽屉</string>
+    <string name="search_for_history">查看最近20场比赛</string>
+    <string name="Loading">无法加载，请检查网络</string>
+    <string name="summoner_detail_level">等级:</string>
+    <string name="summoner_detail_name">召唤师:</string>
+    <string name="summoner_detail_rank">排位：</string>
+    <string name="rank_less">未排位</string>
+</resources>

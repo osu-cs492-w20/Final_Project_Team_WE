@@ -1,6 +1,6 @@
 <resources>
     *App Info
-    <string name="app_name">SearchLOL</string>
+    <string name="app_name">LOL STATS</string>
     <string name="title">Welcome to LOL Summoner\'s Finder</string>
 
     *Main Components
@@ -17,4 +17,9 @@
     <string name="navigation_drawer_close">Close drawer</string>
     <string name="search_for_history">View Match History</string>
     <string name="Loading">Can\'t execute, check network</string>
+    <string name="summoner_detail_level">Level:</string>
+    <string name="summoner_detail_name">Name:</string>
+    <string name="summoner_detail_rank">Rank:</string>
+
+    <string name="rank_less">Un ranked</string>
 </resources>

@@ -6,9 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,12 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 
-import com.example.searchlol.data.Status;
 import com.example.searchlol.dataclass.SummonerClass;
-import com.example.searchlol.adapter.SavedSummonerAdapter;
-import com.example.searchlol.viewmodel.SavedSummonerViewModel;
+
 import com.example.searchlol.adapter.SummonerSearchAdapter;
 import com.example.searchlol.viewmodel.SummonerSearchViewModel;
 import com.google.android.material.navigation.NavigationView;
@@ -38,14 +32,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout mDrawerLayout;
     private EditText mSearchSummonerET;
-    private RecyclerView mSearchResultsRV;
     private SummonerClass summonerClass;
     private SummonerSearchViewModel mViewModel;
     public static int trigger = 0;
     static Timer myTimer = null;
-
-    private SavedSummonerViewModel mSavedSummonerViewModel;
-    private SavedSummonerAdapter mSavedSummonerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mSearchSummonerET = findViewById(R.id.et_summoner);
-        mSearchResultsRV = findViewById(R.id.rv_search_results);
 
-        mSearchResultsRV.setLayoutManager(new LinearLayoutManager(this));
-        mSearchResultsRV.setHasFixedSize(true);
-
-        SummonerSearchAdapter mSearchResultAdapter = new SummonerSearchAdapter(this);
-        mSearchResultsRV.setAdapter(mSearchResultAdapter);
         mViewModel = new SummonerSearchViewModel();
         summonerClass = new SummonerClass();
 

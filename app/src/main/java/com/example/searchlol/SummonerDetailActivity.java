@@ -1,6 +1,7 @@
 package com.example.searchlol;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -75,7 +76,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
     public void receiveRank(RankClass myResult) {
         if (myResult == null) {
-            mRankMess = "Unranked";
+            mRankMess = "Un ranked";
         } else {
             mRank = myResult.rank;
             mTier = myResult.tier;
@@ -133,11 +134,11 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_GITHUB_REPO)) {
             TextView repoLevelTV = findViewById(R.id.tv_summoner_Level);
-            repoLevelTV.setText(String.format("Level: %s", myLevel));
+            repoLevelTV.setText(String.format(myLevel));
             TextView repoNameTV = findViewById(R.id.tv_summoner_name);
-            repoNameTV.setText(String.format("Player: %s", myUsername));
+            repoNameTV.setText(String.format(myUsername));
             TextView repoRankTV = findViewById(R.id.tv_Rank);
-            repoRankTV.setText("Rank: " + mRankMess);
+            repoRankTV.setText(mRankMess);
             TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
             repoFirstTV.setText("TOP1 Champion");
             TextView repoFirst2TV = findViewById(R.id.tv_summoner_description4);
@@ -147,10 +148,12 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             repoSecondTV.setText("TOP2 Champion");
             TextView repoSecond2TV = findViewById(R.id.tv_summoner_descriptio2);
             repoSecond2TV.setText("Mastery: " + c2Points);
+
             TextView repoThirdTV = findViewById(R.id.tv_summoner_description3);
             repoThirdTV.setText("TOP3 Champion");
             TextView repoThird2TV = findViewById(R.id.tv_summoner_descriptio3);
             repoThird2TV.setText("Mastery: " + c3Points);
+
             ImageView repoIconIV = findViewById(R.id.tv_summoner_id);
             String iconUrl = "https://opgg-static.akamaized.net/images/profile_icons/profileIcon" + String.valueOf(myIcon) + ".jpg";
             TextView repoDateTV = findViewById(R.id.tv_Date_des);

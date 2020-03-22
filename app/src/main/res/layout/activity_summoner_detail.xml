@@ -21,23 +21,57 @@
             android:gravity="center" />
 
         <TextView
-            android:id="@+id/tv_summoner_Level"
-            android:layout_width="wrap_content"
+            android:id="@+id/level"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/tv_summoner_id"
             android:padding="5dp"
+            android:text="@string/summoner_detail_level"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_summoner_Level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/level"
+            android:padding="5dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_summoner_Level"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/tv_summoner_id"
+            android:padding="5dp"
+            android:text="@string/summoner_detail_name"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_summoner_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_below="@+id/tv_summoner_Level"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/name"
+            android:padding="5dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/rank"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_summoner_name"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/tv_summoner_id"
             android:padding="5dp"
+            android:text="@string/summoner_detail_rank"
             android:textSize="20sp" />
 
         <TextView
@@ -47,7 +81,7 @@
             android:layout_below="@+id/tv_summoner_name"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/tv_summoner_id"
+            android:layout_toRightOf="@+id/rank"
             android:padding="5dp"
             android:textSize="20sp" />
 
