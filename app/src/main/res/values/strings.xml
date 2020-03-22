@@ -15,7 +15,7 @@
     <string name="nav_change_region">Change Region</string>
     <string name="navigation_drawer_open">Open drawer</string>
     <string name="navigation_drawer_close">Close drawer</string>
-    <string name="search_for_history">View Match History</string>
+    <string name="search_for_history">View Last 20 Match History</string>
     <string name="Loading">Can\'t execute, check network</string>
     <string name="summoner_detail_level">Level:</string>
     <string name="summoner_detail_name">Name:</string>

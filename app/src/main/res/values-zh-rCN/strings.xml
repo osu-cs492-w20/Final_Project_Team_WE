@@ -15,6 +15,6 @@
     <string name="Loading">无法加载，请检查网络</string>
     <string name="summoner_detail_level">等级:</string>
     <string name="summoner_detail_name">召唤师:</string>
-    <string name="summoner_detail_rank">排位：</string>
+    <string name="summoner_detail_rank">排位:</string>
     <string name="rank_less">未排位</string>
 </resources>
