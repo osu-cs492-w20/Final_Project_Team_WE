@@ -22,4 +22,8 @@
     <string name="summoner_detail_rank">Rank:</string>
 
     <string name="rank_less">Un ranked</string>
+    <string name="top_2">TOP2 Champion</string>
+    <string name="top_1">TOP1 Champion</string>
+    <string name="top_3">TOP3 Champion</string>
+    <string name="mastery_prompt">Mastery</string>
 </resources>

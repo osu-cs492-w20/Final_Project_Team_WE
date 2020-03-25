@@ -7,13 +7,11 @@ import com.example.searchlol.utils.ChampionInfoUtil;
 import com.example.searchlol.utils.NetworkUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ChampionInfoTask extends AsyncTask<Void, Void, String> {
 
     public interface NameCallBack {
-        void onNameFinished(List<ChampionInfo> championInfo);
+        void onNameFinished(ChampionInfo championInfo);
     }
 
     private String mUrl;
@@ -37,7 +35,7 @@ public class ChampionInfoTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        ArrayList<ChampionInfo> result = ChampionInfoUtil.parseChampionInfo(s);
+        ChampionInfo result = ChampionInfoUtil.parseChampionInfo(s);
         mNameCallBack.onNameFinished(result);
     }
 

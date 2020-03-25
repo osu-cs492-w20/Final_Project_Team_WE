@@ -123,17 +123,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-    public void startTimer() {
-        if (myTimer == null) {
-            myTimer = new Timer();
-            myTimer.scheduleAtFixedRate(new TimerTask() {
-
-                public void run() {
-
-                }
-            }, 1000, 1000);
-        }
-    }
-
-
 }

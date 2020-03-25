@@ -9,7 +9,7 @@ import com.example.searchlol.data.ChampionRepository;
 import java.util.List;
 
 public class ChampionViewModel extends ViewModel {
-    private LiveData<List<ChampionInfo>> mChampion;
+    private LiveData<ChampionInfo> mChampion;
 
     private ChampionRepository mRepository;
 
@@ -22,7 +22,7 @@ public class ChampionViewModel extends ViewModel {
         mRepository.getNameById(id);
     }
 
-    public LiveData<List<ChampionInfo>> getName() {
+    public LiveData<ChampionInfo> getName() {
         return mChampion;
     }
 

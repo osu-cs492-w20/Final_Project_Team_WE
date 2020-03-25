@@ -7,10 +7,8 @@ import com.example.searchlol.asynctask.ChampionInfoTask;
 import com.example.searchlol.dataclass.ChampionInfo;
 import com.example.searchlol.utils.ChampionInfoUtil;
 
-import java.util.List;
-
 public class ChampionRepository implements ChampionInfoTask.NameCallBack {
-    private MutableLiveData<List<ChampionInfo>> mChampion;
+    private MutableLiveData<ChampionInfo> mChampion;
 
     public ChampionRepository() {
         mChampion = new MutableLiveData<>();
@@ -22,12 +20,12 @@ public class ChampionRepository implements ChampionInfoTask.NameCallBack {
         new ChampionInfoTask(url, this).execute();
     }
 
-    public LiveData<List<ChampionInfo>> getChampion() {
+    public LiveData<ChampionInfo> getChampion() {
         return mChampion;
     }
 
     @Override
-    public void onNameFinished(List<ChampionInfo> championInfo) {
+    public void onNameFinished(ChampionInfo championInfo) {
         mChampion.setValue(championInfo);
     }
 }

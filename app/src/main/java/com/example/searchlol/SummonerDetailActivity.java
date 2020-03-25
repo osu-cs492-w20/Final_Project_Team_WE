@@ -2,6 +2,7 @@ package com.example.searchlol;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,24 +18,28 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.searchlol.asynctask.ChampionInfoTask;
+import com.example.searchlol.data.ChampionRepository;
 import com.example.searchlol.dataclass.ChampionInfo;
 import com.example.searchlol.dataclass.ChampionMasteryClass;
 import com.example.searchlol.dataclass.SummonerClass;
 import com.bumptech.glide.Glide;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Date;
 
 import com.example.searchlol.dataclass.RankClass;
 import com.example.searchlol.dataclass.SummonerRepo;
+import com.example.searchlol.utils.ChampionInfoUtil;
+import com.example.searchlol.utils.NetworkUtils;
 import com.example.searchlol.viewmodel.ChampionViewModel;
 import com.example.searchlol.viewmodel.SavedSummonerViewModel;
 
 public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener,
         ChampionInfoTask.NameCallBack {
     public static final String EXTRA_GITHUB_REPO = "SummonerDetailActivity";
-    private static List<ChampionInfo> championList;
+    private static ChampionInfo myChampionInfo;
     private ChampionViewModel championViewModel;
 
     public Boolean setOnce = false;
@@ -69,9 +74,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
     }
 
-
-    public void getJson(List<ChampionInfo> result) {
-        championList = result;
+    public void getJson(ChampionInfo result) {
+        myChampionInfo = result;
     }
 
     public void receiveRank(RankClass myResult) {
@@ -118,11 +122,22 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summoner_detail);
 
+        String champ1URL = ChampionInfoUtil.buildChampionInfoURL(String.valueOf(c1Name));
+        String champ2URL = ChampionInfoUtil.buildChampionInfoURL(String.valueOf(c2Name));
+        String champ3URL = ChampionInfoUtil.buildChampionInfoURL(String.valueOf(c3Name));
+
+
+        new ChampionTask(champ1URL).execute();
+        new ChampionTask(champ2URL).execute();
+        new ChampionTask(champ3URL).execute();
+
+
         championViewModel = new ViewModelProvider(this).get(ChampionViewModel.class);
-        championViewModel.getName().observe(this, new Observer<List<ChampionInfo>>() {
+
+        championViewModel.getName().observe(this, new Observer<ChampionInfo>() {
             @Override
-            public void onChanged(List<ChampionInfo> championInfos) {
-                getJson(championInfos);
+            public void onChanged(ChampionInfo championInfo) {
+                getJson(championInfo);
             }
         });
 
@@ -140,19 +155,19 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             TextView repoRankTV = findViewById(R.id.tv_Rank);
             repoRankTV.setText(mRankMess);
             TextView repoFirstTV = findViewById(R.id.tv_summoner_description);
-            repoFirstTV.setText("TOP1 Champion");
+            repoFirstTV.setText(R.string.top_1);
             TextView repoFirst2TV = findViewById(R.id.tv_summoner_description4);
-            repoFirst2TV.setText("Mastery " + c1Points);
+            repoFirst2TV.setText(String.format("%s%d", getString(R.string.mastery_prompt), c1Points));
 
             TextView repoSecondTV = findViewById(R.id.tv_summoner_description2);
-            repoSecondTV.setText("TOP2 Champion");
+            repoSecondTV.setText(R.string.top_2);
             TextView repoSecond2TV = findViewById(R.id.tv_summoner_descriptio2);
-            repoSecond2TV.setText("Mastery: " + c2Points);
+            repoSecond2TV.setText(String.format("%s%d", getString(R.string.mastery_prompt), c2Points));
 
             TextView repoThirdTV = findViewById(R.id.tv_summoner_description3);
-            repoThirdTV.setText("TOP3 Champion");
+            repoThirdTV.setText(R.string.top_3);
             TextView repoThird2TV = findViewById(R.id.tv_summoner_descriptio3);
-            repoThird2TV.setText("Mastery: " + c3Points);
+            repoThird2TV.setText(String.format("%s%d", getString(R.string.mastery_prompt), c3Points));
 
             ImageView repoIconIV = findViewById(R.id.tv_summoner_id);
             String iconUrl = "https://opgg-static.akamaized.net/images/profile_icons/profileIcon" + String.valueOf(myIcon) + ".jpg";
@@ -214,6 +229,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
         if (savedSummonerViewModel.getSummonerByName(mId)) Log.d("66666666666", "gogogogogog ");
         Log.d("yyyyyyyyyyyyyyyyy", String.valueOf(like));
+
     }
 
 
@@ -292,9 +308,38 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         }
     }
 
-
     @Override
-    public void onNameFinished(List<ChampionInfo> championInfo) {
-        championList = championInfo;
+    public void onNameFinished(ChampionInfo championInfo) {
+        championInfo = championInfo;
+    }
+
+    public void loadChampion(ChampionInfo championInfo) {
+        myChampionInfo = championInfo;
+    }
+
+    public class ChampionTask extends AsyncTask<String, Void, String> {
+        private String champURL;
+
+        public ChampionTask(String url){
+            champURL = url;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String result = null;
+            try {
+                result = NetworkUtils.doHttpGet(champURL);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            ChampionInfo result = ChampionInfoUtil.parseChampionInfo(s);
+            loadChampion(result);
+            Log.d("TAG", "onCreate championInfo: " + myChampionInfo.name + "\n" + myChampionInfo.shortBio);
+        }
     }
 }

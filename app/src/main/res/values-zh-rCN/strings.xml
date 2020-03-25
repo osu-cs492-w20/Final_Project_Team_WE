@@ -17,4 +17,8 @@
     <string name="summoner_detail_name">召唤师:</string>
     <string name="summoner_detail_rank">排位:</string>
     <string name="rank_less">未排位</string>
+    <string name="top_2">第二英雄</string>
+    <string name="top_1">第一英雄</string>
+    <string name="top_3">第三英雄</string>
+    <string name="mastery_prompt">熟练度</string>
 </resources>
