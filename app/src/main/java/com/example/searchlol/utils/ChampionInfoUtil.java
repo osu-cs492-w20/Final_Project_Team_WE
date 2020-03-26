@@ -20,7 +20,7 @@ public class ChampionInfoUtil {
 
     }
 
-    public static String buildChampionInfoURL(String championId) {
+    public static String buildChampionInfoURL(int championId) {
         return Uri.parse(url).buildUpon()
                 .appendPath(championId + ".json")
                 .build()

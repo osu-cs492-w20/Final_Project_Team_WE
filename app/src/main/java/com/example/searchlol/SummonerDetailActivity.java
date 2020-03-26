@@ -49,9 +49,11 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     public static String mId;
     private static long myDate;
     private static int c1Name, c1Level, c1Points,
-                       c2Name, c2Level, c2Points,
-                       c3Name, c3Level, c3Points;
+            c2Name, c2Level, c2Points,
+            c3Name, c3Level, c3Points;
     private static ChampionMasteryClass mC1, mC2, mC3;
+    private static String mChamp1, mChamp2, mChamp3,
+            mChampBio1, mChampBio2, mChampBio3;
     private static String mRankMess = "";
     private static String accountId;
     private SavedSummonerViewModel savedSummonerViewModel;
@@ -65,7 +67,6 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         mId = mRepo.id;
         myDate = mRepo.revisionDate;
         accountId = mRepo.accountId;
-
     }
 
     public void receiveRank(RankClass myResult) {
@@ -94,7 +95,21 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         c3Name = result3.championId;
         c3Level = result3.championLevel;
         c3Points = result3.championPoints;
+    }
 
+    public void receiveChampionName1(ChampionInfo info) {
+        mChamp1 = info.name;
+        mChampBio1 = info.shortBio;
+    }
+
+    public void receiveChampionName2(ChampionInfo info) {
+        mChamp2 = info.name;
+        mChampBio2 = info.shortBio;
+    }
+
+    public void receiveChampionName3(ChampionInfo info) {
+        mChamp3 = info.name;
+        mChampBio3 = info.shortBio;
     }
 
     public String changeDate(long unixSeconds) {
@@ -108,15 +123,6 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summoner_detail);
-
-        String champ1URL = ChampionInfoUtil.buildChampionInfoURL(String.valueOf(c1Name));
-        String champ2URL = ChampionInfoUtil.buildChampionInfoURL(String.valueOf(c2Name));
-        String champ3URL = ChampionInfoUtil.buildChampionInfoURL(String.valueOf(c3Name));
-
-
-        new ChampionTask(champ1URL).execute();
-        new ChampionTask(champ2URL).execute();
-        new ChampionTask(champ3URL).execute();
 
         savedSummonerViewModel = new ViewModelProvider(
                 this,
@@ -132,16 +138,22 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             TextView repoRankTV = findViewById(R.id.tv_Rank);
             repoRankTV.setText(mRankMess);
 
+            TextView repoFirst1TV = findViewById(R.id.tv_champ_mastery_name1);
+            repoFirst1TV.setText(mChamp1);
             TextView repoFirst2TV = findViewById(R.id.tv_champ_mastery1);
             repoFirst2TV.setText(String.valueOf(c1Points));
             TextView repoFirst3TV = findViewById(R.id.tv_champ_level1);
             repoFirst3TV.setText(String.valueOf(c1Level));
 
+            TextView repoSecond1TV = findViewById(R.id.tv_champ_mastery_name2);
+            repoSecond1TV.setText(mChamp2);
             TextView repoSecond2TV = findViewById(R.id.tv_champ_mastery2);
             repoSecond2TV.setText(String.valueOf(c2Points));
             TextView repoSecond3TV = findViewById(R.id.tv_champ_level2);
             repoSecond3TV.setText(String.valueOf(c2Level));
 
+            TextView repoThird1TV = findViewById(R.id.tv_champ_mastery_name3);
+            repoThird1TV.setText(mChamp3);
             TextView repoThird2TV = findViewById(R.id.tv_champ_mastery3);
             repoThird2TV.setText(String.valueOf(c3Points));
             TextView repoThird3TV = findViewById(R.id.tv_champ_level3);
@@ -150,7 +162,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             ImageView repoIconIV = findViewById(R.id.tv_summoner_id);
             String iconUrl = String.format("https://opgg-static.akamaized.net/images/profile_icons/profileIcon%s.jpg", String.valueOf(myIcon));
             TextView repoDateTV = findViewById(R.id.tv_Date_des);
-            repoDateTV.setText(String.format("%s%s", getString(R.string.last_revision_date), changeDate(myDate)));
+            repoDateTV.setText(changeDate(myDate));
             Glide.with(repoIconIV.getContext()).load(iconUrl).into(repoIconIV);
 
             repoIconIV.setOnClickListener(this);
@@ -284,31 +296,5 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
     public void loadChampion(ChampionInfo championInfo) {
         myChampionInfo = championInfo;
-    }
-
-    public class ChampionTask extends AsyncTask<String, Void, String> {
-        private String champURL;
-
-        public ChampionTask(String url){
-            champURL = url;
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            String result = null;
-            try {
-                result = NetworkUtils.doHttpGet(champURL);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            ChampionInfo result = ChampionInfoUtil.parseChampionInfo(s);
-            loadChampion(result);
-            Log.d("TAG", "onCreate championInfo: " + myChampionInfo.name + "\n" + myChampionInfo.shortBio);
-        }
     }
 }

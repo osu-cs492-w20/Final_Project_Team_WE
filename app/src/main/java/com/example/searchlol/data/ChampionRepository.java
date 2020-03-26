@@ -16,7 +16,7 @@ public class ChampionRepository implements ChampionInfoTask.NameCallBack {
     }
 
     public void getNameById(int id) {
-        String url = ChampionInfoUtil.buildChampionInfoURL(String.valueOf(id));
+        String url = ChampionInfoUtil.buildChampionInfoURL(id);
         new ChampionInfoTask(url, this).execute();
     }
 
