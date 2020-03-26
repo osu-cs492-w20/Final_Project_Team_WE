@@ -10,16 +10,9 @@ import com.example.searchlol.utils.RiotSummonerUtils;
 import java.io.IOException;
 
 public class RankAsyncTask extends AsyncTask<String, Void, String> {
-    private Callback mCallback;
-    private SummonerDetailActivity mAct;
-    public interface Callback {
-        void onSearchFinished2(RankClass searchResult);
-    }
 
-    public RankAsyncTask(Callback callback) {
-        mCallback = callback;
+    public RankAsyncTask() {
     }
-
 
     @Override
     protected java.lang.String doInBackground(java.lang.String... strings) {
@@ -35,16 +28,14 @@ public class RankAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(java.lang.String s) {
-        RankClass result=null;
-
+        RankClass result;
+        SummonerDetailActivity mAct;
         if (s != null) {
-            mAct= new SummonerDetailActivity();
+            mAct = new SummonerDetailActivity();
             result = RiotSummonerUtils.parseRankResult(s);//json
-            mAct.receiveRank(result);
+            if (result != null)
+                mAct.receiveRank(result);
         }
-        mCallback.onSearchFinished2(result);
-
     }
-
 }
 

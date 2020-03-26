@@ -11,7 +11,7 @@ import com.example.searchlol.dataclass.SummonerClass;
 import com.example.searchlol.utils.RiotSummonerUtils;
 import static com.example.searchlol.MainActivity.trigger;
 
-public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
+public class SummonerSearchRepository {
     private static final String TAG = SummonerSearchRepository.class.getSimpleName();
     private MutableLiveData<SummonerClass> mSearchResults;
     private MutableLiveData<Status> mLoadingStatus;
@@ -33,14 +33,6 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
         return mLoadingStatus;
     }
 
-    @Override
-    public void onSearchFinished(SummonerClass searchResults) {
-        mSearchResults.setValue(searchResults);
-        if (searchResults != null) {
-            mLoadingStatus.setValue(Status.SUCCESS);
-        }
-    }
-
     private boolean shouldExecuteSearch(String query) {
         return !TextUtils.equals(query, mCurrentQuery);
     }
@@ -52,7 +44,7 @@ public class SummonerSearchRepository implements SummonerAsyncTask.Callback {
             mSearchResults.setValue(null);
             Log.d(TAG, "executing search with url: " + url);
             mLoadingStatus.setValue(Status.LOADING);///loadingindicator
-            new SummonerAsyncTask(this).execute(url);
+            new SummonerAsyncTask().execute(url);
         } else {
             Log.d(TAG, "using cached search results");
             trigger=1;

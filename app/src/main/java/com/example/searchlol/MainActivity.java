@@ -16,10 +16,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.searchlol.data.SummonerSearchRepository;
 import com.example.searchlol.dataclass.SummonerClass;
 
 import com.example.searchlol.adapter.SummonerSearchAdapter;
-import com.example.searchlol.viewmodel.SummonerSearchViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Timer;
@@ -28,14 +28,12 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         SummonerSearchAdapter.OnSearchResultClickListener {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     private DrawerLayout mDrawerLayout;
     private EditText mSearchSummonerET;
     private SummonerClass summonerClass;
-    private SummonerSearchViewModel mViewModel;
     public static int trigger = 0;
     static Timer myTimer = null;
+    private SummonerSearchRepository summonerSearchRepository = new SummonerSearchRepository();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mSearchSummonerET = findViewById(R.id.et_summoner);
 
-        mViewModel = new SummonerSearchViewModel();
         summonerClass = new SummonerClass();
 
         Button searchButton = findViewById(R.id.search_button);
@@ -57,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 String summonerName = mSearchSummonerET.getText().toString();
                 if (!TextUtils.isEmpty(summonerName)) {
-                    mViewModel.loadSearchResults(summonerName);
+                    summonerSearchRepository.loadSearchResults(summonerName);
                     myTimer = new Timer();
                     myTimer.scheduleAtFixedRate(new TimerTask() {
 

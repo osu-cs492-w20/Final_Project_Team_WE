@@ -64,7 +64,7 @@ public class SavedSummonerActivity extends AppCompatActivity implements SavedSum
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 mViewModel.deleteSavedSummoner(adapter.getNameAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(SavedSummonerActivity.this, "Location deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SavedSummonerActivity.this, "Champion deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(savedReposRV);
 
