@@ -44,7 +44,7 @@ public class SummonerSearchRepository {
             mSearchResults.setValue(null);
             Log.d(TAG, "executing search with url: " + url);
             mLoadingStatus.setValue(Status.LOADING);///loadingindicator
-            new SummonerAsyncTask().execute(url);
+            new SummonerAsyncTask(url).execute();
         } else {
             Log.d(TAG, "using cached search results");
             trigger=1;

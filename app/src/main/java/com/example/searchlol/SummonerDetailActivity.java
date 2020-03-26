@@ -33,12 +33,9 @@ import com.example.searchlol.utils.ChampionInfoUtil;
 import com.example.searchlol.utils.NetworkUtils;
 import com.example.searchlol.viewmodel.SavedSummonerViewModel;
 
-public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener,
-        ChampionInfoTask.NameCallBack {
+public class SummonerDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String EXTRA_GITHUB_REPO = "SummonerDetail";
-    private static ChampionInfo myChampionInfo;
-
     public Boolean setOnce = false;
     public SummonerClass mRepo = new SummonerClass();
 
@@ -71,7 +68,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
 
     public void receiveRank(RankClass myResult) {
         if (myResult == null) {
-            mRankMess = "Un ranked";
+            mRankMess = "Haven't played rank";
         } else {
             mRankMess = myResult.tier + myResult.rank + " " + myResult.leaguePoints + "lp";
         }
@@ -83,18 +80,24 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         c1Name = result1.championId;
         c1Level = result1.championLevel;
         c1Points = result1.championPoints;
+        String champ1URL = ChampionInfoUtil.buildChampionInfoURL(result1.championId);
+        new ChampionTask1(champ1URL).execute();
 
         mC2 = new ChampionMasteryClass();
         mC2 = result2;
         c2Name = result2.championId;
         c2Level = result2.championLevel;
         c2Points = result2.championPoints;
+        String champ2URL = ChampionInfoUtil.buildChampionInfoURL(result2.championId);
+        new ChampionTask2(champ2URL).execute();
 
         mC3 = new ChampionMasteryClass();
         mC3 = result3;
         c3Name = result3.championId;
         c3Level = result3.championLevel;
         c3Points = result3.championPoints;
+        String champ3URL = ChampionInfoUtil.buildChampionInfoURL(result3.championId);
+        new ChampionTask3(champ3URL).execute();
     }
 
     public void receiveChampionName1(ChampionInfo info) {
@@ -139,6 +142,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             repoRankTV.setText(mRankMess);
 
             TextView repoFirst1TV = findViewById(R.id.tv_champ_mastery_name1);
+            Log.d("TAG", "name 1 " + mChamp1);
+            Log.d("TAG", "Bio 1 " + mChampBio1);
             repoFirst1TV.setText(mChamp1);
             TextView repoFirst2TV = findViewById(R.id.tv_champ_mastery1);
             repoFirst2TV.setText(String.valueOf(c1Points));
@@ -146,6 +151,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             repoFirst3TV.setText(String.valueOf(c1Level));
 
             TextView repoSecond1TV = findViewById(R.id.tv_champ_mastery_name2);
+            Log.d("TAG", "name 2 " + mChamp2);
+            Log.d("TAG", "Bio 2 " + mChampBio2);
             repoSecond1TV.setText(mChamp2);
             TextView repoSecond2TV = findViewById(R.id.tv_champ_mastery2);
             repoSecond2TV.setText(String.valueOf(c2Points));
@@ -153,6 +160,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             repoSecond3TV.setText(String.valueOf(c2Level));
 
             TextView repoThird1TV = findViewById(R.id.tv_champ_mastery_name3);
+            Log.d("TAG", "name 3 " + mChamp3);
+            Log.d("TAG", "Bio 3 " + mChampBio3);
             repoThird1TV.setText(mChamp3);
             TextView repoThird2TV = findViewById(R.id.tv_champ_mastery3);
             repoThird2TV.setText(String.valueOf(c3Points));
@@ -174,9 +183,11 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             String champion1Url = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/" + c1Name + ".png";
             String champion2Url = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/" + c2Name + ".png";
             String champion3Url = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/" + c3Name + ".png";
-            Log.d("TAG", "onCreate: " + champion1Url);
+            Log.d("TAG", "champion Icon 1: " + champion1Url);
             Glide.with(championIcon1.getContext()).load(champion1Url).into(championIcon1);
+            Log.d("TAG", "champion Icon 2: " + champion2Url);
             Glide.with(championIcon2.getContext()).load(champion2Url).into(championIcon2);
+            Log.d("TAG", "champion Icon 3: " + champion3Url);
             Glide.with(championIcon3.getContext()).load(champion3Url).into(championIcon3);
 
             championIcon1.setOnClickListener(this);
@@ -289,12 +300,85 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
         }
     }
 
-    @Override
-    public void onNameFinished(ChampionInfo championInfo) {
-        championInfo = championInfo;
+    class ChampionTask1 extends AsyncTask<String, Void, String> {
+        private String champURL;
+
+        public ChampionTask1(String url) {
+            champURL = url;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String result = null;
+            try {
+                result = NetworkUtils.doHttpGet(champURL);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            ChampionInfo result = ChampionInfoUtil.parseChampionInfo(s);
+            SummonerDetailActivity summonerDetailActivity = new SummonerDetailActivity();
+            summonerDetailActivity.receiveChampionName1(result);
+            Log.d("TAG", "onCreate championInfo: " + result.name + "\n" + result.shortBio);
+        }
     }
 
-    public void loadChampion(ChampionInfo championInfo) {
-        myChampionInfo = championInfo;
+    class ChampionTask2 extends AsyncTask<String, Void, String> {
+        private String champURL;
+
+        public ChampionTask2(String url) {
+            champURL = url;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String result = null;
+            try {
+                result = NetworkUtils.doHttpGet(champURL);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            ChampionInfo result = ChampionInfoUtil.parseChampionInfo(s);
+            SummonerDetailActivity summonerDetailActivity = new SummonerDetailActivity();
+            summonerDetailActivity.receiveChampionName2(result);
+            Log.d("TAG", "onCreate championInfo: " + result.name + "\n" + result.shortBio);
+        }
     }
+
+    class ChampionTask3 extends AsyncTask<String, Void, String> {
+        private String champURL;
+
+        public ChampionTask3(String url) {
+            champURL = url;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String result = null;
+            try {
+                result = NetworkUtils.doHttpGet(champURL);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            ChampionInfo result = ChampionInfoUtil.parseChampionInfo(s);
+            SummonerDetailActivity summonerDetailActivity = new SummonerDetailActivity();
+            summonerDetailActivity.receiveChampionName3(result);
+            Log.d("TAG", "onCreate championInfo: " + result.name + "\n" + result.shortBio);
+        }
+    }
+
 }

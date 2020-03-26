@@ -13,16 +13,18 @@ import java.io.IOException;
 public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
     public static String mId = "";
     private static final String TAG = SummonerAsyncTask.class.getSimpleName();
+    private String mUrl;
 
-    public SummonerAsyncTask() {
+
+    public SummonerAsyncTask(String url) {
+        mUrl = url;
     }
 
     @Override
     protected String doInBackground(String... strings) {
-        String url = strings[0];
         String result = null;
         try {
-            result = NetworkUtils.doHttpGet(url);
+            result = NetworkUtils.doHttpGet(mUrl);
         } catch (IOException e) {
             e.printStackTrace();
         }

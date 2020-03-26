@@ -57,15 +57,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     summonerSearchRepository.loadSearchResults(summonerName);
                     myTimer = new Timer();
                     myTimer.scheduleAtFixedRate(new TimerTask() {
-
                         public void run() {
                             if (trigger == 1) {
                                 startSecondActivity(summonerClass);
                                 trigger = 0;
                             }
-
                         }
-                    }, 1000, 1000);
+                    }, 3000, 3000);
 
                 }
 
