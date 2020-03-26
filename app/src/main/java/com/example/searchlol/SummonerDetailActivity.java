@@ -378,6 +378,8 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             SummonerDetailActivity summonerDetailActivity = new SummonerDetailActivity();
             summonerDetailActivity.receiveChampionName3(result);
             Log.d("TAG", "onCreate championInfo: " + result.name + "\n" + result.shortBio);
+
+            MainActivity.trigger = 1;
         }
     }
 

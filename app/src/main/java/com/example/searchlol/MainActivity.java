@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 trigger = 0;
                             }
                         }
-                    }, 3000, 3000);
+                    }, 500, 500);
 
                 }
 

@@ -46,9 +46,7 @@ public class MasteryAsyncTask extends AsyncTask<String, Void, String> {
 
             if (result1 != null && result2 != null && result3 != null) {
                 summonerDetailActivity.receiveMaster(result1, result2, result3);
-
             }
-            MainActivity.trigger = 1;
         }
     }
 }
