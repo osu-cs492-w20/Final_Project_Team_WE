@@ -20,13 +20,17 @@ public class ChampionDetailActivity extends AppCompatActivity {
     private static int mName, mLevel, mPoints;
     private static long mTime;
     private boolean mChest;
-
+    private static String mBio="";
 
     public void receiveMaster(ChampionMasteryClass result) {
         mName = result.championId;
         mLevel = result.championLevel;
         mPoints = result.championPoints;
         mTime = result.lastPlayTime;
+    }
+
+    public void receiveBio(String name){
+        mBio=name;
     }
 
     @Override
@@ -43,13 +47,15 @@ public class ChampionDetailActivity extends AppCompatActivity {
 
             ImageView championIcon = findViewById(R.id.iv_champ_icon);
             Glide.with(championIcon.getContext()).load(url).into(championIcon);
-            Log.d(TAG, "mName is " + mName);
 
             TextView repoSecondTV = findViewById(R.id.tv_champ_mastery);
             repoSecondTV.setText("Mastery Points: " + mPoints);
 
             TextView repoTimeTV = findViewById(R.id.tv_champ_time);
             repoTimeTV.setText("Last Played: " + changeDate(mTime));
+
+            TextView repoDesTV = findViewById(R.id.tv_champ_detailed_des);
+            repoDesTV.setText("Champion Story: \n" + mBio);
 
             TextView repoChestTV = findViewById(R.id.tv_champ_chest);
             String mStatus="";

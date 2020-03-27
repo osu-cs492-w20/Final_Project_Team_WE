@@ -67,11 +67,11 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     }
 
     public void receiveRank(RankClass myResult) {
-        if (myResult == null) {
-            mRankMess = "Haven't played rank";
-        } else {
-            mRankMess = myResult.tier + myResult.rank + " " + myResult.leaguePoints + "lp";
-        }
+        mRankMess = myResult.tier + myResult.rank + " " + myResult.leaguePoints + "lp";
+    }
+
+    public void implementRank(String dRank){
+        mRankMess=dRank;
     }
 
     public void receiveMaster(ChampionMasteryClass result1, ChampionMasteryClass result2, ChampionMasteryClass result3) {
@@ -277,14 +277,15 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             case R.id.iv_champ1:
                 mAct = new ChampionDetailActivity();
                 mAct.receiveMaster(mC1);
+                mAct.receiveBio(mChampBio1);
                 Intent sharedIntent = new Intent(this, ChampionDetailActivity.class);
-
                 startActivity(sharedIntent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.iv_champ2:
                 mAct = new ChampionDetailActivity();
                 mAct.receiveMaster(mC2);
+                mAct.receiveBio(mChampBio2);
                 Intent sharedIntent2 = new Intent(this, ChampionDetailActivity.class);
                 startActivity(sharedIntent2);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -292,6 +293,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             case R.id.iv_champ3:
                 mAct = new ChampionDetailActivity();
                 mAct.receiveMaster(mC3);
+                mAct.receiveBio(mChampBio3);
                 Intent sharedIntent3 = new Intent(this, ChampionDetailActivity.class);
                 startActivity(sharedIntent3);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
