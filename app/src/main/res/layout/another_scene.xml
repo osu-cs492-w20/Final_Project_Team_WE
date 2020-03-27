@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -62,21 +66,14 @@
             android:padding="5dp"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/tv_champ_des"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_below="@+id/iv_champ_icon"
-            android:padding="5dp"
-            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_champ_Level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_champ_icon"
-            android:layout_margin="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
             android:padding="5dp"
             android:textSize="20sp" />
 
@@ -85,7 +82,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_champ_Level"
-            android:layout_margin="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
             android:padding="5dp"
             android:textSize="20sp" />
 
@@ -101,3 +99,4 @@
     </RelativeLayout>
 
 </LinearLayout>
+</ScrollView>
