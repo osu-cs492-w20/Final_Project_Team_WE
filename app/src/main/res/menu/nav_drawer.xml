@@ -2,13 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/nav_home" />
+
+    <item
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_nav_search"
         android:title="@string/nav_search" />
 
     <item
         android:id="@+id/nav_saved_repos"
-        android:icon="@drawable/ic_nav_saved_summoner"
+        android:icon="@drawable/ic_favorite"
         android:title="@string/nav_saved_summoner" />
 
     <item

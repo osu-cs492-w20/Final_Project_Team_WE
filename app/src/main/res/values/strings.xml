@@ -28,6 +28,7 @@
     <string name="mastery_prompt">Mastery:</string>
     <string name="last_revision_date">Last Revision Date:</string>
     <string name="icon_content">ICON</string>
+    <string name="nav_home">Home</string>
 
 
 </resources>

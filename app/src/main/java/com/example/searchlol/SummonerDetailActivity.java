@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.searchlol.asynctask.ChampionInfoTask;
 import com.example.searchlol.dataclass.ChampionInfo;
 import com.example.searchlol.dataclass.ChampionMasteryClass;
 import com.example.searchlol.dataclass.SummonerClass;

@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                return false;
             case R.id.nav_search:
                 return true;
             case R.id.nav_saved_repos:

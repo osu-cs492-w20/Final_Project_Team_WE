@@ -20,7 +20,7 @@ public class ChampionDetailActivity extends AppCompatActivity {
     private static int mName, mLevel, mPoints;
     private static long mTime;
     private boolean mChest;
-    private static String mBio="";
+    private static String mBio = "";
 
     public void receiveMaster(ChampionMasteryClass result) {
         mName = result.championId;
@@ -29,8 +29,8 @@ public class ChampionDetailActivity extends AppCompatActivity {
         mTime = result.lastPlayTime;
     }
 
-    public void receiveBio(String name){
-        mBio=name;
+    public void receiveBio(String name) {
+        mBio = name;
     }
 
     @Override
@@ -58,12 +58,11 @@ public class ChampionDetailActivity extends AppCompatActivity {
             repoDesTV.setText("Champion Story: \n" + mBio);
 
             TextView repoChestTV = findViewById(R.id.tv_champ_chest);
-            String mStatus="";
-            if(!mChest){
-                mStatus="Acquired";
-            }
-            else{
-                mStatus="Not Acquired";
+            String mStatus = "";
+            if (!mChest) {
+                mStatus = "Acquired";
+            } else {
+                mStatus = "Not Acquired";
             }
             repoChestTV.setText("Season Chest Status: " + mStatus);
 
