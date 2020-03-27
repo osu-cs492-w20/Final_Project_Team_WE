@@ -1,5 +1,6 @@
 package com.example.searchlol.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import com.example.searchlol.R;
 import com.example.searchlol.dataclass.SummonerRepo;
 
 import java.util.List;
+
+import static com.example.searchlol.ChampionDetailActivity.TAG;
 
 public class SavedSummonerAdapter extends RecyclerView.Adapter<SavedSummonerAdapter.SavedItemViewHolder> {
     private List<SummonerRepo> mNameList;
@@ -65,14 +68,13 @@ public class SavedSummonerAdapter extends RecyclerView.Adapter<SavedSummonerAdap
         }
 
         public void bind(SummonerRepo nameClass) {
-            String championName = null;
-
-            mNameTV.setText("Summoner ID: " + nameClass.id);
+            mNameTV.setText("Summoner ID: " + nameClass.name);
         }
 
         @Override
         public void onClick(View v) {
             SummonerRepo name = mNameList.get(getAdapterPosition());
+
             mOnNameItemClickListener.onNameItemClick(name);
         }
     }

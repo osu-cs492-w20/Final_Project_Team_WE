@@ -247,6 +247,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
             case R.id.action_save_favorite_summoner:
                 SummonerRepo repo = new SummonerRepo();
                 repo.id = mId;
+                repo.name=myUsername;
                 if (like) {
                     savedSummonerViewModel.deleteSavedSummoner(repo);
                     item.setIcon(R.drawable.ic_action_favorite);

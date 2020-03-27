@@ -24,4 +24,5 @@ public interface SummonerClassDao {
 
     @Query("SELECT * FROM repos WHERE id = :sumId LIMIT 1")
     SummonerRepo getSummonerById(String sumId);
+
 }

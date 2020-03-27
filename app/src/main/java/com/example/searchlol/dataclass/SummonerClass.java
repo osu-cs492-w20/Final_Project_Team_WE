@@ -12,12 +12,9 @@ public class SummonerClass implements Serializable {
     @PrimaryKey
     @NonNull
     public String name;
-
     public String id;
     public String summonerLevel;
     public String accountId;
-    //public String puuid;
-
     public int profileIconId;
     public long revisionDate;
 

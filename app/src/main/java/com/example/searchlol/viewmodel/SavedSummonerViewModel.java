@@ -1,12 +1,9 @@
 package com.example.searchlol.viewmodel;
 
 import android.app.Application;
-
 import com.example.searchlol.data.SavedSummonerRepository;
 import com.example.searchlol.dataclass.SummonerRepo;
-
 import java.util.List;
-
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 

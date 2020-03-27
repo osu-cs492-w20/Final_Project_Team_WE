@@ -2,12 +2,10 @@ package com.example.searchlol.data;
 
 import android.app.Application;
 import android.os.AsyncTask;
-
 import java.util.List;
-
 import androidx.lifecycle.LiveData;
-
 import com.example.searchlol.dataclass.SummonerRepo;
+
 
 public class SavedSummonerRepository {
     private SummonerClassDao mDAO;
