@@ -10,8 +10,8 @@
     *Setting Menu
     <string name="change_region">Change Region</string>
     <string name="main_setting">Settings</string>
-    <string name="nav_search">Search Summoner</string>
-    <string name="nav_saved_summoner">Saved Summoner</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_saved_summoner">Favorites</string>
     <string name="nav_change_region">Change Region</string>
     <string name="navigation_drawer_open">Open drawer</string>
     <string name="navigation_drawer_close">Close drawer</string>

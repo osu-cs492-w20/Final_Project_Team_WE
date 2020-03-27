@@ -1,9 +1,7 @@
 package com.example.searchlol;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -20,15 +18,15 @@ import com.example.searchlol.data.SummonerSearchRepository;
 import com.example.searchlol.dataclass.SummonerClass;
 
 import com.example.searchlol.adapter.SummonerSearchAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         SummonerSearchAdapter.OnSearchResultClickListener {
 
-    private DrawerLayout mDrawerLayout;
     private EditText mSearchSummonerET;
     private SummonerClass summonerClass;
     public static int trigger = 0;
@@ -43,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mDrawerLayout = findViewById(R.id.drawer_layout);
         mSearchSummonerET = findViewById(R.id.et_summoner);
 
         summonerClass = new SummonerClass();
@@ -66,17 +63,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }, 500, 500);
 
                 }
-
             }
         });
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.drawer_menu);
-        navigationView.setNavigationItemSelectedListener(this);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
     }
 
@@ -88,14 +79,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        mDrawerLayout.closeDrawers();
         switch (menuItem.getItemId()) {
             case R.id.nav_search:
                 return true;
             case R.id.nav_saved_repos:
                 Intent savedReposIntent = new Intent(this, SavedSummonerActivity.class);
                 startActivity(savedReposIntent);
-                return true;
+                return false;
 //            case R.id.nav_settings:
 //                Intent settingsIntent = new Intent(this, SettingsActivity.class);
 //                startActivity(settingsIntent);
