@@ -1,8 +1,8 @@
 package com.example.searchlol.asynctask;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
+import com.example.searchlol.R;
 import com.example.searchlol.SummonerDetailActivity;
 import com.example.searchlol.dataclass.RankClass;
 import com.example.searchlol.utils.NetworkUtils;
@@ -10,17 +10,19 @@ import com.example.searchlol.utils.RiotSummonerUtils;
 
 import java.io.IOException;
 
-import static com.example.searchlol.ChampionDetailActivity.TAG;
 
 public class RankAsyncTask extends AsyncTask<String, Void, String> {
 
-    public RankAsyncTask() {
+    private String notRank;
+
+    public RankAsyncTask(String notRank) {
+         this.notRank = notRank;
     }
 
     @Override
-    protected java.lang.String doInBackground(java.lang.String... strings) {
-        java.lang.String url = strings[0];
-        java.lang.String result = null;
+    protected String doInBackground(String... strings) {
+        String url = strings[0];
+        String result = null;
         try {
             result = NetworkUtils.doHttpGet(url);
         } catch (IOException e) {
@@ -30,7 +32,7 @@ public class RankAsyncTask extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(java.lang.String s) {
+    protected void onPostExecute(String s) {
         RankClass result;
         SummonerDetailActivity mAct;
         if (s != null) {
@@ -39,9 +41,8 @@ public class RankAsyncTask extends AsyncTask<String, Void, String> {
 
             if (result != null) {
                 mAct.receiveRank(result);
-            }
-            else{
-                String unRank="UnRanked";
+            } else {
+                String unRank = notRank;
                 mAct.implementRank(unRank);
             }
         }

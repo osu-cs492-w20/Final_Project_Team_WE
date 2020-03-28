@@ -16,13 +16,15 @@ public class SummonerSearchRepository {
     private MutableLiveData<SummonerClass> mSearchResults;
     private MutableLiveData<Status> mLoadingStatus;
     private String mCurrentQuery;
+    private String notRank;
 
-    public SummonerSearchRepository() {
+    public SummonerSearchRepository(String notRank) {
         mSearchResults = new MutableLiveData<>();
         mSearchResults.setValue(null);
 
         mLoadingStatus = new MutableLiveData<>();
         mLoadingStatus.setValue(Status.SUCCESS);
+        this.notRank = notRank;
     }
 
     public LiveData<SummonerClass> getSearchResults() {
@@ -44,7 +46,7 @@ public class SummonerSearchRepository {
             mSearchResults.setValue(null);
             Log.d(TAG, "executing search with url: " + url);
             mLoadingStatus.setValue(Status.LOADING);///loadingindicator
-            new SummonerAsyncTask(url).execute();
+            new SummonerAsyncTask(url, notRank).execute();
         } else {
             Log.d(TAG, "using cached search results");
             trigger=1;

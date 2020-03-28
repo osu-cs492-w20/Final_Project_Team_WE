@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private SummonerClass summonerClass;
     public static int trigger = 0;
     static Timer myTimer = null;
-    private SummonerSearchRepository summonerSearchRepository = new SummonerSearchRepository();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        String notRank = getResources().getString(R.string.rank_less);
+        final SummonerSearchRepository summonerSearchRepository = new SummonerSearchRepository(notRank);
 
         mSearchSummonerET = findViewById(R.id.et_summoner);
 
