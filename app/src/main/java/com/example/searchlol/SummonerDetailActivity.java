@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Date;
 
 import com.example.searchlol.dataclass.RankClass;
-import com.example.searchlol.dataclass.SummonerRepo;
 import com.example.searchlol.utils.ChampionInfoUtil;
 import com.example.searchlol.utils.NetworkUtils;
 import com.example.searchlol.viewmodel.SavedSummonerViewModel;
@@ -211,9 +210,9 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
                 new ViewModelProvider.AndroidViewModelFactory(getApplication())
         ).get(SavedSummonerViewModel.class);
 
-        savedSummonerViewModel.getAllSummoners().observe(this, new Observer<List<SummonerRepo>>() {
+        savedSummonerViewModel.getAllSummoners().observe(this, new Observer<List<SummonerClass>>() {
             @Override
-            public void onChanged(List<SummonerRepo> gitHubRepos) {
+            public void onChanged(List<SummonerClass> gitHubRepos) {
                 Log.d("SQL size", String.valueOf(gitHubRepos.size()));
             }
         });
@@ -244,7 +243,7 @@ public class SummonerDetailActivity extends AppCompatActivity implements View.On
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save_favorite_summoner:
-                SummonerRepo repo = new SummonerRepo();
+                SummonerClass repo = new SummonerClass();
                 repo.id = mId;
                 repo.name = myUsername;
                 if (like) {

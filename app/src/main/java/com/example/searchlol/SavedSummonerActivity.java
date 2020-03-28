@@ -1,10 +1,7 @@
 package com.example.searchlol;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -15,13 +12,11 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.searchlol.dataclass.SummonerRepo;
+import com.example.searchlol.dataclass.SummonerClass;
 import com.example.searchlol.adapter.SavedSummonerAdapter;
 import com.example.searchlol.viewmodel.SavedSummonerViewModel;
-import com.google.android.material.navigation.NavigationView;
 
 public class SavedSummonerActivity extends AppCompatActivity implements SavedSummonerAdapter.OnNameItemClickListener {
 
@@ -47,10 +42,10 @@ public class SavedSummonerActivity extends AppCompatActivity implements SavedSum
                 new ViewModelProvider.AndroidViewModelFactory(getApplication())
         ).get(SavedSummonerViewModel.class);
 
-        mViewModel.getAllSummoners().observe(this, new Observer<List<SummonerRepo>>() {
+        mViewModel.getAllSummoners().observe(this, new Observer<List<SummonerClass>>() {
             @Override
 
-            public void onChanged(List<SummonerRepo> gitHubRepos) {
+            public void onChanged(List<SummonerClass> gitHubRepos) {
                 adapter.updateLocationList(gitHubRepos);
             }
         });
@@ -71,7 +66,7 @@ public class SavedSummonerActivity extends AppCompatActivity implements SavedSum
     }
 
     @Override
-    public void onNameItemClick(SummonerRepo summonerClass) {
+    public void onNameItemClick(SummonerClass summonerClass) {
         //load summoner name
         Intent intent = new Intent(this, SummonerDetailActivity.class);
         intent.putExtra(SummonerDetailActivity.EXTRA_GITHUB_REPO, summonerClass);

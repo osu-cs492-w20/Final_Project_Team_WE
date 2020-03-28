@@ -7,7 +7,7 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.searchlol.dataclass.SummonerRepo;
+import com.example.searchlol.dataclass.SummonerClass;
 
 public class SavedSummonerRepository {
     private SummonerClassDao mDAO;
@@ -18,15 +18,15 @@ public class SavedSummonerRepository {
         mDAO = db.summonerClassDao();
     }
 
-    public void insertSavedSummoner(SummonerRepo summoner) {
+    public void insertSavedSummoner(SummonerClass summoner) {
         new InsertAsyncTask(mDAO).execute(summoner);
     }
 
-    public void deleteSavedSummoner(SummonerRepo summoner) {
+    public void deleteSavedSummoner(SummonerClass summoner) {
         new DeleteAsyncTask(mDAO).execute(summoner);
     }
 
-    public LiveData<List<SummonerRepo>> getAllSummoners() {
+    public LiveData<List<SummonerClass>> getAllSummoners() {
         return mDAO.getAllSummoners();
     }
 
@@ -35,7 +35,7 @@ public class SavedSummonerRepository {
         return in;
     }
 
-    private static class InsertAsyncTask extends AsyncTask<SummonerRepo, Void, Void> {
+    private static class InsertAsyncTask extends AsyncTask<SummonerClass, Void, Void> {
         private SummonerClassDao mAsyncTaskDAO;
 
         InsertAsyncTask(SummonerClassDao dao) {
@@ -43,13 +43,13 @@ public class SavedSummonerRepository {
         }
 
         @Override
-        protected Void doInBackground(SummonerRepo... summonerClasses) {
+        protected Void doInBackground(SummonerClass... summonerClasses) {
             mAsyncTaskDAO.insert(summonerClasses[0]);
             return null;
         }
     }
 
-    private static class DeleteAsyncTask extends AsyncTask<SummonerRepo, Void, Void> {
+    private static class DeleteAsyncTask extends AsyncTask<SummonerClass, Void, Void> {
         private SummonerClassDao mAsyncTaskDAO;
 
         DeleteAsyncTask(SummonerClassDao dao) {
@@ -57,7 +57,7 @@ public class SavedSummonerRepository {
         }
 
         @Override
-        protected Void doInBackground(SummonerRepo... summonerClasses) {
+        protected Void doInBackground(SummonerClass... summonerClasses) {
             mAsyncTaskDAO.delete(summonerClasses[0]);
             return null;
         }

@@ -3,7 +3,7 @@ package com.example.searchlol.viewmodel;
 import android.app.Application;
 
 import com.example.searchlol.data.SavedSummonerRepository;
-import com.example.searchlol.dataclass.SummonerRepo;
+import com.example.searchlol.dataclass.SummonerClass;
 
 import java.util.List;
 
@@ -18,15 +18,15 @@ public class SavedSummonerViewModel extends AndroidViewModel {
         mRepository = new SavedSummonerRepository(application);
     }
 
-    public void insertSavedSummoner(SummonerRepo summoner) {
+    public void insertSavedSummoner(SummonerClass summoner) {
         mRepository.insertSavedSummoner(summoner);
     }
 
-    public void deleteSavedSummoner(SummonerRepo summoner) {
+    public void deleteSavedSummoner(SummonerClass summoner) {
         mRepository.deleteSavedSummoner(summoner);
     }
 
-    public LiveData<List<SummonerRepo>> getAllSummoners() {
+    public LiveData<List<SummonerClass>> getAllSummoners() {
         return mRepository.getAllSummoners();
     }
 
