@@ -81,17 +81,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
-                return false;
             case R.id.nav_search:
+                Intent mainIntent = new Intent(this, MainActivity.class);
+                startActivity(mainIntent);
                 return true;
             case R.id.nav_saved_repos:
                 Intent savedReposIntent = new Intent(this, SavedSummonerActivity.class);
                 startActivity(savedReposIntent);
                 return false;
-//            case R.id.nav_settings:
-//                Intent settingsIntent = new Intent(this, SettingsActivity.class);
-//                startActivity(settingsIntent);
-//                return true;
+            case R.id.nav_settings:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                return false;
             default:
                 return false;
         }

@@ -10,11 +10,14 @@
     *Setting Menu
     <string name="change_region">Change Region</string>
     <string name="main_setting">Settings</string>
+    <string name="nav_home">Home</string>
     <string name="nav_search">Search</string>
     <string name="nav_saved_summoner">Favorites</string>
     <string name="nav_change_region">Change Region</string>
+
     <string name="navigation_drawer_open">Open drawer</string>
     <string name="navigation_drawer_close">Close drawer</string>
+
     <string name="search_for_history">View Last 20 Match History</string>
     <string name="Loading">Can\'t execute, check network</string>
     <string name="summoner_detail_level">Level:</string>
@@ -28,7 +31,24 @@
     <string name="mastery_prompt">Mastery:</string>
     <string name="last_revision_date">Last Revision Date:</string>
     <string name="icon_content">ICON</string>
-    <string name="nav_home">Home</string>
+
+    <string name="pref_user_key" translatable="false">pref_user</string>
+
+    <!-- Strings for sort-by preference -->
+    <string name="pref_sort_key" translatable="false">NA.</string>
+    <string name="pref_sort_title">Change your Server</string>
+    <string name="pref_sort_entry_JP">Japan</string>
+    <string name="pref_sort_entry_KR">Korea</string>
+    <string name="pref_sort_entry_BR">Brazil</string>
+    <string name="pref_sort_entry_RU">Russia</string>
+    <string name="pref_sort_entry_US">US</string>
+    <string name="pref_sort_value_JP" translatable="false">JP1.</string>
+    <string name="pref_sort_value_KR" translatable="false">KR.</string>
+    <string name="pref_sort_value_BR" translatable="false">BR1.</string>
+    <string name="pref_sort_value_RU" translatable="false">RU.</string>
+    <string name="pref_sort_value_US" translatable="false">NA1.</string>
+    <string name="pref_sort_default">@string/pref_sort_value_BR</string>
+    <string name="pref_user_title">Hello summoner</string>
 
 
 </resources>
