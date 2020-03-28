@@ -23,4 +23,11 @@
     <string name="mastery_prompt">熟练度</string>
     <string name="last_revision_date">最后更新时间</string>
     <string name="icon_content">图标</string>
+    <string name="pref_sort_title">更换服务器</string>
+    <string name="pref_sort_entry_JP">日服</string>
+    <string name="pref_sort_entry_KR">韩服</string>
+    <string name="pref_sort_entry_BR">巴西服</string>
+    <string name="pref_sort_entry_RU">俄服</string>
+    <string name="pref_sort_entry_US">美服</string>
+    <string name="nav_home">主页</string>
 </resources>

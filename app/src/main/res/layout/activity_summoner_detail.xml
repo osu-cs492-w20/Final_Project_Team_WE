@@ -108,278 +108,290 @@
         android:layout_height="wrap_content"
         android:text="@string/search_for_history" />
 
-    <RelativeLayout
-        android:id="@+id/rl_summoner_solo_rank"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_champ1"
-            android:layout_width="95dp"
-            android:layout_height="95dp" />
-
-        <TextView
-            android:id="@+id/tv_champ_mastery_top1"
-            android:layout_width="120dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/iv_champ1"
-            android:layout_toRightOf="@+id/iv_champ1"
-            android:padding="5dp"
-            android:text="@string/top_1"
-            android:textSize="15sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_champ_mastery_name1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/tv_champ_mastery_top1"
-            android:layout_toRightOf="@+id/tv_champ_mastery_top1"
-            android:padding="5dp"
-            android:textSize="15sp" />
+            <RelativeLayout
+                android:id="@+id/rl_summoner_solo_rank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_champ_mastery_prompt1"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_champ_mastery_top1"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/iv_champ1"
-            android:layout_toRightOf="@+id/iv_champ1"
-            android:padding="5dp"
-            android:text="@string/mastery_prompt"
-            android:textSize="15sp"
-            tools:ignore="DuplicateIds" />
+                <ImageView
+                    android:id="@+id/iv_champ1"
+                    android:layout_width="95dp"
+                    android:layout_height="95dp" />
 
-        <TextView
-            android:id="@+id/tv_champ_mastery1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_champ_mastery_top1"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/tv_champ_mastery_prompt1"
-            android:layout_toRightOf="@+id/tv_champ_mastery_prompt1"
-            android:padding="5dp"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_champ_mastery_top1"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/iv_champ1"
+                    android:layout_toRightOf="@+id/iv_champ1"
+                    android:padding="5dp"
+                    android:text="@string/top_1"
+                    android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tv_champ_level_prompt1"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_champ_mastery1"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/iv_champ1"
-            android:layout_toRightOf="@+id/iv_champ1"
-            android:padding="5dp"
-            android:text="@string/summoner_detail_level"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_champ_mastery_name1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/tv_champ_mastery_top1"
+                    android:layout_toRightOf="@+id/tv_champ_mastery_top1"
+                    android:padding="5dp"
+                    android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tv_champ_level1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_champ_mastery1"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/tv_champ_level_prompt1"
-            android:layout_toRightOf="@+id/tv_champ_level_prompt1"
-            android:padding="5dp"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_champ_mastery_prompt1"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_champ_mastery_top1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/iv_champ1"
+                    android:layout_toRightOf="@+id/iv_champ1"
+                    android:padding="5dp"
+                    android:text="@string/mastery_prompt"
+                    android:textSize="15sp"
+                    tools:ignore="DuplicateIds" />
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_champ_mastery1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_champ_mastery_top1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/tv_champ_mastery_prompt1"
+                    android:layout_toRightOf="@+id/tv_champ_mastery_prompt1"
+                    android:padding="5dp"
+                    android:textSize="15sp" />
 
-    <RelativeLayout
-        android:id="@+id/rl_summoner_duo_rank"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="16dp">
+                <TextView
+                    android:id="@+id/tv_champ_level_prompt1"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_champ_mastery1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/iv_champ1"
+                    android:layout_toRightOf="@+id/iv_champ1"
+                    android:padding="5dp"
+                    android:text="@string/summoner_detail_level"
+                    android:textSize="15sp" />
 
-        <ImageView
-            android:id="@+id/iv_champ2"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:gravity="center" />
+                <TextView
+                    android:id="@+id/tv_champ_level1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_champ_mastery1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/tv_champ_level_prompt1"
+                    android:layout_toRightOf="@+id/tv_champ_level_prompt1"
+                    android:padding="5dp"
+                    android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tv_champ_mastery_top2"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/iv_champ2"
-            android:layout_toRightOf="@+id/iv_champ2"
-            android:padding="5dp"
-            android:text="@string/top_2"
-            android:textSize="15sp" />
+            </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_champ_mastery_name2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/tv_champ_mastery_top2"
-            android:layout_toRightOf="@+id/tv_champ_mastery_top2"
-            android:padding="5dp"
-            android:textSize="15sp" />
+            <RelativeLayout
+                android:id="@+id/rl_summoner_duo_rank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_champ_mastery_prompt2"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_champ_mastery_top2"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/iv_champ2"
-            android:layout_toRightOf="@+id/iv_champ2"
-            android:padding="5dp"
-            android:text="@string/mastery_prompt"
-            android:textSize="15sp" />
+                <ImageView
+                    android:id="@+id/iv_champ2"
+                    android:layout_width="95dp"
+                    android:layout_height="95dp"
+                    android:gravity="center" />
 
-        <TextView
-            android:id="@+id/tv_champ_mastery2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_champ_mastery_top2"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/tv_champ_mastery_prompt2"
-            android:layout_toRightOf="@id/tv_champ_mastery_prompt2"
-            android:padding="5dp"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_champ_mastery_top2"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/iv_champ2"
+                    android:layout_toRightOf="@+id/iv_champ2"
+                    android:padding="5dp"
+                    android:text="@string/top_2"
+                    android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tv_champ_level_prompt2"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_champ_mastery2"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/iv_champ2"
-            android:layout_toRightOf="@+id/iv_champ2"
-            android:padding="5dp"
-            android:text="@string/summoner_detail_level"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_champ_mastery_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/tv_champ_mastery_top2"
+                    android:layout_toRightOf="@+id/tv_champ_mastery_top2"
+                    android:padding="5dp"
+                    android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tv_champ_level2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_champ_mastery2"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/tv_champ_level_prompt2"
-            android:layout_toRightOf="@+id/tv_champ_level_prompt2"
-            android:padding="5dp"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_champ_mastery_prompt2"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_champ_mastery_top2"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/iv_champ2"
+                    android:layout_toRightOf="@+id/iv_champ2"
+                    android:padding="5dp"
+                    android:text="@string/mastery_prompt"
+                    android:textSize="15sp" />
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_champ_mastery2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_champ_mastery_top2"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/tv_champ_mastery_prompt2"
+                    android:layout_toRightOf="@id/tv_champ_mastery_prompt2"
+                    android:padding="5dp"
+                    android:textSize="15sp" />
 
-    <RelativeLayout
-        android:id="@+id/rl_summoner_third_rank"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="16dp">
+                <TextView
+                    android:id="@+id/tv_champ_level_prompt2"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_champ_mastery2"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/iv_champ2"
+                    android:layout_toRightOf="@+id/iv_champ2"
+                    android:padding="5dp"
+                    android:text="@string/summoner_detail_level"
+                    android:textSize="15sp" />
 
-        <ImageView
-            android:id="@+id/iv_champ3"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:gravity="center" />
+                <TextView
+                    android:id="@+id/tv_champ_level2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_champ_mastery2"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/tv_champ_level_prompt2"
+                    android:layout_toRightOf="@+id/tv_champ_level_prompt2"
+                    android:padding="5dp"
+                    android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tv_champ_mastery_top3"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/iv_champ3"
-            android:layout_toRightOf="@+id/iv_champ3"
-            android:padding="5dp"
-            android:text="@string/top_3"
-            android:textSize="15sp" />
+            </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_champ_mastery_name3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/tv_champ_mastery_top3"
-            android:layout_toRightOf="@id/tv_champ_mastery_top3"
-            android:padding="5dp"
-            android:textSize="15sp" />
+            <RelativeLayout
+                android:id="@+id/rl_summoner_third_rank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_champ_mastery_prompt3"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_champ_mastery_top3"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/iv_champ3"
-            android:layout_toRightOf="@+id/iv_champ3"
-            android:padding="5dp"
-            android:text="@string/mastery_prompt"
-            android:textSize="15sp" />
+                <ImageView
+                    android:id="@+id/iv_champ3"
+                    android:layout_width="95dp"
+                    android:layout_height="95dp"
+                    android:gravity="center" />
 
-        <TextView
-            android:id="@+id/tv_champ_mastery3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_champ_mastery_top3"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/tv_champ_mastery_prompt3"
-            android:layout_toRightOf="@id/tv_champ_mastery_prompt3"
-            android:padding="5dp"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_champ_mastery_top3"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/iv_champ3"
+                    android:layout_toRightOf="@+id/iv_champ3"
+                    android:padding="5dp"
+                    android:text="@string/top_3"
+                    android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tv_champ_level_prompt3"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_champ_mastery3"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/iv_champ3"
-            android:layout_toRightOf="@+id/iv_champ3"
-            android:padding="5dp"
-            android:text="@string/summoner_detail_level"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_champ_mastery_name3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/tv_champ_mastery_top3"
+                    android:layout_toRightOf="@id/tv_champ_mastery_top3"
+                    android:padding="5dp"
+                    android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tv_champ_level3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_champ_mastery3"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/tv_champ_level_prompt3"
-            android:layout_toRightOf="@+id/tv_champ_level_prompt3"
-            android:padding="5dp"
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_champ_mastery_prompt3"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_champ_mastery_top3"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/iv_champ3"
+                    android:layout_toRightOf="@+id/iv_champ3"
+                    android:padding="5dp"
+                    android:text="@string/mastery_prompt"
+                    android:textSize="15sp" />
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_champ_mastery3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_champ_mastery_top3"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/tv_champ_mastery_prompt3"
+                    android:layout_toRightOf="@id/tv_champ_mastery_prompt3"
+                    android:padding="5dp"
+                    android:textSize="15sp" />
 
+                <TextView
+                    android:id="@+id/tv_champ_level_prompt3"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_champ_mastery3"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/iv_champ3"
+                    android:layout_toRightOf="@+id/iv_champ3"
+                    android:padding="5dp"
+                    android:text="@string/summoner_detail_level"
+                    android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/tv_Date_des"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:textSize="22sp" />
+                <TextView
+                    android:id="@+id/tv_champ_level3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_champ_mastery3"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/tv_champ_level_prompt3"
+                    android:layout_toRightOf="@+id/tv_champ_level_prompt3"
+                    android:padding="5dp"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_Date_des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

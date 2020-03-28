@@ -47,8 +47,8 @@
     <string name="pref_sort_value_BR" translatable="false">BR1.</string>
     <string name="pref_sort_value_RU" translatable="false">RU.</string>
     <string name="pref_sort_value_US" translatable="false">NA1.</string>
-    <string name="pref_sort_default">@string/pref_sort_value_BR</string>
-    <string name="pref_user_title">Hello summoner</string>
+    <string name="pref_sort_default" translatable="false">@string/pref_sort_value_US</string>
+    <string name="pref_user_title" translatable="false">Hello summoner</string>
 
 
 </resources>
