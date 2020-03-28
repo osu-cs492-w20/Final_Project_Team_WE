@@ -3,7 +3,7 @@ package com.example.searchlol.asynctask;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.searchlol.R;
+import static com.example.searchlol.MainActivity.trigger;
 import com.example.searchlol.SummonerDetailActivity;
 import com.example.searchlol.dataclass.SummonerClass;
 import com.example.searchlol.utils.NetworkUtils;
@@ -16,7 +16,6 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
     private static final String TAG = SummonerAsyncTask.class.getSimpleName();
     private String mUrl;
     private String mNotRank;
-
 
     public SummonerAsyncTask(String url, String notRank) {
         mUrl = url;
@@ -41,14 +40,22 @@ public class SummonerAsyncTask extends AsyncTask<String, Void, String> {
         mAct = new SummonerDetailActivity();
         if (s != null) {
             result = RiotSummonerUtils.parseSummonerResult(s);//json
-            if (result != null)
+            if (result != null) {
                 mId = result.id;
-            String rankURL = RiotSummonerUtils.buildRankURL(mId);
-            Log.d(TAG, "executing search with url: " + rankURL);
-            new RankAsyncTask(mNotRank).execute(rankURL);
-            String url = RiotSummonerUtils.buildMasteryURL(mId);
-            Log.d(TAG, "executing search with url: " + url);
-            new MasteryAsyncTask().execute(url);
+
+                if(mId!=null) {
+                    String rankURL = RiotSummonerUtils.buildRankURL(mId);
+                    Log.d(TAG, "executing search with url: " + rankURL);
+                    new RankAsyncTask(mNotRank).execute(rankURL);
+                    String url = RiotSummonerUtils.buildMasteryURL(mId);
+                    Log.d(TAG, "executing search with url: " + url);
+                    new MasteryAsyncTask().execute(url);
+                }
+                else{
+                    trigger=2;
+                }
+            }
+
         }
         mAct.receiveData(result);
     }

@@ -65,6 +65,21 @@
             app:layout_constraintTop_toBottomOf="@+id/textView"
             app:layout_constraintVertical_bias="0.162" />
 
+        <TextView
+            android:id="@+id/errorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textColor="#F00"
+            app:layout_constraintBottom_toTopOf="@+id/search_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_summoner"
+            app:layout_constraintVertical_bias="0.162" />
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
