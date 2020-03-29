@@ -10,13 +10,13 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 public class HistoryUtils {
-    private final static String HISTORY_BASE_URL = "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/";
+    private final static String HISTORY_BASE_URL = "api.riotgames.com/lol/match/v4/matchlists/by-account/";
     private final static String HISTORY_END_INDEX = "endIndex";
     private final static String HISTORY_BEGIN_INDEX = "beginIndex";
     private final static String HISTORY_KEY = "api_key";
     private final static String KEY = "RGAPI-cbab7df3-8f08-41ab-8b12-e6a246a09224";
-
-    private final static String MATCH_BASE_URL = "https://na1.api.riotgames.com/lol/match/v4/matches/";
+    private static String REGION="NA1.";
+    private final static String MATCH_BASE_URL = "api.riotgames.com/lol/match/v4/matches/";
 
     private static String accId;
     private static int partId;
@@ -69,9 +69,13 @@ public class HistoryUtils {
         String accountId;
    }
 
+   public void changeMregion(String name){
+        REGION=name;
+   }
+
     public static String buildHistoryListSearchURL(String id) {
         accId=id;
-        return Uri.parse(HISTORY_BASE_URL).buildUpon()
+        return Uri.parse("https://" + REGION + HISTORY_BASE_URL).buildUpon()
                 .appendPath(id)
                 .appendQueryParameter(HISTORY_END_INDEX, "20")
                 .appendQueryParameter(HISTORY_BEGIN_INDEX, "0")
@@ -81,7 +85,7 @@ public class HistoryUtils {
     }
 
     public static String buildOneMatchURL(long id) {
-        return Uri.parse(MATCH_BASE_URL).buildUpon()
+        return Uri.parse("https://" + REGION + MATCH_BASE_URL).buildUpon()
                 .appendPath(String.valueOf(id))
                 .appendQueryParameter(HISTORY_KEY, KEY)
                 .build()
