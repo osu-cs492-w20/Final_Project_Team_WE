@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     myTimer.scheduleAtFixedRate(new TimerTask() {
                         public void run() {
                             if (trigger == 1) {
-                                repoError.setVisibility(View.INVISIBLE);
+//                                repoError.setVisibility(View.INVISIBLE);
                                 startSecondActivity(summonerClass);
                                 trigger = 0;
                             }

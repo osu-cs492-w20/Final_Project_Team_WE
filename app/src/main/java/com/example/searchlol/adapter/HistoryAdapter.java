@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -65,7 +66,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         private ImageView item4;
         private ImageView item5;
         private ImageView item6;
-        private LinearLayout linearLayout;
+        private CardView linearLayout;
 
 
         public HistoryViewHolder(View itemView) {
@@ -122,9 +123,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             Glide.with(item6.getContext()).load(itemURL6).into(item6);
 
             if (s.equals("Win")) {
-                linearLayout.setBackgroundColor(Color.argb(255, 53, 113, 242));
+                linearLayout.setCardBackgroundColor(Color.argb(255, 53, 113, 242));
             } else {
-                linearLayout.setBackgroundColor(Color.argb(255, 240, 98, 98));
+                linearLayout.setCardBackgroundColor(Color.argb(255, 240, 98, 98));
 
             }
 
